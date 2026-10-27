@@ -1,3 +1,95 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+
+/* Tokens de color: se usan como bg-fondo, text-acento, border-correcto… */
+@theme {
+  --color-fondo: #f2f2f7;
+  --color-superficie: #ffffff;
+  --color-texto: #1c1c1e;
+  --color-texto-2: #6c6c70;
+  --color-separador: #d1d1d6;
+  --color-acento: #0057c2;
+  --color-correcto: #1b7a33;
+  --color-error: #b8261b;
+}
+
+/* Modo oscuro: solo se redefinen los tokens */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-fondo: #000000;
+    --color-superficie: #1c1c1e;
+    --color-texto: #f2f2f7;
+    --color-texto-2: #98989f;
+    --color-separador: #38383a;
+    --color-acento: #0a84ff;
+    --color-correcto: #30d158;
+    --color-error: #ff453a;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-fondo text-texto antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-acento;
+  }
+}
+
+@layer components {
+  .pantalla-centrada {
+    @apply flex min-h-dvh flex-col items-center justify-center px-6 text-center;
+  }
+
+  .cabecera-fija {
+    @apply sticky top-0 z-10 bg-fondo/90 px-4 pb-3 backdrop-blur;
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+
+  .pie-fijo {
+    @apply sticky bottom-0 z-10 bg-fondo/90 px-4 pt-3 backdrop-blur;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .tarjeta {
+    @apply rounded-2xl bg-superficie p-4;
+  }
+
+  .boton {
+    @apply block min-h-12 w-full rounded-xl bg-acento px-4 text-[17px] font-semibold text-white transition-opacity active:opacity-80;
+  }
+
+  .opcion {
+    @apply flex min-h-14 w-full items-center gap-3 rounded-xl border-2 border-transparent bg-superficie px-4 py-3 text-left leading-snug transition active:scale-[0.98] disabled:active:scale-100;
+  }
+
+  .opcion-letra {
+    @apply grid size-7 shrink-0 place-items-center rounded-full bg-fondo text-sm font-semibold text-texto-2;
+  }
+
+  .opcion-correcta {
+    @apply border-correcto bg-correcto/10;
+
+    .opcion-letra {
+      @apply bg-correcto text-white;
+    }
+  }
+
+  .opcion-error {
+    @apply border-error bg-error/10;
+
+    .opcion-letra {
+      @apply bg-error text-white;
+    }
+  }
+
+  .opcion-apagada {
+    @apply opacity-50;
+  }
+}

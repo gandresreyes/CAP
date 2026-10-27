@@ -1,0 +1,87 @@
+@if (banco.cargando()) {
+  <p class="pantalla-centrada text-texto-2">Cargando preguntas…</p>
+} @else if (banco.error()) {
+  <section class="pantalla-centrada">
+    <p class="text-lg font-semibold">No se pudieron cargar las preguntas</p>
+    <p class="mt-1 text-texto-2">Revisa la conexión e inténtalo de nuevo.</p>
+    <button type="button" class="boton mt-6" (click)="banco.recargar()">Reintentar</button>
+  </section>
+} @else if (cola().length === 0) {
+  <section class="pantalla-centrada">
+    <p class="text-5xl" aria-hidden="true">✓</p>
+    <p class="mt-4 text-xl font-semibold">¡Estás al día!</p>
+    <p class="mt-1 text-texto-2">No tienes repasos pendientes. Vuelve mañana.</p>
+  </section>
+} @else if (terminada()) {
+  <section class="pantalla-centrada">
+    <p class="text-texto-2">Sesión terminada</p>
+    <p class="mt-2 text-5xl font-bold">{{ aciertos() }}/{{ total() }}</p>
+    <p class="mt-2 text-texto-2">acertadas a la primera</p>
+    <button type="button" class="boton mt-8" (click)="nuevaSesion()">Otra sesión</button>
+  </section>
+} @else if (actual(); as p) {
+  <section class="flex min-h-dvh flex-col">
+    <header class="cabecera-fija">
+      <div class="flex items-center justify-between text-sm text-texto-2">
+        <span class="font-semibold text-texto">Repaso</span>
+        <span>{{ indice() + 1 }} / {{ cola().length }}</span>
+      </div>
+      <div class="mt-2 h-1 overflow-hidden rounded-full bg-separador">
+        <div class="h-full rounded-full bg-acento transition-[width]" [style.width.%]="avance()"></div>
+      </div>
+    </header>
+
+    <div class="flex-1 px-4 pt-2 pb-6">
+      <p class="text-xs font-semibold tracking-wide text-texto-2 uppercase">{{ p.tema }}</p>
+      <h1 class="mt-1 text-lg leading-snug font-semibold">{{ p.enunciado }}</h1>
+
+      @if (p.imagen) {
+        <div class="relative mt-4 aspect-video overflow-hidden rounded-2xl bg-superficie">
+          <img [ngSrc]="p.imagen" fill class="object-contain" alt="Imagen de la pregunta" />
+        </div>
+      }
+
+      <ul class="mt-5 space-y-3">
+        @for (o of opciones(); track $index) {
+          @let esCorrecta = o === correcta();
+          @let esElegida = o === elegida();
+          <li>
+            <button
+              type="button"
+              class="opcion"
+              [class.opcion-correcta]="respondida() && esCorrecta"
+              [class.opcion-error]="respondida() && esElegida && !esCorrecta"
+              [class.opcion-apagada]="respondida() && !esCorrecta && !esElegida"
+              [disabled]="respondida()"
+              (click)="responder(o)"
+            >
+              <span class="opcion-letra" aria-hidden="true">{{ letras[$index] }}</span>
+              <span>{{ o }}</span>
+            </button>
+          </li>
+        }
+      </ul>
+
+      <div aria-live="polite">
+        @if (respondida()) {
+          <div class="tarjeta mt-5">
+            <p class="font-semibold" [class.text-correcto]="acierto()" [class.text-error]="!acierto()">
+              {{ acierto() ? '¡Correcto!' : 'Incorrecto' }}
+            </p>
+            @if (p.explicacion) {
+              <h2 class="mt-3 text-sm font-semibold">Por qué</h2>
+              <p class="mt-1 leading-relaxed text-texto-2">{{ p.explicacion }}</p>
+            }
+            <p class="mt-3 text-sm text-texto-2">{{ cuandoVuelve() }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    @if (respondida()) {
+      <footer class="pie-fijo">
+        <button type="button" class="boton" (click)="siguiente()">Siguiente</button>
+      </footer>
+    }
+  </section>
+}

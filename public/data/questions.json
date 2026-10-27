@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ej-001",
+    "tema": "Tiempos de conducción y descanso",
+    "enunciado": "¿Cuál es el tiempo máximo de conducción diaria con carácter general?",
+    "opciones": ["8 horas", "9 horas", "10 horas", "11 horas"],
+    "correcta": 1,
+    "explicacion": "El Reglamento (CE) 561/2006 fija 9 horas diarias, ampliables a 10 horas como máximo dos veces por semana.",
+    "origen": "ejemplo"
+  },
+  {
+    "id": "ej-002",
+    "tema": "Tiempos de conducción y descanso",
+    "enunciado": "Tras 4 horas y media de conducción, ¿qué pausa mínima debe hacer el conductor?",
+    "opciones": ["15 minutos", "30 minutos", "45 minutos", "1 hora"],
+    "correcta": 2,
+    "explicacion": "La pausa es de al menos 45 minutos. Puede dividirse en una de 15 minutos seguida de otra de 30.",
+    "origen": "ejemplo"
+  },
+  {
+    "id": "ej-003",
+    "tema": "Tiempos de conducción y descanso",
+    "enunciado": "¿Cuál es el tiempo máximo de conducción semanal?",
+    "opciones": ["45 horas", "48 horas", "56 horas", "60 horas"],
+    "correcta": 2,
+    "explicacion": "El máximo semanal es de 56 horas, sin superar 90 horas en dos semanas consecutivas.",
+    "origen": "ejemplo"
+  },
+  {
+    "id": "ej-004",
+    "tema": "Tiempos de conducción y descanso",
+    "enunciado": "¿Cuántas horas como máximo se pueden conducir en dos semanas consecutivas?",
+    "opciones": ["80 horas", "90 horas", "100 horas", "112 horas"],
+    "correcta": 1,
+    "explicacion": "La conducción acumulada en dos semanas consecutivas no puede superar 90 horas.",
+    "origen": "ejemplo"
+  },
+  {
+    "id": "ej-005",
+    "tema": "Tiempos de conducción y descanso",
+    "enunciado": "¿Cuál es la duración mínima del descanso diario normal?",
+    "opciones": ["9 horas", "10 horas", "11 horas", "12 horas"],
+    "correcta": 2,
+    "explicacion": "El descanso diario normal es de al menos 11 horas. El reducido es de al menos 9 horas.",
+    "origen": "ejemplo"
+  },
+  {
+    "id": "ej-006",
+    "tema": "Tiempos de conducción y descanso",
+    "enunciado": "¿Cuál es la duración mínima del descanso semanal normal?",
+    "opciones": ["24 horas", "36 horas", "45 horas", "48 horas"],
+    "correcta": 2,
+    "explicacion": "El descanso semanal normal es de al menos 45 horas. El reducido es de al menos 24 horas.",
+    "origen": "ejemplo"
+  },
+  {
+    "id": "ej-007",
+    "tema": "Seguridad vial",
+    "enunciado": "¿Cuál es la tasa máxima de alcohol en aire espirado para un conductor profesional?",
+    "opciones": ["0,10 mg/l", "0,15 mg/l", "0,25 mg/l", "0,30 mg/l"],
+    "correcta": 1,
+    "explicacion": "Para conductores profesionales el límite es 0,15 mg/l en aire espirado (0,3 g/l en sangre).",
+    "origen": "ejemplo"
+  },
+  {
+    "id": "ej-008",
+    "tema": "Tacógrafo",
+    "enunciado": "¿Cada cuánto tiempo como máximo deben descargarse los datos de la tarjeta del conductor?",
+    "opciones": ["Cada 7 días", "Cada 28 días", "Cada 90 días", "Cada 365 días"],
+    "correcta": 1,
+    "explicacion": "Los datos de la tarjeta del conductor se descargan como máximo cada 28 días; los de la unidad del vehículo, cada 90 días.",
+    "origen": "ejemplo"
+  }
+]
