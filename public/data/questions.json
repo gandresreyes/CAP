@@ -1,74 +1,2830 @@
 [
   {
-    "id": "ej-001",
-    "tema": "Tiempos de conducción y descanso",
-    "enunciado": "¿Cuál es el tiempo máximo de conducción diaria con carácter general?",
-    "opciones": ["8 horas", "9 horas", "10 horas", "11 horas"],
+    "id": "cyl-2026-10-001",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Cómo se define la deceleración de un camión?",
+    "opciones": [
+      "Aceleración continua.",
+      "Aceleración negativa.",
+      "Aceleración discontinua.",
+      "Aceleración positiva."
+    ],
     "correcta": 1,
-    "explicacion": "El Reglamento (CE) 561/2006 fija 9 horas diarias, ampliables a 10 horas como máximo dos veces por semana.",
-    "origen": "ejemplo"
+    "explicacion": "",
+    "origen": "CyL 2026-10"
   },
   {
-    "id": "ej-002",
-    "tema": "Tiempos de conducción y descanso",
-    "enunciado": "Tras 4 horas y media de conducción, ¿qué pausa mínima debe hacer el conductor?",
-    "opciones": ["15 minutos", "30 minutos", "45 minutos", "1 hora"],
-    "correcta": 2,
-    "explicacion": "La pausa es de al menos 45 minutos. Puede dividirse en una de 15 minutos seguida de otra de 30.",
-    "origen": "ejemplo"
-  },
-  {
-    "id": "ej-003",
-    "tema": "Tiempos de conducción y descanso",
-    "enunciado": "¿Cuál es el tiempo máximo de conducción semanal?",
-    "opciones": ["45 horas", "48 horas", "56 horas", "60 horas"],
-    "correcta": 2,
-    "explicacion": "El máximo semanal es de 56 horas, sin superar 90 horas en dos semanas consecutivas.",
-    "origen": "ejemplo"
-  },
-  {
-    "id": "ej-004",
-    "tema": "Tiempos de conducción y descanso",
-    "enunciado": "¿Cuántas horas como máximo se pueden conducir en dos semanas consecutivas?",
-    "opciones": ["80 horas", "90 horas", "100 horas", "112 horas"],
+    "id": "cyl-2026-10-002",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "En el caso de transporte privado complementario de mercancías:",
+    "opciones": [
+      "la empresa debe dedicarse, como actividad principal, al transporte de mercancías.",
+      "las mercancías tendrán su origen o destino en un lugar en el que la empresa desarrolle trabajos relacionados con su actividad principal.",
+      "el conductor puede tener una relación mercantil con la empresa.",
+      "la vinculación del vehículo con la empresa no puede basarse en un contrato de alquiler."
+    ],
     "correcta": 1,
-    "explicacion": "La conducción acumulada en dos semanas consecutivas no puede superar 90 horas.",
-    "origen": "ejemplo"
+    "explicacion": "",
+    "origen": "CyL 2026-10"
   },
   {
-    "id": "ej-005",
-    "tema": "Tiempos de conducción y descanso",
-    "enunciado": "¿Cuál es la duración mínima del descanso diario normal?",
-    "opciones": ["9 horas", "10 horas", "11 horas", "12 horas"],
+    "id": "cyl-2026-10-003",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "A medida que aumenta la velocidad:",
+    "opciones": [
+      "el camión tiene que desplazar menos cantidad de aire en el mismo tiempo.",
+      "las turbulencias son menores.",
+      "la succión del aire es menos potente.",
+      "las turbulencias son mayores."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-004",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "En un camión, el deslizamiento de un neumático puede darse:",
+    "opciones": [
+      "por aceleración únicamente.",
+      "por frenada únicamente.",
+      "por aceleración o por frenada.",
+      "en cualquier circunstancia."
+    ],
     "correcta": 2,
-    "explicacion": "El descanso diario normal es de al menos 11 horas. El reducido es de al menos 9 horas.",
-    "origen": "ejemplo"
+    "explicacion": "",
+    "origen": "CyL 2026-10"
   },
   {
-    "id": "ej-006",
-    "tema": "Tiempos de conducción y descanso",
-    "enunciado": "¿Cuál es la duración mínima del descanso semanal normal?",
-    "opciones": ["24 horas", "36 horas", "45 horas", "48 horas"],
+    "id": "cyl-2026-10-005",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Qué se entiende por trayectoria real del camión más abierta de la que debería realizar?",
+    "opciones": [
+      "Cabeceo.",
+      "Guiñada.",
+      "Sobreviraje.",
+      "Subviraje."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-006",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Cómo se denomina el arte de colocar la carga para ser transportada de la mejor manera?",
+    "opciones": [
+      "Balanceo.",
+      "Estiba.",
+      "Cabeceo.",
+      "Guiñada."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-007",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "¿Cuáles son las funciones propias de un conductor en una empresa de transporte de mercancías por carretera, aparte de conducir el vehículo?",
+    "opciones": [
+      "Distribuir las órdenes de ruta entre los conductores.",
+      "Decidir la renovación y ampliación de la flota de vehículos y la forma de su financiación.",
+      "Supervisar la colocación de la carga.",
+      "Elaborar las nóminas."
+    ],
     "correcta": 2,
-    "explicacion": "El descanso semanal normal es de al menos 45 horas. El reducido es de al menos 24 horas.",
-    "origen": "ejemplo"
+    "explicacion": "",
+    "origen": "CyL 2026-10"
   },
   {
-    "id": "ej-007",
-    "tema": "Seguridad vial",
-    "enunciado": "¿Cuál es la tasa máxima de alcohol en aire espirado para un conductor profesional?",
-    "opciones": ["0,10 mg/l", "0,15 mg/l", "0,25 mg/l", "0,30 mg/l"],
-    "correcta": 1,
-    "explicacion": "Para conductores profesionales el límite es 0,15 mg/l en aire espirado (0,3 g/l en sangre).",
-    "origen": "ejemplo"
+    "id": "cyl-2026-10-008",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿A cuál de los siguientes transportes se aplicará el convenio CMR?",
+    "opciones": [
+      "A los transportes privados complementarios.",
+      "A los transportes nacionales de mercancías.",
+      "A los transportes internacionales de mercancías.",
+      "A los transportes internacionales de viajeros."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
   },
   {
-    "id": "ej-008",
-    "tema": "Tacógrafo",
-    "enunciado": "¿Cada cuánto tiempo como máximo deben descargarse los datos de la tarjeta del conductor?",
-    "opciones": ["Cada 7 días", "Cada 28 días", "Cada 90 días", "Cada 365 días"],
+    "id": "cyl-2026-10-009",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "A efectos de obligaciones aduaneras, cuando nos referimos a exportación hablamos de:",
+    "opciones": [
+      "salida del territorio aduanero de la Unión Europea de mercancías de la Unión.",
+      "salida de mercancías desde un Estado de la Unión Europea con destino a otro Estado miembro.",
+      "intercambios de mercancías dentro del territorio aduanero de la Unión.",
+      "intercambios de autorizaciones bilaterales entre Estados."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-010",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Cómo se denomina al recipiente hecho de cualquier material y de diversas formas, concebido para contener mercancías y destinado a individualizar, dosificar, conservar, presentar y describir unitariamente los objetos que contiene?",
+    "opciones": [
+      "Embalaje.",
+      "Bulto.",
+      "Envase.",
+      "Cubierta."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-011",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "La tara de un vehículo es:",
+    "opciones": [
+      "la masa del vehículo en vacío.",
+      "la masa de la carga.",
+      "la masa del vehículo con carga.",
+      "la masa del vehículo con su conductor y su carga."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-012",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "¿Cuál es la marca de identificación de un vehículo calorífico reforzado de la clase A?",
+    "opciones": [
+      "CRA.",
+      "CNA.",
+      "CRB.",
+      "CFA."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-013",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "Hablamos de transporte combinado no acompañado cuando:",
+    "opciones": [
+      "cargamos solo el semirremolque, evitando el viaje de la cabeza tractora y el conductor.",
+      "cargamos solo el vehículo, evitando el viaje del conductor.",
+      "en un vehículo con dos conductores, al cargar el semirremolque, uno viaja con él y el otro se queda con la cabeza tractora.",
+      "una de las combinaciones se hace sin carta de porte."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-014",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "¿Cómo responderán los socios de las deudas sociales en una sociedad de responsabilidad limitada?",
+    "opciones": [
+      "Responderán personalmente.",
+      "No responderán personalmente.",
+      "Uno de los socios, al menos, responderá personalmente de las deudas sociales como socio colectivo.",
+      "Depende del importe de la deuda."
+    ],
     "correcta": 1,
-    "explicacion": "Los datos de la tarjeta del conductor se descargan como máximo cada 28 días; los de la unidad del vehículo, cada 90 días.",
-    "origen": "ejemplo"
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-015",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "¿En qué registro debe inscribirse la sociedad anónima?",
+    "opciones": [
+      "En el Registro Mercantil.",
+      "En el Registro Civil.",
+      "En el Registro de Sociedades.",
+      "En el Registro Mercantil y en el Registro de Sociedades."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-016",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "Cuando la fuerza disponible para poner en movimiento un camión es inferior a la fuerza resistente que se opone al movimiento…",
+    "opciones": [
+      "el motor se calará.",
+      "el vehículo solo se pondrá en movimiento si la pendiente es inferior al 15 %.",
+      "el vehículo solo se pondrá en movimiento si la pendiente es inferior al 5 %.",
+      "el vehículo se comenzará a mover normalmente."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-017",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Qué se debe comprobar para saber si se puede transportar una determinada cantidad de mercancías?",
+    "opciones": [
+      "La masa de la mercancía usando el teorema de Kant para comprobarlo.",
+      "Que el vehículo disponga de una carga útil suficiente para la cantidad de mercancías que va a transportar.",
+      "Comprobar, mediante una simulación con paquetes definidos para tal fin, que el vehículo dispone del espacio suficiente.",
+      "Realizar un cálculo de la masa sustancial de la carga."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-018",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Qué se debe calcular para poder realizar un transporte de mercancías?",
+    "opciones": [
+      "Si se dispone de espacio suficiente, mediante una simulación con paquetes definidos para tal fin.",
+      "El peso indeterminado de la carga.",
+      "La cantidad de mercancías que se pueden transportar.",
+      "El centro de gravedad de la carga."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-019",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Qué factor puede hacer variar el grado de rozamiento?",
+    "opciones": [
+      "La potencia del motor.",
+      "Las previsiones meteorológicas.",
+      "La forma de conducir.",
+      "El estado y superficie de la calzada."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-020",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "En el caso de transportes efectuados en régimen de tránsito de la Unión, ¿qué significa que la garantía de pago de los derechos aduaneros puede ser de carácter global?",
+    "opciones": [
+      "Que puede cubrir varias operaciones de transporte.",
+      "Que puede cubrir a varios operadores.",
+      "Que puede cubrir a todos los operadores que sean miembros de una misma asociación de transportistas.",
+      "Que puede cubrir a todos los operadores de un mismo país."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-021",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿En qué modalidad se otorgan las autorizaciones para efectuar transporte público de mercancías?",
+    "opciones": [
+      "Como autorización por vehículo.",
+      "Como autorización por viaje.",
+      "Como autorización de empresa.",
+      "Las respuestas B y C son correctas."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-022",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿Con qué tipo de vehículos se puede efectuar transporte si se dispone de una autorización identificada registralmente con la clave MPCE?",
+    "opciones": [
+      "Solo con vehículos de hasta 3,5 toneladas de MMA.",
+      "Solo con vehículos de hasta 6 toneladas de MMA.",
+      "Solo con vehículos pesados.",
+      "Con vehículos que tengan cualquier Masa Máxima Autorizada."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-023",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿Es obligatorio llevar la tarjeta de inspección técnica en el vehículo?",
+    "opciones": [
+      "Solo en los vehículos pesados.",
+      "Solo en los vehículos ligeros.",
+      "Solo en los vehículos con más de 10 años de antigüedad.",
+      "Sí, siempre."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-024",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "¿Cuál es el número mínimo de socios de una sociedad laboral?",
+    "opciones": [
+      "2.",
+      "3.",
+      "4.",
+      "5."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-025",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "El transporte de mercancías interior es...",
+    "opciones": [
+      "el que se desarrolla dentro de una misma comunidad autónoma.",
+      "el que se desarrolla dentro del estado.",
+      "el que se desarrolla dentro de la Unión Europea.",
+      "el que se lleva a cabo en base a un tratado bilateral."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-026",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Cómo consigue principalmente el BAS (asistente a la frenada de urgencia) cumplir sus funciones?",
+    "opciones": [
+      "Regulando la presión sobre los elementos frenantes.",
+      "Mediante intervenciones en el sistema de frenos o en el control del motor, aprovechando la existencia de otros sistemas como ABS y ASR.",
+      "Actuando como un freno neumático convencional que lleva acoplado un sistema de mando electrónico.",
+      "Provocando, al accionar el pedal del freno, una reacción inmediata, simultánea y uniformemente de los frenos."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-027",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "El par motor está relacionado con:",
+    "opciones": [
+      "la longitud del cigüeñal.",
+      "el diámetro del embrague.",
+      "la expansión de los gases quemados en el interior del cilindro.",
+      "el número de velocidades de la caja de cambios."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-028",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Cómo se llama el par que proporciona la tracción para que, aplicado a través de la adherencia entre neumático y calzada, permita el desplazamiento del vehículo?",
+    "opciones": [
+      "Par en rueda.",
+      "Par en transmisión.",
+      "Par motor.",
+      "Par en cigüeñal."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-029",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Qué efecto se produce en el régimen de revoluciones del motor hasta llegar a las ruedas?",
+    "opciones": [
+      "Se produce una multiplicación.",
+      "Se produce una desmultiplicación.",
+      "Se produce una desclasificación.",
+      "Se produce una potenciación."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-030",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Con qué se pueden mecanizar los procesos de manipulación de cargas?",
+    "opciones": [
+      "Paletización de bultos.",
+      "Carretillas elevadoras.",
+      "Cintas de transporte.",
+      "Todas las respuestas anteriores son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-031",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Cuál de las siguientes afirmaciones es cierta respecto al número de revoluciones al que se alcanzan el par máximo y la potencia máxima?",
+    "opciones": [
+      "El número de revoluciones al que se alcanzan el par máximo y la potencia máxima coinciden.",
+      "El par máximo se alcanza a un número bajo de revoluciones, mientras que la potencia máxima se alcanza a un número intermedio de revoluciones.",
+      "El par máximo se alcanza a un número intermedio de revoluciones, mientras que la potencia máxima se alcanza a un número de revoluciones próximo al máximo.",
+      "El par máximo se alcanza a un número de revoluciones próximo al máximo, mientras que la potencia máxima se alcanza a un número intermedio de revoluciones."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-032",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Qué datos registra automáticamente el tacógrafo?",
+    "opciones": [
+      "El consumo de combustible.",
+      "La distancia recorrida.",
+      "La temperatura del motor.",
+      "El nivel de aceite."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-033",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Qué elementos de seguridad de los vehículos requieren la acción física del conductor?",
+    "opciones": [
+      "Ninguno, ya que todos los elementos de seguridad activa y pasiva actúan automáticamente.",
+      "Todos los elementos de seguridad, tanto activa como pasiva.",
+      "Algunos elementos de seguridad activa, ya que los de seguridad pasiva actúan automáticamente.",
+      "Solo los elementos de seguridad pasiva, ya que los de seguridad activa actúan automáticamente."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-034",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Qué es el freno motor?",
+    "opciones": [
+      "La utilización del pedal de freno que tienen todos los coches.",
+      "La utilización simultánea del pedal de freno y el de mano.",
+      "La utilización del freno de mano.",
+      "La utilización del motor para poder reducir la velocidad."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-035",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "¿Qué haremos para prevenir la aparición de sueño durante la conducción?",
+    "opciones": [
+      "Poner la radio más fuerte para distraernos.",
+      "Tomar mucho café.",
+      "Comer copiosamente y continuar el viaje.",
+      "Todas las respuestas anteriores son incorrectas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-036",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "Cuando las personas mayores actúan como peatones, son uno de los colectivos:",
+    "opciones": [
+      "menos vulnerables por su experiencia.",
+      "más vulnerables por su deterioro psicofísico.",
+      "menos vulnerable porque suelen ir acompañados.",
+      "Todas las respuestas anteriores son incorrectas."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-037",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "En caso de inmovilización por una fuerte nevada hay que:",
+    "opciones": [
+      "aparcar dejando vía libre a las máquinas quitanieves.",
+      "disponer de combustible suficiente.",
+      "orientar las ruedas en línea recta.",
+      "Todas las respuestas anteriores son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-038",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "En relación con la cualificación inicial y la formación continua de los conductores de determinados vehículos destinados al transporte por carretera, ¿por quién será registrado el certificado de aptitud profesional (CAP)?",
+    "opciones": [
+      "Por el Ministerio de Transportes.",
+      "Por los órganos competentes para el otorgamiento de autorizaciones habilitantes para la realización de transporte público discrecional de viajeros y mercancías por carretera.",
+      "Por la Dirección General de Tráfico, con independencia de la residencia del conductor.",
+      "Por la Jefatura Provincial de Tráfico donde tenga fijada su residencia el conductor."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-039",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Para optimizar el consumo de carburante se recomienda:",
+    "opciones": [
+      "aumentar el número de revoluciones.",
+      "reducir el número de aceleraciones.",
+      "aumentar el número de aceleraciones.",
+      "aumentar el régimen de giro."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-040",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "Respecto de los riesgos en el trabajo, el empresario está obligado a:",
+    "opciones": [
+      "determinar qué puestos deben usar protecciones.",
+      "indicar el equipo de protección necesario.",
+      "cuidar el mantenimiento de los equipos individuales de protección.",
+      "Todas las respuestas son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-041",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "Una mala alimentación, ¿puede incrementar la fatiga y reducir la concentración?",
+    "opciones": [
+      "No.",
+      "Puede reducir la concentración, pero no incrementar la fatiga.",
+      "Puede incrementar la fatiga, pero no la concentración.",
+      "Sí."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-042",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Cuál es el objetivo principal del tacógrafo?",
+    "opciones": [
+      "Reducir el consumo de carburante.",
+      "Reducir la contaminación.",
+      "Controlar de forma eficaz la normativa social en el sector del transporte por carretera.",
+      "Conocer la hora de llegada de las mercancías al destino."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-043",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Qué información debe facilitar el tacógrafo analógico de cada conductor?",
+    "opciones": [
+      "Sus datos personales.",
+      "La matrícula del vehículo que conducen.",
+      "Los datos de la empresa.",
+      "Los datos de los distintos periodos de actividad."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-044",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "¿Cómo debe ser el medio en el que se realiza la actividad laboral?",
+    "opciones": [
+      "Con una iluminación insuficiente.",
+      "Con una temperatura inadecuada.",
+      "Con ausencia de ruidos.",
+      "Con vibraciones."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-045",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Cómo deben ser los elementos de seguridad instalados en todos los vehículos?",
+    "opciones": [
+      "De seguridad activa.",
+      "De seguridad pasiva.",
+      "De seguridad activa y pasiva.",
+      "De seguridad dinámica."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-046",
+    "tema": "3.5 Emergencias",
+    "enunciado": "Durante el transporte pueden producirse toda una serie de circunstancias que afectan al normal desarrollo del mismo. ¿Qué circunstancia puede considerarse como un incidente?",
+    "opciones": [
+      "Choque frontal.",
+      "Pinchazo o reventón de neumático.",
+      "Vuelco parcial o total del vehículo.",
+      "Caída al agua del vehículo."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-047",
+    "tema": "3.5 Emergencias",
+    "enunciado": "¿Cuándo está especialmente aconsejado que el conductor evacúe el vehículo?",
+    "opciones": [
+      "Cuando el vehículo se ha incendiado o existe la amenaza de un incendio.",
+      "Cuando hay tormentas.",
+      "En caso de lluvia.",
+      "Si hay muchos relámpagos en el cielo."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-048",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "Cuando un motor de combustión gira a altas revoluciones…",
+    "opciones": [
+      "se consigue el máximo par motor.",
+      "el llenado del cilindro es máximo.",
+      "la combustión del carburante con el aire es más potente.",
+      "hay muy poco tiempo para que se queme el carburante."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-049",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "En un vehículo equipado con tacógrafo digital, ¿cuándo está obligado a insertar su tarjeta el conductor?",
+    "opciones": [
+      "Cuando se la entreguen por primera vez y no debe extraerla más.",
+      "Cuando se haga cargo del vehículo.",
+      "Cuando lo crea oportuno.",
+      "Solo cuando conduzca."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-050",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "¿En qué consiste la conducción preventiva?",
+    "opciones": [
+      "En el aprendizaje necesario para obtener el carné de conducir.",
+      "En ser consciente de los riesgos y anticiparse a posibles situaciones de peligro.",
+      "Es cuando se realiza una elección entre diversas alternativas.",
+      "Ninguna de las respuestas anteriores es correcta."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-051",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Por qué es importante el dispositivo ABS?",
+    "opciones": [
+      "Porque aumenta la distancia de frenado.",
+      "Porque mantiene el control sobre la dirección del vehículo.",
+      "Porque bloquea las ruedas.",
+      "Porque aumenta la pérdida de tracción."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-052",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Cuál de los siguientes estilos de conducción es inadecuado para el ahorro de carburante?",
+    "opciones": [
+      "Arrancar el motor sin acelerar.",
+      "Al arrancar, iniciar inmediatamente la marcha si su vehículo es de gasolina.",
+      "Al arrancar, esperar unos instantes antes de iniciar la marcha si su vehículo es diésel.",
+      "Actuar sabiendo que el vehículo consume menos en las marchas cortas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-053",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "¿Cuál de los siguientes comportamientos se puede utilizar para disminuir el nivel de alcohol en sangre?",
+    "opciones": [
+      "Hacer ejercicio.",
+      "Masticar café.",
+      "Consumir cocaína.",
+      "Todas las respuestas anteriores son incorrectas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-054",
+    "tema": "3.1 Riesgos de la carretera",
+    "enunciado": "¿Cuál puede ser la causa de un accidente producido por una descarga eléctrica?",
+    "opciones": [
+      "Cables y enchufes defectuosos.",
+      "Conexiones adecuadas.",
+      "Contacto de la carga del vehículo con tendidos eléctricos.",
+      "Las respuestas A y C son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-055",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Cuándo gasta más combustible un vehículo?",
+    "opciones": [
+      "Cuando el motor da un par bajo.",
+      "Cuando el motor da su máximo par.",
+      "Cuando el motor da una potencia intermedia.",
+      "Cuando el motor da su máxima potencia."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-056",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿De qué tipos diferentes pueden ser las tarjetas de tacógrafo?",
+    "opciones": [
+      "De conductor, de control, de centro de ensayo y de visita.",
+      "De primer conductor, de segundo conductor, de centro de ensayo y de empresa.",
+      "De conductor, de crédito, de débito y de empresa.",
+      "De conductor, de control, de centro de ensayo y de empresa."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-057",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "El consumo de un vehículo para recorrer 100 km, ¿es algo característico del diseño del motor o depende de la forma y estilo de conducción?",
+    "opciones": [
+      "Es característico del motor del vehículo, por lo que solo depende de su diseño.",
+      "Solo depende de la forma y estilo de conducción.",
+      "Depende tanto de la forma y estilo de conducción como de las características del vehículo y su motor.",
+      "No depende de ninguno de los dos factores mencionados."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-058",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Para qué es necesario generar un par cuando el motor está al ralentí?",
+    "opciones": [
+      "Para compensar la pérdida de calor por el tubo de escape.",
+      "Para compensar las pérdidas térmicas a través del sistema de refrigeración.",
+      "Para vencer la resistencia aerodinámica al movimiento del vehículo.",
+      "Para vencer los rozamientos internos del motor."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-059",
+    "tema": "3.1 Riesgos de la carretera",
+    "enunciado": "¿Qué accidentes de los que tienen los trabajadores de empresas de transporte podemos considerar menos frecuentes?",
+    "opciones": [
+      "Exposición continuada a vibraciones.",
+      "Golpes con herramientas y otros objetos.",
+      "Sobreesfuerzos.",
+      "Aplastamiento por vuelco de la maquinaria de trabajo."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-060",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "Cuando se habla de ralentizadores se está haciendo referencia:",
+    "opciones": [
+      "al retárder, por ejemplo.",
+      "a un sistema que regula el ralentí del motor.",
+      "a un tipo de freno de compresión.",
+      "a un tipo de freno de expansión."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-061",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "¿Cuándo se produce un aumento de la fatiga de forma elevada durante la conducción?",
+    "opciones": [
+      "En trayectos cortos.",
+      "En trayectos poco conocidos.",
+      "En condiciones atmosféricas favorables.",
+      "En la primera hora de viaje."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-062",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "¿Cómo deben ser las comidas durante los días de conducción?",
+    "opciones": [
+      "Varias comidas y ligeras.",
+      "Varias comidas y abundantes.",
+      "Pocas comidas y ligeras.",
+      "Pocas comidas y abundantes."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-063",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "Cuando un conductor cambia de vehículo:",
+    "opciones": [
+      "tiene que llevarse los discos de tacógrafo al nuevo vehículo.",
+      "no tiene que llevarse los discos si el nuevo vehículo lleva tacógrafo digital.",
+      "tiene que llevarse el tacógrafo.",
+      "No puede cambiar de vehículo durante la jornada."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-064",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "Los períodos en los que un conductor, que conduce en equipo, no va conduciendo y el vehículo está en movimiento, ¿cómo se consideran por la normativa laboral española?",
+    "opciones": [
+      "Tiempo de presencia.",
+      "Tiempo de otros trabajos.",
+      "Tiempo de espera.",
+      "Tiempo de descanso."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-065",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿De qué forma se identifica un usuario en el tacógrafo digital?",
+    "opciones": [
+      "Al introducir las actividades manuales.",
+      "Al hacer una descarga.",
+      "No se puede identificar.",
+      "Al introducir su tarjeta."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-066",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "El conductor de un vehículo pesado, ¿qué tipo de sistema de frenado utilizará al bajar una pendiente pronunciada?",
+    "opciones": [
+      "Primero actuará sobre el ralentizador y luego, si fuera necesario, sobre el freno de servicio.",
+      "Primero actuará sobre el freno de servicio y luego, si fuera necesario, sobre el ralentizador.",
+      "Indistintamente sobre el ralentizador o sobre el freno de servicio, siempre que se actúe sobre los dos.",
+      "Exclusivamente el freno de servicio."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-067",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Sobre qué actúa el freno eléctrico o ralentizador?",
+    "opciones": [
+      "Sobre las zapatas de los frenos.",
+      "Sobre las pastillas de los frenos.",
+      "Sobre el diferencial autoblocante.",
+      "Sobre el árbol de transmisión a la salida del secundario mediante un campo magnético."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-068",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Cuál es la función principal del ralentizador eléctrico?",
+    "opciones": [
+      "Reponer la electricidad de la batería cuando está descargada.",
+      "Aumentar la tensión eléctrica producida por el generador de corriente.",
+      "Reducir la tensión eléctrica producida por el generador de corriente.",
+      "Reducir el uso del freno de servicio."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-069",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Una buena forma de ahorrar carburante al conducir un vehículo pesado es:",
+    "opciones": [
+      "circular con una presión de inflado de los neumáticos inferior a la recomendada por el fabricante.",
+      "observar el cuentarrevoluciones para saber en qué momento se debe cambiar de marcha.",
+      "esperar con el motor arrancado sin circular hasta que alcance la temperatura adecuada de funcionamiento.",
+      "acelerar en vacío cuando se arranca el motor para que este alcance la temperatura adecuada en el menor tiempo posible."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-070",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "En el consumo de carburante de un automóvil no influye:",
+    "opciones": [
+      "el tipo de generador de corriente.",
+      "la presión de los neumáticos.",
+      "el número de revoluciones por minuto del motor.",
+      "el perfil de la carretera."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-071",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "En los motores actuales con inyección electrónica, cuando se deja de acelerar, no se pisa el acelerador ni el pedal de embrague y el número de revoluciones por minuto del motor se encuentra por encima del ralentí, el consumo:",
+    "opciones": [
+      "es igual que al ralentí.",
+      "es cero.",
+      "es de un litro cada 100 kilómetros, aproximadamente.",
+      "dependerá del carburante utilizado."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-072",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Cuando se utiliza un aceite de baja calidad para lubricar un motor:",
+    "opciones": [
+      "aumenta el desgaste de las piezas, aunque se reduce su corrosión.",
+      "aumenta la corrosión de las piezas, aunque se reduce su desgaste.",
+      "aumenta el desgaste de las piezas sin que se vea afectado el consumo de carburante en ningún caso.",
+      "puede aumentar el consumo de carburante al aumentar el rozamiento de las piezas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-073",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "El número de revoluciones del motor, ¿es un dato a tener en cuenta para seleccionar la relación de marchas más adecuada?",
+    "opciones": [
+      "Sí.",
+      "Solo en vehículos pesados.",
+      "Solo en vehículos ligeros.",
+      "No."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-074",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "El efecto \"fading\" se produce cuando:",
+    "opciones": [
+      "se hace un mal uso del freno de servicio.",
+      "el neumático no es capaz de evacuar el agua que se encuentra en la calzada.",
+      "se roza lateralmente el neumático contra los bordillos de las aceras.",
+      "se desgasta el neumático a partir de un cierto límite."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-075",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "El conductor de un vehículo se aproxima a una glorieta, por lo que deja de acelerar antes de llegar. ¿Es correcto su comportamiento?",
+    "opciones": [
+      "No, porque al dejar rodar el vehículo sin acelerar, aunque se reduce el consumo, aumentan los desgastes en la suspensión.",
+      "No, porque al dejar rodar el vehículo sin acelerar, aunque se reduce el consumo, aumentan los desgastes en la transmisión.",
+      "Sí, porque aprovecha la inercia del vehículo.",
+      "Solo si previamente pone en funcionamiento el ralentizador."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-076",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "Entre la documentación que se debe llevar obligatoriamente en el vehículo no se encuentra:",
+    "opciones": [
+      "el permiso de circulación.",
+      "la declaración de porte del último transporte efectuado.",
+      "la tarjeta de inspección técnica.",
+      "el permiso o licencia del conductor."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-077",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Conducir utilizando la relación de marchas más alta posible, dependiendo de la velocidad a la que se circule, tiene como ventaja:",
+    "opciones": [
+      "aumentar el coeficiente aerodinámico del vehículo y prolongar la vida del motor.",
+      "no tener que comprobar la presión de inflado de los neumáticos, salvo en caso de pinchazo.",
+      "un menor consumo de carburante.",
+      "aumentar la frecuencia de la inspección técnica periódica y reducir los plazos de mantenimiento del vehículo."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-078",
+    "tema": "3.1 Riesgos de la carretera",
+    "enunciado": "En términos relativos, ¿qué nivel de siniestralidad tienen los conductores profesionales?",
+    "opciones": [
+      "Elevado, debido a la poca experiencia de los conductores.",
+      "Elevado, a pesar de la experiencia de los conductores.",
+      "Bajo, a pesar de la poca experiencia de los conductores.",
+      "Bajo, debido a la experiencia de los conductores."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-079",
+    "tema": "3.5 Emergencias",
+    "enunciado": "¿Dónde se deberá dejar estacionado el vehículo propio en caso de parar para auxiliar en un accidente?",
+    "opciones": [
+      "Fuera de la calzada.",
+      "En el carril derecho.",
+      "En el carril izquierdo.",
+      "En la zona más cercana para poder trasladar a los heridos."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-080",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "¿Qué tipo de comportamientos indican la presencia de cansancio en un conductor?",
+    "opciones": [
+      "Aumento de la motorización.",
+      "Cambios de postura repetidos.",
+      "Aumento de la concentración ante los estímulos.",
+      "Atención tranquila a la carretera."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-081",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "En el cuentarrevoluciones de un vehículo pesado existe una zona marcada, generalmente, de color verde, ¿qué supone circular con un número de revoluciones por encima de esa zona?",
+    "opciones": [
+      "Una menor cantidad de electricidad producida por el generador de corriente.",
+      "Un menor deterioro mecánico.",
+      "Un aumento del consumo de carburante.",
+      "Una disminución en el consumo de aceite."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-082",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Qué dato tiene influencia en el consumo de carburante?",
+    "opciones": [
+      "El nivel de carga de la batería.",
+      "La temperatura de funcionamiento del motor.",
+      "El tipo de neumático montado: con cámara o sin cámara.",
+      "La presión del sistema neumático de frenos."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-083",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Qué influye en el consumo de carburante de un vehículo pesado?",
+    "opciones": [
+      "El tipo de sistema de frenado que se monte: hidráulico o neumático.",
+      "El tipo de bujías que monte: frías o calientes.",
+      "La presión de los neumáticos.",
+      "El material del que esté construida la carrocería."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-084",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "La presión de inflado de los neumáticos, ¿influye en el consumo de carburante?",
+    "opciones": [
+      "No.",
+      "Solo cuando se circula a altas velocidades.",
+      "Sí, con una presión de inflado inferior a la recomendada por el fabricante, el consumo es mayor.",
+      "Sí, con una presión de inflado inferior a la recomendada por el fabricante, el consumo es menor."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-085",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Qué es el sistema EBS?",
+    "opciones": [
+      "Un sistema de control electrónico de frenos.",
+      "Un sistema de información de consumo.",
+      "Un sistema de ayuda a la dirección.",
+      "Un sistema de depuración de gases."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-086",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Cómo se denomina al producto de la fuerza de expansión de los gases quemados que se transforma en giro en el cigüeñal?",
+    "opciones": [
+      "Potencia del motor.",
+      "Par motor.",
+      "Consumo específico de un motor.",
+      "Par máximo del motor."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-087",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Qué otros nombres reciben los discos-diagrama?",
+    "opciones": [
+      "Hojas de ruta.",
+      "Cuadros de servicio.",
+      "Hojas de control.",
+      "Hojas de registro."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-088",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "¿Qué comportamiento es aconsejable para los conductores?",
+    "opciones": [
+      "El uso del vehículo para trabajar con el ordenador.",
+      "El uso del vehículo como lugar de descanso.",
+      "El uso del vehículo para rellenar papeles.",
+      "La realización de ejercicio físico fuera del trabajo de forma regular."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-089",
+    "tema": "3.1 Riesgos de la carretera",
+    "enunciado": "¿Cuál de los siguientes es uno de los riesgos principales de la actividad del transporte?",
+    "opciones": [
+      "Diabetes.",
+      "Arritmias cardiacas.",
+      "Accidentes de tráfico.",
+      "Colesterol alto."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-090",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "¿Qué condiciones debe reunir la cabina de conducción de un vehículo?",
+    "opciones": [
+      "Contar con un buen sistema de climatización.",
+      "Permitir una visibilidad amplia de la carretera.",
+      "Reducir al máximo posible los ruidos procedentes del propio vehículo y del tráfico en general.",
+      "Todas las respuestas anteriores son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-091",
+    "tema": "3.1 Riesgos de la carretera",
+    "enunciado": "En los accidentes de trabajo en el sector del transporte por carretera, ¿cuál es el más habitual entre los que no tienen consecuencias mortales?",
+    "opciones": [
+      "Funcionamiento de vehículos en recintos cerrados sin ventilación.",
+      "Fugas de combustible.",
+      "Sobreesfuerzos.",
+      "Lesiones de la piel y de los ojos."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-092",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "¿Cuáles son consideradas medidas preventivas básicas para una conducción segura?",
+    "opciones": [
+      "Conducir el vehículo en cualquier tipo de condición física o psíquica.",
+      "Respetar las normas de circulación.",
+      "Ingerir bebidas energéticas de cualquier tipo.",
+      "Señalizar las maniobras cuando se estén realizando."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-093",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Cuál de las acciones indicadas es más correcta para optimizar el consumo de carburante?",
+    "opciones": [
+      "Evitar los períodos de tiempo con el vehículo parado y el motor al ralentí.",
+      "Circular a velocidad alta.",
+      "Circular siempre en marchas cortas.",
+      "Abrir las ventanillas para que circule el aire libremente."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-094",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "Los cursos de formación continua necesarios para renovar la tarjeta de cualificación de conductor se deben realizar en:",
+    "opciones": [
+      "centros públicos de formación profesional.",
+      "cualquier centro que acredite experiencia en formación de conductores.",
+      "la empresa de transporte en la que se esté trabajando.",
+      "centros de empresas CAP autorizadas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-095",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "¿Qué circunstancias de la vía condicionan la actitud del conductor?",
+    "opciones": [
+      "Las condiciones meteorológicas.",
+      "El número de vehículos.",
+      "El tipo de tráfico.",
+      "Todas las respuestas son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-096",
+    "tema": "3.2 Delincuencia e inmigración",
+    "enunciado": "¿Qué consideración jurídica puede llegar a tener la colaboración de un conductor en la introducción en España, mediante el vehículo que tiene a su cargo, de productos cuyo tráfico está prohibido?",
+    "opciones": [
+      "Puede llegar a constituir delito de contrabando.",
+      "Puede llegar a constituir un delito de tráfico clandestino.",
+      "En ningún caso será un delito sino, como mucho, una infracción administrativa.",
+      "Con independencia de la calificación jurídica que corresponda a esta acción, el conductor nunca puede ser imputado por ella si el vehículo no es de su propiedad."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-097",
+    "tema": "3.2 Delincuencia e inmigración",
+    "enunciado": "¿Qué consideración jurídica puede llegar a tener la colaboración de un conductor en la introducción en España de inmigrantes ilegales mediante el vehículo que tiene a su cargo?",
+    "opciones": [
+      "Puede llegar a constituir delito de contrabando.",
+      "Puede llegar a constituir un delito contra los derechos de los ciudadanos extranjeros.",
+      "En ningún caso será un delito sino, como mucho, una infracción administrativa.",
+      "Con independencia de la calificación jurídica que corresponda a esta acción, el conductor nunca puede ser imputado por ella si el vehículo no es de su propiedad."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-098",
+    "tema": "3.5 Emergencias",
+    "enunciado": "En presencia de un accidente de tráfico, al avisar a los servicios de socorro, se recomienda:",
+    "opciones": [
+      "comunicar el número de heridos y su estado.",
+      "que la llamada la haga más de una persona para asegurar que la emergencia sea atendida.",
+      "limitarse a comunicar los hechos básicos, evitando referir condiciones más específicas de la zona, aunque puedan incrementar la peligrosidad, para no crear confusión en los servicios de socorro.",
+      "Todas las respuestas son correctas."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-099",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Deben las empresas CAP efectuar algún trámite respecto de los cursos que se proponen impartir?",
+    "opciones": [
+      "Sí, deben homologarlos previamente, salvo que se trate de cursos de formación continua.",
+      "Sí, deben homologarlos previamente, salvo que se trate de cursos de formación acelerada.",
+      "Sí, deben homologarlos previamente en todo caso.",
+      "No, basta con tener autorización como empresa CAP."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-100",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Cuál de las actuaciones siguientes es correcta para reducir el consumo de carburante de un automóvil?",
+    "opciones": [
+      "Dar aceleraciones rápidas para alcanzar la velocidad adecuada en el menor tiempo posible.",
+      "Utilizar una relación de marchas corta para aumentar la potencia.",
+      "Aprovechar la inercia del vehículo rodando con una marcha engranada como forma de deceleración.",
+      "Aumentar el número de revoluciones del motor utilizando para ello una relación de marchas adecuada."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-101",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "En un transporte de mercancías por carretera, ¿en qué caso puede el porteador registrar los bultos que se le han entregado en presencia del cargador?",
+    "opciones": [
+      "Cuando se haya efectuado una declaración de valor.",
+      "Cuando se haga cargo de las operaciones de carga.",
+      "Cuando existan fundadas sospechas de falsedad en torno a la declaración del cargador.",
+      "Todas las respuestas son correctas."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-102",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "¿Por qué es importante aumentar la distancia de seguridad en caso de niebla?",
+    "opciones": [
+      "Por la posibilidad de patinar.",
+      "Por no verse el espacio de delante del vehículo.",
+      "Por tener más tiempo para frenar.",
+      "Todas las respuestas anteriores son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-10-103",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Qué circunstancias puede provocar el reventón de un neumático?",
+    "opciones": [
+      "Circular con un neumático deteriorado.",
+      "Circular con un neumático con presión inadecuada.",
+      "Circular con un neumático deformado.",
+      "Todas las respuestas son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-10"
+  },
+  {
+    "id": "cyl-2026-01-001",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Cómo debe estar dispuesta la carga transportada en un vehículo?",
+    "opciones": [
+      "Debe ser permitir la transferencia de masas para mantener el equilibrio de fuerzas durante la conducción.",
+      "Debe colocarse la más pesada sobre el eje de tracción para aprovechar la potencia del vehículo.",
+      "Debe colocarse la parte más voluminosa sobre el eje trasero para facilitar la visibilidad al conductor.",
+      "No debe comprometer la estabilidad."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-002",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "La deriva del neumático de un camión depende:",
+    "opciones": [
+      "de la distancia de aceleración.",
+      "del perfil del neumático.",
+      "de la fuerza de molaridad.",
+      "del coeficiente aerodinámico."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-003",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Qué fuerza tiene que estar dentro del círculo de Kamm para que el camión pueda ser dirigido sin problemas?",
+    "opciones": [
+      "La fuerza de la atracción terrestre.",
+      "La fuerza de guiado lateral.",
+      "La fuerza atemporal.",
+      "La fuerza de solubilidad térmica."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-005",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "Un incremento de la altura del centro de gravedad del vehículo, ¿qué supone?",
+    "opciones": [
+      "Un incremento de la estabilidad del vehículo.",
+      "Menores probabilidades de que se produzca un vuelco.",
+      "Incrementa el riesgo en las curvas.",
+      "Disminuye el riesgo en las curvas."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-006",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Qué fenómeno es típico de una sobrecarga en el eje delantero de un camión?",
+    "opciones": [
+      "El sobrecalentamiento de los frenos.",
+      "El esfuerzo excesivo para la suspensión trasera.",
+      "La suavidad de la dirección del vehículo.",
+      "La falta de apoyo en el eje delantero."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-007",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "¿Cuáles son las funciones propias del jefe de tráfico de una empresa de transporte de mercancías por carretera?",
+    "opciones": [
+      "Planificación de la empresa.",
+      "Coordinación de la empresa.",
+      "Adoptar decisiones estratégicas.",
+      "Planificar los servicios y rutas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-008",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "Cuando el objeto de una empresa sea el transporte de mercancías, los servicios de este tipo que realice no podrán considerarse:",
+    "opciones": [
+      "servicios de carácter público.",
+      "servicios discrecionales públicos, pero sí servicios regulares.",
+      "servicios internacionales.",
+      "servicios de carácter privado complementario."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-009",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿Cómo se denomina el documento común a todos los Estados miembros de la Unión Europea que autoriza a realizar transporte internacional dentro de su ámbito?",
+    "opciones": [
+      "Permiso comunitario.",
+      "Tarjeta de transporte de la Unión.",
+      "Licencia comunitaria.",
+      "Autorización comunitaria."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-010",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "La sociedad anónima...",
+    "opciones": [
+      "debe tener un capital mínimo de 6.000 euros.",
+      "está formada por socios, uno de los cuales responderá personalmente de las deudas sociales como socio colectivo.",
+      "no debe inscribirse en el Registro Mercantil.",
+      "la forman socios que no responden personalmente de las deudas sociales."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-011",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "La actividad de transporte de mercancías por carretera origina una serie de consecuencias negativas que soporta la sociedad en su conjunto. Señale la que no proceda.",
+    "opciones": [
+      "Accidentes.",
+      "Desempleo.",
+      "Contaminación.",
+      "Congestión viaria."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-012",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Qué es el embalaje terciario o de transporte?",
+    "opciones": [
+      "Aquel que protege al producto para el transporte y que generalmente contiene varias unidades de producto individual.",
+      "Es la envoltura utilizada para contener uno o varios embalajes.",
+      "Aquel que protege al embalaje primario y no cumple una función ligada directamente al uso del producto.",
+      "Las cajas plegables o rígidas de cartón o de plástico."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-013",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Para qué tipo de transporte están indicados los toldos?",
+    "opciones": [
+      "Para todo tipo de materiales.",
+      "Para mercancías peligrosas.",
+      "Para materiales sueltos o a granel.",
+      "Para grandes bultos."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-014",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "¿Qué dato es necesario que figure en la escritura de constitución de una sociedad anónima?",
+    "opciones": [
+      "La identidad de los socios.",
+      "La profesión de los socios.",
+      "La edad de los socios.",
+      "El estado civil de los socios."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-015",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Cómo afecta a la estabilidad del camión el correcto uso del freno de servicio?",
+    "opciones": [
+      "Aumentando la distancia de frenado.",
+      "Disminuyendo la eficacia de frenado.",
+      "Evitando el desplazamiento excesivo de la carga.",
+      "Provocando un desplazamiento excesivo de la carga."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-017",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "De las que se citan, ¿cuál constituye una resistencia al avance del camión?",
+    "opciones": [
+      "La resistencia al rozamiento.",
+      "La fuerza de deceleración.",
+      "La resistencia de la climatología adversa.",
+      "La resistencia a la potencia."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-018",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "De los siguientes factores, ¿cuál puede reducir la resistencia del aire?",
+    "opciones": [
+      "Que las ventanillas y trampillas estén abiertas.",
+      "Una regulación correcta de los deflectores.",
+      "Colocar los toldos de manera que puedan ondear fácilmente.",
+      "Instalar objetos con formas sobresalientes en la superficie del camión."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-019",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿Quién otorga la licencia comunitaria para transporte de mercancías a los transportistas que cumplan los requisitos para su obtención?",
+    "opciones": [
+      "La Comisión Europea.",
+      "El Estado miembro de la Unión Europea donde resida el solicitante.",
+      "El Consejo de la Unión Europea.",
+      "Cualquier Estado miembro de la Unión Europea donde trabaje el solicitante."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-020",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿Qué plazo de duración tienen las autorizaciones de transporte público de mercancías por carretera?",
+    "opciones": [
+      "5 años.",
+      "10 años.",
+      "12 años.",
+      "No tienen plazo de duración prefijado."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-021",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "El transporte funerario realizado por prestadores de servicios funerarios:",
+    "opciones": [
+      "necesita autorización de transporte funerario (tarjeta VF).",
+      "necesita autorización de transporte privado complementario de mercancías (tarjeta MPCE).",
+      "necesita autorización de transporte público de mercancías (tarjeta MDLE).",
+      "está exento de autorización."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-022",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "En el marco de la normativa aduanera, ¿qué es un operador económico autorizado?",
+    "opciones": [
+      "Una empresa autorizada para fabricar un determinado producto.",
+      "Una empresa autorizada para exportar e importar cualquier mercancía.",
+      "Una empresa autorizada para comerciar en toda la Unión Europea.",
+      "Una empresa a la que se ha concedido un estatuto especial en lo que se refiere a controles aduaneros."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-023",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "Según el acuerdo ATP, ¿qué es un vehículo identificado con las letras FNA?",
+    "opciones": [
+      "Un vehículo frigorífico normal con autorización de validez anual.",
+      "Un vehículo refrigerante reforzado de la clase A.",
+      "Un vehículo frigorífico normal de la clase A.",
+      "Un vehículo refrigerado normal de la clase A."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-024",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "Entre las medidas especiales de circulación establecidas por la DGT de forma habitual se encuentra...",
+    "opciones": [
+      "restricciones a la circulación de autobuses articulados.",
+      "restricciones a la circulación de vehículos de más de 20 tn de MMA.",
+      "restricciones a la circulación de conjuntos de más de 12 tn de MMC.",
+      "restricciones a la circulación de vehículos de más de 7,5 tn de MMA."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-026",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Cómo se denomina al certificado que acredita que un conductor ha superado los cursos y exámenes exigidos para la obtención de la cualificación inicial de los conductores?",
+    "opciones": [
+      "Permiso de conducir de la clase F-1.",
+      "Tarjeta de conductor de tacógrafo.",
+      "Número de Identificación Fiscal (NIF).",
+      "Certificado de aptitud profesional (CAP)."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-027",
+    "tema": "3.5 Emergencias",
+    "enunciado": "¿Cómo se denomina el método de extinción de un incendio consistente en la dilución o desplazamiento del oxígeno?",
+    "opciones": [
+      "Inhibición catalítica.",
+      "Disolución.",
+      "Sofocación.",
+      "Oxigenación."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-028",
+    "tema": "3.5 Emergencias",
+    "enunciado": "¿Cómo se denomina el método de extinción de un incendio consistente en reducir la temperatura del combustible?",
+    "opciones": [
+      "Enfriamiento.",
+      "Dilución.",
+      "Disolución.",
+      "Desalimentación."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-029",
+    "tema": "3.5 Emergencias",
+    "enunciado": "En un contrato de seguro, ¿cuál es la persona sobre la que recae la cobertura del riesgo?",
+    "opciones": [
+      "Asegurado.",
+      "Asegurador.",
+      "Beneficiario.",
+      "Culpable."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-030",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "La lluvia influye en la pérdida de adherencia de los neumáticos, ¿cuál es el momento en el que hay que tomar más precauciones?",
+    "opciones": [
+      "Durante las primeras gotas.",
+      "Después de lluvias torrenciales.",
+      "Cuando la lluvia sea de intensidad media.",
+      "En el final de la tormenta."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-031",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "Durante la conducción y para prevenir los efectos de la fatiga, es recomendable efectuar descansos, al menos, cada:",
+    "opciones": [
+      "4 horas y media.",
+      "1 hora.",
+      "2 horas.",
+      "3 horas."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-032",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "El cinturón de seguridad es un mecanismo de seguridad:",
+    "opciones": [
+      "activa, si el conductor o los demás ocupantes del vehículo lo llevan puesto, o de seguridad pasiva si lo llevan quitado.",
+      "activa, en todo caso.",
+      "activa, pero solo si está homologado.",
+      "pasiva."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-033",
+    "tema": "3.6 Imagen de marca",
+    "enunciado": "En un transporte de calidad, ¿el cuidado de qué elementos tangibles es más importante?",
+    "opciones": [
+      "El de los vehículos.",
+      "El del uniforme de los conductores.",
+      "El de la iluminación de la bodega del vehículo.",
+      "El del lubricante utilizado en los vehículos."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-034",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "Según la normativa comunitaria, ¿cuál es el máximo de tiempo de conducción semanal?",
+    "opciones": [
+      "56 horas.",
+      "65 horas.",
+      "46 horas.",
+      "54 horas."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-035",
+    "tema": "3.1 Riesgos de la carretera",
+    "enunciado": "En la actividad de transporte, ¿qué circunstancias causan esguinces graves normalmente?",
+    "opciones": [
+      "Calentamiento del motor.",
+      "Fugas de combustible.",
+      "Funcionamiento de vehículos en recintos cerrados sin ventilación.",
+      "Desniveles en los suelos."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-036",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "La aplicación de los conocimientos ergonómicos al ámbito del trabajo es fundamental para:",
+    "opciones": [
+      "incrementar los beneficios empresariales.",
+      "utilizar las herramientas con maestría.",
+      "incrementar el bienestar del trabajador.",
+      "los problemas de Ergomalotría."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-037",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "¿Qué acciones de las que se citan serán necesarias para garantizar la seguridad durante la circulación?",
+    "opciones": [
+      "Permanecer con el embrague pisado.",
+      "Observar por los retrovisores periódicamente.",
+      "Pegarse al vehículo que circula delante.",
+      "Poner marchas excesivamente cortas."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-038",
+    "tema": "3.5 Emergencias",
+    "enunciado": "¿Para qué fuegos se suele emplear la arena seca?",
+    "opciones": [
+      "Para fuegos en sólidos.",
+      "Para fuegos de plásticos.",
+      "Para fuegos en los gases.",
+      "Para líquidos que se derraman por el suelo."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-039",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "Cuando un motor se encuentra a ralentí, el par motor…",
+    "opciones": [
+      "será máximo.",
+      "será mínimo.",
+      "será nulo.",
+      "tendrá valor cero."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-040",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "Un kilovatio de potencia equivale a…",
+    "opciones": [
+      "1,36 caballos de vapor.",
+      "2,5 caballos de vapor.",
+      "1,10 caballos de vapor.",
+      "2,25 caballos de vapor."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-041",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "Un motor diésel de inyección directa respecto de un motor diésel de inyección indirecta:",
+    "opciones": [
+      "tiene un mayor consumo específico.",
+      "tiene un menor consumo específico.",
+      "tiene el mismo consumo específico.",
+      "siempre tiene un menor par motor."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-042",
+    "tema": "3.5 Emergencias",
+    "enunciado": "¿Cuál es el propósito principal de la declaración amistosa de accidentes?",
+    "opciones": [
+      "Aumentar la recaudación de impuestos.",
+      "Aumentar las ganancias de las compañías aseguradoras.",
+      "Indemnizar en el menor tiempo posible a los perjudicados.",
+      "Todas las respuestas anteriores son correctas."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-043",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Qué función tiene el dibujo del neumático cuando está lloviendo?",
+    "opciones": [
+      "Preservar el deterioro de su superficie.",
+      "Reducir la superficie humedecida del mismo.",
+      "Evacuar el agua que se encuentra a su paso.",
+      "Obtener una mayor velocidad."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-044",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Pueden combinarse los pictogramas que aparecen en el tacógrafo digital entre sí?",
+    "opciones": [
+      "Sí, para expresar diferentes contenidos.",
+      "No.",
+      "Sí, pero solo los de incidentes.",
+      "Sí, pero solo los de fallos."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-045",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "Según la reglamentación social europea, si un conductor conduce 3 horas y hace una pausa de 30 minutos, y después conduce otras 3 horas:",
+    "opciones": [
+      "está haciendo la pausa correctamente.",
+      "no está haciendo la pausa correctamente, puesto que la pausa debería ser de 40 minutos.",
+      "no está haciendo la pausa correctamente, puesto que en 6 horas de conducción solo ha hecho una pausa de 30 minutos.",
+      "está haciendo la pausa correctamente, pero ahora debe parar 45 minutos."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-046",
+    "tema": "3.2 Delincuencia e inmigración",
+    "enunciado": "Los transportistas que trasladan a extranjeros al territorio de los Estados miembros del Acuerdo de Schengen, ¿tienen algún papel en la lucha contra la inmigración ilegal?",
+    "opciones": [
+      "No, en cuanto a su posición de transportista.",
+      "Están obligados a cumplir las obligaciones de control que les incumben según el Tratado Schengen.",
+      "No, esta tarea solo le compete a la policía de cada país miembro.",
+      "Dependerá del país de origen del viajero."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-047",
+    "tema": "3.6 Imagen de marca",
+    "enunciado": "¿Cuál de las siguientes afirmaciones es correcta en relación con el conductor de una empresa de transporte?",
+    "opciones": [
+      "Representa a la empresa en las inspecciones en carretera.",
+      "Es importante en la resolución de las reclamaciones escritas que se hagan a la empresa.",
+      "Representa a la empresa en juicio.",
+      "El conductor en ningún caso representa a la empresa de transportes."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-048",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "¿Cuáles son las obligaciones de los empleadores respecto a la prevención de riesgos laborales?",
+    "opciones": [
+      "Usar los equipos de seguridad de conformidad a las instrucciones establecidas.",
+      "Colocar el equipo después del uso en el lugar indicado para ello.",
+      "Suministrar a los trabajadores las ropas y equipos de protección apropiados.",
+      "No tienen obligaciones porque el peligro lo tienen los trabajadores."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-049",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Cuántas veces a la semana puede llegar a 10 horas el período de conducción diario?",
+    "opciones": [
+      "Dos veces en semana siempre que, en el total semanal, no supere 45 horas.",
+      "Nunca.",
+      "Tres veces en semana.",
+      "Dos veces en semana."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-050",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿En qué tiene influencia el estado de los filtros?",
+    "opciones": [
+      "En el desgaste de los neumáticos.",
+      "En la seguridad del vehículo.",
+      "En el desgaste de los frenos.",
+      "En el consumo de carburante."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-051",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "¿La fatiga y el sueño pueden incidir en el tiempo de reacción durante la conducción?",
+    "opciones": [
+      "Nunca.",
+      "Sí, lo aumentan.",
+      "Sí, lo disminuyen.",
+      "La fatiga sí, el sueño no."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-052",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "¿Qué conductas pueden dar lugar a problemas de salud?",
+    "opciones": [
+      "Mantenimiento continuado de posturas sedentarias y forzadas.",
+      "Alteraciones de los ritmos de la digestión.",
+      "Alteraciones de los ritmos del sueño.",
+      "Todas las respuestas anteriores son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-053",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "Los discos-diagrama de tacógrafo analógico tienen que llevar impreso:",
+    "opciones": [
+      "la marca del vehículo para el que sirven.",
+      "el nombre de la empresa que los utiliza.",
+      "la marca de homologación de los tacógrafos para los que sirven.",
+      "el número de serie del tacógrafo para el que sirven."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-054",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "Si un conductor no colabora y se niega a entregar la documentación requerida por los agentes encargados de un control en carretera, está cometiendo una infracción:",
+    "opciones": [
+      "de obstrucción a la labor inspectora.",
+      "de colaboración con la empresa.",
+      "de imprudencia.",
+      "de descanso diario."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-055",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿Qué circunstancia de las siguientes no será motivo de inmovilización de un vehículo en una inspección de transporte en carretera?",
+    "opciones": [
+      "La falta de uniformidad del conductor.",
+      "El exceso de peso que constituya infracción grave o muy grave.",
+      "El exceso en los tiempos de conducción que constituya infracción muy grave.",
+      "La minoración de los tiempos de descanso que constituya infracción muy grave."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-056",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "Si al bajar un puerto de montaña conduciendo un vehículo pesado, se necesita hacer uso prolongado de los frenos, ¿qué sistema, de los que se indican, se utilizará preferentemente?",
+    "opciones": [
+      "El freno eléctrico o el decelerador hidrodinámico.",
+      "El freno de servicio.",
+      "El freno de inercia.",
+      "El freno de estacionamiento."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-057",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Qué característica no influye a la hora de determinar en el cuentarrevoluciones de un automóvil la zona de menor consumo?",
+    "opciones": [
+      "La carrera del pistón.",
+      "La potencia.",
+      "El consumo específico.",
+      "El par motor máximo."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-058",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "El consumo de carburante es mayor:",
+    "opciones": [
+      "en marchas largas.",
+      "en vehículos con cajas de cambios sincronizados.",
+      "en vehículos ligeros.",
+      "en vehículos con cajas de cambio automático."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-059",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "El uso que se realice de los sistemas de frenado de un automóvil, ¿puede influir en el consumo de carburante?",
+    "opciones": [
+      "Sí.",
+      "Sí, siempre y cuando los frenos no sean eléctricos.",
+      "No, ya que los frenos solo influyen en la distancia de frenado.",
+      "No si se utiliza un adecuado sistema de inyección."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-060",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Qué característica no influye a la hora de determinar en el cuentarrevoluciones de un automóvil la zona de menor consumo?",
+    "opciones": [
+      "El consumo específico.",
+      "La potencia.",
+      "El tipo de frenos que monte: disco o tambor.",
+      "El par motor máximo."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-061",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "El ralentizador hidrodinámico funciona por:",
+    "opciones": [
+      "el rozamiento entre piezas de la transmisión.",
+      "la energía de un aceite.",
+      "los campos magnéticos generados por una corriente eléctrica.",
+      "la obstrucción parcial del tubo de escape."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-062",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "Cuando un vehículo está en movimiento posee una energía cinética que será mayor:",
+    "opciones": [
+      "cuanto mayor sea su masa.",
+      "cuanto menor sea su masa.",
+      "cuanto mayor sea su altura.",
+      "cuanto menor sea su altura."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-063",
+    "tema": "3.5 Emergencias",
+    "enunciado": "Según la Ley de responsabilidad civil y seguro en la circulación de vehículos a motor, el límite de los importes de la cobertura del seguro obligatorio será, en los daños a las personas, de:",
+    "opciones": [
+      "350.000 EUR. por víctima.",
+      "250.000 EUR. por víctima.",
+      "10 millones de euros por siniestro, cualquiera que sea el número de víctimas.",
+      "70 millones de euros por siniestro, cualquiera que sea el número de víctimas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-064",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "Los arbitrajes en materia de transportes:",
+    "opciones": [
+      "serán gratuitos.",
+      "solo serán gratuitos para el que obtenga un laudo favorable.",
+      "tienen el mismo coste que un juicio ordinario.",
+      "Se abonarán los gastos a partes iguales entre demandante y demandado."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-065",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "¿En qué nivel de circulación se encuentra una vía que se considera intransitable por las circunstancias meteorológicas?",
+    "opciones": [
+      "Amarillo.",
+      "Negro.",
+      "Rojo.",
+      "Verde."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-066",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Conducir de forma que se reduzca la velocidad media de circulación tiene como ventaja:",
+    "opciones": [
+      "un menor consumo.",
+      "reducir el coeficiente aerodinámico del vehículo y prolongar la vida del motor.",
+      "no tener que comprobar el nivel del líquido refrigerante ya que, conducir de esta manera, hace que el consumo de refrigerante sea nulo.",
+      "reducir la frecuencia de la inspección técnica periódica y aumentar los plazos de mantenimiento del vehículo."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-067",
+    "tema": "3.1 Riesgos de la carretera",
+    "enunciado": "¿Cuáles son los tipos de ayuda que puede necesitar un herido en accidente de tráfico, dirigidas a facilitarle el desarrollo de las actividades diarias?",
+    "opciones": [
+      "Técnicas.",
+      "De terceras personas.",
+      "Tratamientos físicos.",
+      "Todas las respuestas son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-068",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "Al accionar el freno motor en el escape:",
+    "opciones": [
+      "el cilindro de amortiguación se apaga.",
+      "la válvula de aceleración sube de revoluciones.",
+      "la válvula de aceleración baja de revoluciones.",
+      "se limita la salida de gases de escape, frenando el desplazamiento de los pistones."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-070",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Una buena forma de ahorrar carburante al conducir un vehículo pesado es:",
+    "opciones": [
+      "bajar las pendientes con el motor parado.",
+      "esperar con el motor arrancado sin circular hasta que alcance la temperatura adecuada de funcionamiento.",
+      "circular con una presión de inflado de los neumáticos inferior a la recomendada por el fabricante.",
+      "comprobar frecuentemente la presión de inflado de los neumáticos."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-071",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Es una buena medida de ahorro de carburante arrancar el motor y no comenzar a circular hasta este alcance la temperatura adecuada de funcionamiento?",
+    "opciones": [
+      "No, lo que se debe hacer es acelerar en vacío para que la temperatura se alcance antes.",
+      "No, lo que se debe hacer es esperar a que el circuito neumático tenga presión suficiente y comenzar a circular con suavidad.",
+      "Sí, ya que un motor consume menos cuando alcanza su temperatura óptima de funcionamiento.",
+      "Sí, pero únicamente en invierno."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-072",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Bajar las pendientes en punto muerto, ¿es una buena medida de ahorro de carburante?",
+    "opciones": [
+      "Sí, ya que al ralentí el consumo es mínimo.",
+      "Sí, ya que, en los motores actuales, al ralentí el consumo es nulo.",
+      "No, ya que es peligroso al no actuar el motor como freno.",
+      "Solo si el vehículo circula sin carga ya que, en caso contrario, puede resultar peligroso."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-073",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "Los cambios de marcha a una más alta se deben hacer de tal forma que:",
+    "opciones": [
+      "en el momento de realizarlo, la aguja del cuentarrevoluciones se encuentre al principio de la zona verde del cuentarrevoluciones.",
+      "en el momento de realizarlo, la aguja del cuentarrevoluciones se encuentre al final de la zona verde del cuentarrevoluciones.",
+      "en el momento de realizarlo, la aguja del cuentarrevoluciones se encuentre fuera de la zona verde del cuentarrevoluciones.",
+      "tras realizar el cambio, las revoluciones del motor sean las correspondientes al inicio de la zona verde del cuentarrevoluciones."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-074",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "En el cuentarrevoluciones de un vehículo pesado existe una zona marcada, generalmente, de color verde, ¿qué indica?",
+    "opciones": [
+      "Es la zona de menor par motor.",
+      "Es la zona de menor consumo.",
+      "Es la zona de mayor consumo.",
+      "Es la zona donde el motor se ahoga."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-075",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Qué característica no influye a la hora de determinar en el cuentarrevoluciones de un automóvil la zona de menor consumo?",
+    "opciones": [
+      "El consumo específico.",
+      "El par motor máximo.",
+      "La potencia.",
+      "El calibre del pistón."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-076",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿En qué se transforma la energía química del carburante en el motor?",
+    "opciones": [
+      "En energía potencial.",
+      "En energía hidráulica.",
+      "En energía mecánica.",
+      "En energía electromagnética."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-077",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Cuál es el concepto de potencia de un motor?",
+    "opciones": [
+      "La cantidad de trabajo que puede desarrollar un motor en la unidad de tiempo.",
+      "El esfuerzo necesario para hacer girar a las ruedas del vehículo.",
+      "El esfuerzo que transmite el pistón sobre el cigüeñal y, por tanto, sobre el volante de inercia.",
+      "El trabajo necesario para hacer girar a las ruedas del vehículo."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-078",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "En los motores de los automóviles actuales, si el vehículo circula a más de 20 km/h, el consumo es nulo:",
+    "opciones": [
+      "siempre.",
+      "si el pedal del embrague está pisado y no se acelera.",
+      "si el pedal del embrague no está pisado, no se acelera y no se pone punto muerto.",
+      "cuando está metida la primera relación de marchas."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-079",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Cuáles son las resistencias que intervienen en el movimiento de un vehículo?",
+    "opciones": [
+      "La resistencia aerodinámica, la resistencia a la rodadura, la termorresistencia y la resistencia a la pendiente.",
+      "La resistencia aerodinámica, la resistencia a la rodadura y la termorresistencia.",
+      "La resistencia aerodinámica, la termorresistencia y la resistencia a la pendiente.",
+      "La resistencia aerodinámica, la resistencia a la rodadura y la resistencia a la pendiente."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-080",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "El consumo de combustible, ¿depende del estilo de conducción?",
+    "opciones": [
+      "Sí, aunque afecta mínimamente.",
+      "Sí, y es un factor muy importante.",
+      "No, solo depende de la velocidad a la que se circule.",
+      "No, solo depende del tipo de carburante que utilice el vehículo."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-081",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Qué inconveniente presenta el acelerar cuando se va a proceder al arranque de un motor de combustión o diésel?",
+    "opciones": [
+      "Ninguno, ya que es lo que se debe hacer.",
+      "Únicamente problemas de lubricación.",
+      "Únicamente aumento innecesario de consumo de carburante.",
+      "Un consumo innecesario de carburante y posibles problemas de lubricación."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-082",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Si se conduce un vehículo pesado y con el motor funcionando a la temperatura adecuada, se debe saber que el consumo de carburante depende, entre otros factores:",
+    "opciones": [
+      "de la posición del conductor.",
+      "del octanaje del gasóleo.",
+      "de la variación de la relación de compresión, según las revoluciones del motor.",
+      "de un correcto mantenimiento del vehículo."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-083",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Entre los factores que afectan al consumo de carburante de un automóvil con motor de combustión se encuentra:",
+    "opciones": [
+      "la relación de marchas seleccionada en la caja de velocidades.",
+      "el tipo de bujías que monte: frías o calientes.",
+      "el tipo de bomba de alimentación: de membrana o de émbolo.",
+      "el montaje de frenos de disco."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-084",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "El consumo de carburante de un automóvil se ve afectado por varios factores, entre ellos se encuentra:",
+    "opciones": [
+      "el estado en el que se encuentre el filtro del aire del sistema de alimentación.",
+      "el montaje de frenos de disco.",
+      "el montaje de frenos de tambor.",
+      "el tipo de ralentizador que monte el vehículo."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-085",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Qué ventajas tiene reducir la velocidad media de circulación?",
+    "opciones": [
+      "Aumentar el coeficiente aerodinámico del vehículo y prolongar la vida del motor.",
+      "No tener que comprobar la presión de inflado de los neumáticos, salvo en caso de pinchazo.",
+      "Menor consumo de carburante.",
+      "Aumentar la frecuencia de la inspección técnica periódica y reducir los plazos de mantenimiento del vehículo."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-086",
+    "tema": "3.1 Riesgos de la carretera",
+    "enunciado": "En la elaboración de las estadísticas de accidentes de tráfico, si no hay colisión, se considera como implicado un vehículo si se produce alguna de las siguientes circunstancias.",
+    "opciones": [
+      "Ha estado detenido ayudando a las víctimas.",
+      "Ha estado parado en forma peligrosa, de modo que ha constituido uno de los factores del accidente.",
+      "Ha estado presente en el momento del accidente como testigo.",
+      "Todas las respuestas son correctas."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-087",
+    "tema": "3.6 Imagen de marca",
+    "enunciado": "¿Cuál no es un comportamiento recomendado en el trato con el cliente?",
+    "opciones": [
+      "Ponerse en lugar del cliente.",
+      "Tratar al cliente como nos gustaría ser tratados.",
+      "No hablar de nosotros, lo único que importa al cliente es él mismo y su problema.",
+      "Hablar de nosotros, eso le dará confianza al cliente."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-088",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "Sobre una hoja de registro de tacógrafo analógico se graban una serie de líneas que, siguiendo un orden de dentro a fuera del disco, indican:",
+    "opciones": [
+      "bloques de tiempos, kilómetros recorridos y velocidad.",
+      "kilómetros recorridos, bloques de tiempos y velocidad.",
+      "velocidad, bloques de tiempos y kilómetros recorridos.",
+      "kilómetros recorridos, velocidad y bloques de tiempos."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-089",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Cuál de las acciones indicadas es más correcta para optimizar el consumo de carburante?",
+    "opciones": [
+      "Pedir al motor más potencia.",
+      "Pedir al motor menos potencia.",
+      "Circular siempre en marchas cortas.",
+      "Abrir las ventanillas para que circule el aire libremente."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-090",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Cuál de las acciones indicadas es más correcta para optimizar el consumo de carburante?",
+    "opciones": [
+      "Reducir de marchas lo antes posible.",
+      "Llevar las ventanillas subidas.",
+      "Acelerar muy rápidamente para obtener una velocidad de crucero económica.",
+      "Circular siempre en marchas cortas."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-091",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "En el caso de bajar una pendiente pronunciada con un vehículo pesado:",
+    "opciones": [
+      "no es conveniente el uso de ralentizadores, ya que dificulta la refrigeración del motor.",
+      "no es conveniente el uso de los ralentizadores, ya que se desgastarían rápidamente los elementos frenantes.",
+      "no es conveniente el uso de ralentizadores, salvo que el freno de servicio deje de funcionar.",
+      "se deben utilizar los ralentizadores preferentemente."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-092",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Qué puede hacer variar la inercia de un vehículo?",
+    "opciones": [
+      "El uso de deflectores.",
+      "El uso del freno.",
+      "La presión de los neumáticos.",
+      "La pendiente de la carretera."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-093",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "El sistema BAS (brake assist system) es un elemento de seguridad...",
+    "opciones": [
+      "No se considera elemento de seguridad al no ser obligatoria su instalación en los vehículos.",
+      "activa y pasiva.",
+      "activa.",
+      "pasiva."
+    ],
+    "correcta": 2,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-094",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "¿De qué tipos pueden ser los amortiguadores de impacto en una carretera?",
+    "opciones": [
+      "Redirectivos y no redirectivos.",
+      "De impacto frontal o retenedores.",
+      "Firmes o flexibles.",
+      "Metálicos o de hormigón."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-095",
+    "tema": "3.2 Delincuencia e inmigración",
+    "enunciado": "La responsabilidad de un conductor por colaborar en la introducción en España de productos prohibidos, utilizando el vehículo que tiene a su cargo:",
+    "opciones": [
+      "se determina aplicando la legislación en materia de contrabando.",
+      "se determina aplicando la legislación fiscal.",
+      "se determina aplicando la legislación mercantil.",
+      "se determina aplicando la legislación de ordenación del transporte terrestre."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-096",
+    "tema": "3.2 Delincuencia e inmigración",
+    "enunciado": "¿Qué medidas preventivas puede adoptar un conductor para evitar verse implicado en delitos de contrabando o de tráfico de personas?",
+    "opciones": [
+      "Evitar paradas innecesarias.",
+      "Repostar únicamente en lugares seguros.",
+      "No dejar acceder al vehículo a desconocidos.",
+      "Todas las respuestas son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-097",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "Fumar mientras se conduce un vehículo:",
+    "opciones": [
+      "disminuye el riesgo, pues nos hace estar más despiertos.",
+      "aumenta el riesgo, pues lleva a retirar una mano del volante con frecuencia.",
+      "disminuye el riesgo, pues obliga a reducir la velocidad.",
+      "es una conducta prohibida."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-098",
+    "tema": "3.5 Emergencias",
+    "enunciado": "Un vehículo no específicamente destinado al servicio de auxilio en vía pública, ¿puede efectuar en algún caso la retirada de la vía de otro vehículo averiado?",
+    "opciones": [
+      "En ningún caso.",
+      "Sí, siempre que la grúa de ayuda en carretera vaya a tardar más de una hora en llegar.",
+      "Sí, cuando esté entorpeciendo el tráfico en una autopista o en una autovía.",
+      "Sí, cuando sea preciso por razón de la masa o dimensiones del vehículo averiado."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-099",
+    "tema": "3.2 Delincuencia e inmigración",
+    "enunciado": "¿Qué medida se recomienda adopte un conductor que es objeto de violencia verbal?",
+    "opciones": [
+      "Responder al insulto, pero sin perder la calma.",
+      "No encararse con el agresor.",
+      "Hacer uso de instrumentos de defensa.",
+      "Todas las respuestas son correctas."
+    ],
+    "correcta": 1,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-100",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Qué tipo de control debe realizar la Administración respecto de las aulas móviles utilizadas por una empresa CAP?",
+    "opciones": [
+      "Deberá comprobar periódicamente que las aulas móviles siguen cumpliendo las condiciones exigidas para su funcionamiento.",
+      "Deberá comprobar que las aulas móviles cumplen las condiciones de funcionamiento, pero sólo en caso de que el porcentaje de alumnos formados mediante aula móvil que obtienen el certificado CAP sea notoriamente inferior a la media nacional.",
+      "Deberá comprobar que las aulas móviles cumplen las condiciones de funcionamiento, pero sólo en caso de que reciba denuncias fundadas relativas a la actividad formativa que se desarrolla en alguna de ellas.",
+      "Deberá efectuar controles exclusivamente en los casos descritos en las respuestas B y C."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-101",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Cuál es la función del entoldado?",
+    "opciones": [
+      "Refuerza la sujeción de la mercancía y contribuye a limitar sus deslizamientos durante el viaje.",
+      "Protege las mercancías transportadas de las inclemencias atmosféricas.",
+      "Evita el desprendimiento de una parte de la carga y el riesgo consiguiente de daños.",
+      "Las tres respuestas anteriores son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-102",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "De los siguientes elementos, ¿cuál es ralentizador del sistema de frenado?",
+    "opciones": [
+      "El freno eléctrico.",
+      "El ABS.",
+      "El BAS.",
+      "El ASR."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
+  },
+  {
+    "id": "cyl-2026-01-103",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿A quién se imputará la infracción consistente en uso indebido del tacógrafo por un conductor, que a su vez represente una falta muy grave de indisciplina respecto de las instrucciones recibidas de la empresa, si el conductor no es objeto de sanción disciplinaria por la misma?",
+    "opciones": [
+      "A la empresa transportista.",
+      "Al conductor.",
+      "A la empresa transportista y al conductor a partes iguales.",
+      "A la empresa transportista y al cargador a partes iguales."
+    ],
+    "correcta": 0,
+    "explicacion": "",
+    "origen": "CyL 2026-01"
   }
 ]

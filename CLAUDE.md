@@ -55,7 +55,7 @@ src/app/
     acerca-de/
     admin/
   shared/
-    components/    # UI reutilizable (tarjeta-pregunta, barra-inferior, boton…)
+    components/    # UI reutilizable; pestanas/ = layout con la barra inferior
     services/      # estado y datos: banco de preguntas, progreso (Leitner), sesión, simulacro
     models/        # interfaces y tipos (Pregunta, Estado, Progreso)
     utils/         # funciones puras sin Angular (barajar, porTema, porTurnos, fusionar)
@@ -98,6 +98,12 @@ Rutas
 Formularios
 - Reactive Forms tipados (`FormBuilder.nonNullable`, `FormGroup`, `FormArray` para las 4 opciones) en el formulario de `/admin`. No usar Signal Forms ni template-driven (`ngModel`).
  
+Comentarios
+- Todo el código va comentado en español y de forma descriptiva: qué hace cada bloque y, sobre todo, por qué se hace así.
+- Cada archivo, clase, función y propiedad relevante lleva un comentario JSDoc (`/** … */`) con su propósito; los parámetros no obvios, con `@param`.
+- Explicar los conceptos de Angular cuando aparecen (`signal`, `computed`, `linkedSignal`, `untracked`, `inject`, `resource`, rutas hijas…), para que el código se entienda sin conocerlos de antemano.
+- En plantillas HTML, un comentario por bloque de pantalla; en `styles.css`, uno por clase.
+ 
 Estilos
 - Todos los estilos en `src/styles.css` (global). Nada de CSS por componente.
 - En las plantillas, utilidades de Tailwind para la maquetación (espaciado, flex, tamaños de texto).
@@ -123,6 +129,29 @@ interface Pregunta {
 type Estado = { caja: number; proximo: number; aciertos: number; fallos: number };
 type Progreso = Record<string, Estado>; // por id de pregunta
 ```
+ 
+- `id`: `cyl-AAAA-MM-NNN` (comunidad, convocatoria, número en el modelo A). Ej.: `cyl-2026-10-007`. Las de reserva son 101–103.
+- `explicacion`: puede ir vacía (`""`); la pantalla oculta "Por qué" si no hay texto.
+## Temas
+ 
+Los del temario de Mercancías (RD 284/2021), con el número del índice del libro del curso. Usar exactamente estos textos en `tema`:
+ 
+| Tema | Qué entra |
+|---|---|
+| `1.1 Cadena cinemática` | par motor, potencia, consumo específico, cuentarrevoluciones y zona verde, caja de cambios |
+| `1.2 Dispositivos de seguridad` | frenos, ralentizadores, freno motor, ABS/EBS/BAS, fading, seguridad activa/pasiva, neumáticos |
+| `1.3 Consumo de carburante` | conducción eficiente, resistencias al avance, aerodinámica, presión de neumáticos, mantenimiento |
+| `1.3 bis Riesgos del tráfico` | conducción preventiva, meteorología, niveles de circulación, usuarios vulnerables, restricciones DGT |
+| `1.4 Carga del vehículo` | fuerzas sobre el vehículo, carga útil, tara, estabilidad, estiba, embalajes, entoldado |
+| `2.1 Entorno social y tacógrafo` | tiempos de conducción y descanso, tacógrafo, tiempo de presencia, CAP y empresas CAP |
+| `2.2 Reglamentación de mercancías` | autorizaciones (MDLE, MPCE…), licencia comunitaria, CMR, aduanas, documentos, inspección y sanciones |
+| `3.1 Riesgos de la carretera` | siniestralidad, accidentes de trabajo y sus consecuencias, estadísticas |
+| `3.2 Delincuencia e inmigración` | contrabando, inmigración ilegal, Schengen, agresiones |
+| `3.3 Riesgos físicos` | ergonomía, prevención de riesgos laborales, EPIs, cabina, ejercicio |
+| `3.4 Aptitud física y mental` | fatiga, sueño, alimentación, alcohol, drogas, tabaco |
+| `3.5 Emergencias` | actuación en accidentes, incendios y extinción, parte amistoso, seguro |
+| `3.6 Imagen de marca` | calidad del servicio, trato al cliente, el conductor como imagen de la empresa |
+| `3.7 Entorno económico` | tipos de sociedades, funciones en la empresa, especializaciones (ATP, temperatura dirigida), transporte combinado |
  
 ## Repaso espaciado (Leitner)
  
@@ -158,14 +187,18 @@ export function responder(id: string, acierto: boolean) {
 }
 ```
  
-## Sesión diaria (25 preguntas)
+## Sesiones diarias (25 preguntas, máximo 3 al día)
  
-- Junta las pendientes de hoy (`proximo <= ahora`) y rellena con nuevas hasta 25.
+- Como Duolingo: hasta 3 sesiones al día (`MAX_SESIONES_DIA` en `shared/services/sesiones-diarias.ts`, clave `localStorage` `'cap-sesiones'`). Cuenta al terminar la sesión; una a medias no cuenta.
+- Sin esperas: los intervalos de Leitner ordenan qué sale primero, pero nunca bloquean. Nunca sale "no tienes repasos".
+- Junta las pendientes de hoy (`proximo <= ahora`) y rellena con nuevas hasta 25. Si aún faltan, adelanta las ya vistas que todavía no tocaban, primero las de `proximo` más cercano (las falladas hoy salen antes).
 - Las nuevas se eligen por turnos entre temas para que no salga solo uno.
 - Pendientes y nuevas son grupos disjuntos: no hay repetidas en la sesión.
 - En el repaso, limitar cada tema a un máximo (~40 % de la sesión).
-- Una pregunta fallada se añade al final de la misma sesión.
-- Barajar las opciones al mostrarlas, guardando el texto correcto, no la posición.
+- Las falladas se repiten al terminar las 25, en una fase "Repaso de fallos", hasta acertarlas (una que se vuelve a fallar se añade otra vez al final). Esas repeticiones no cambian la caja ni la nota.
+- Contador de la cabecera fijo: "X / 25" durante la sesión; en la fase de fallos, "Quedan N".
+- Retomar: tras cada respuesta la sesión se guarda (`SesionEnCurso`, clave `'cap-sesion-en-curso'`: ids de sesión y fallos, índice, aciertos, puntuadas). Si se interrumpe, al volver al repaso se pregunta "¿Retomar o empezar una nueva?", e Inicio muestra "Continuar sesión". Se borra al terminar o al elegir una nueva. Una sesión empezada siempre se puede terminar, aunque ya se haya llegado al límite diario.
+- Barajar las opciones al mostrarlas, guardando el texto correcto, no la posición. Excepción: si alguna opción cita a otras ("Las respuestas B y C son correctas", "Todas las anteriores…"), se mantiene el orden original (`ordenarOpciones` en `shared/utils/opciones.ts`).
 ```ts
 function porTema(preguntas: Pregunta[]): Map<string, Pregunta[]> {
   const grupos = new Map<string, Pregunta[]>();
@@ -194,7 +227,11 @@ export function crearSesion(banco: Pregunta[], total = 25, maxNuevas = 8) {
   const sinVer = banco.filter(p => !prog[p.id]);
   const repaso = barajar(pendientes).slice(0, total - maxNuevas);
   const nuevas = porTurnos(sinVer, total - repaso.length);
-  return barajar([...repaso, ...nuevas]);
+  const usadas = new Set([...repaso, ...nuevas].map(p => p.id));
+  const adelantadas = barajar(banco.filter(p => prog[p.id] && !usadas.has(p.id)))
+    .sort((a, b) => prog[a.id].proximo - prog[b.id].proximo)
+    .slice(0, total - repaso.length - nuevas.length);
+  return barajar([...repaso, ...nuevas, ...adelantadas]);
 }
 ```
  
@@ -224,7 +261,7 @@ function porCuotas(banco: Pregunta[], pesos: Record<string, number>, total = 100
 5. Temas: práctica libre por tema.
 6. Acerca de: avisos (ver abajo).
 7. `/admin` (sin enlace en el menú, solo para el autor): ver abajo.
-Barra inferior: Hoy · Temas · Progreso. Colores de referencia: fondo #F2F2F7, acento #0057C2, correcto #1B7A33, error #B8261B.
+Barra inferior: Hoy · Temas · Progreso. Solo en esas tres pantallas: son rutas hijas del layout `Pestanas` en `app.routes.ts`. Repaso y simulacro van a pantalla completa, sin barra, con un "Cerrar" arriba a la izquierda. La racha cuenta los días con al menos una sesión terminada (`dias` en `'cap-sesiones'`). Colores de referencia: fondo #F2F2F7, acento #0057C2, correcto #1B7A33, error #B8261B.
  
 ## Administración de preguntas (`/admin`)
  
@@ -232,13 +269,14 @@ Sin backend: no publica nada, solo genera un archivo.
  
 - Carga el `questions.json` actual.
 - Formulario para crear/editar: tema (desplegable con los existentes), enunciado, 4 opciones, correcta, explicación, imagen opcional.
-- Importar un JSON y fusionarlo: valida, descarta duplicados (por enunciado normalizado) y avisa de las incompletas.
+- Importar un JSON y fusionarlo: valida, descarta duplicados (por enunciado + opciones normalizados) y avisa de las incompletas. Ojo: hay preguntas distintas con el mismo enunciado y otras opciones (p. ej. "Una buena forma de ahorrar carburante…"), así que el enunciado solo no basta.
 - Botón "Descargar questions.json" → el autor lo sube al repo y se despliega solo.
 - Al corregir una pregunta, mantener su `id`.
 ```ts
 function fusionar(base: Pregunta[], nuevas: Pregunta[]) {
   const norm = (s: string) => s.toLowerCase().replace(/\s+/g, ' ').trim();
-  const vistos = new Set(base.map(p => norm(p.enunciado)));
+  const clave = (p: Pregunta) => [p.enunciado, ...p.opciones].map(norm).join('|');
+  const vistos = new Set(base.map(clave));
   const ids = new Set(base.map(p => p.id));
   const errores: string[] = [];
   const añadidas: Pregunta[] = [];
@@ -248,9 +286,9 @@ function fusionar(base: Pregunta[], nuevas: Pregunta[]) {
       errores.push(`Incompleta: ${p.enunciado?.slice(0, 40) ?? '(sin enunciado)'}`);
       continue;
     }
-    if (vistos.has(norm(p.enunciado))) continue; // duplicada
+    if (vistos.has(clave(p))) continue; // duplicada
     if (!p.id || ids.has(p.id)) p.id = crypto.randomUUID();
-    vistos.add(norm(p.enunciado));
+    vistos.add(clave(p));
     ids.add(p.id);
     añadidas.push(p);
   }
@@ -290,6 +328,10 @@ function fusionar(base: Pregunta[], nuevas: Pregunta[]) {
 ## Fuentes de exámenes
  
 - Exámenes propios (4, de Castilla y León): base principal.
+  - Procesados: Mercancías CyL 2026-01 (modelo A) y CyL 2026-10 (modelos A y B) → 202 preguntas únicas en `questions.json`.
+  - Cada examen trae 100 preguntas + 3 de reserva (1ª, 2ª, 3ª = 101–103). La plantilla es la página de casillas rellenas; si hay modelo B, cruzarlo con el A (mismas preguntas en otro orden) para validar las respuestas.
+  - Los PDF originales no van en `public/` (se publicarían con la app).
+  - Algunos PDF traen "¿" donde iban puntos suspensivos ("el par motor¿") → sustituir por "…".
 - Generalitat Valenciana publica cuadernillos y plantillas oficiales (Mercancías y Viajeros, 2017–2024): https://mediambient.gva.es/es/web/transportes/preguntas-examen
 - El temario es nacional (RD 284/2021), así que sirven exámenes de otras comunidades.
 - Usar solo exámenes oficiales (no bancos de academias). Descargar solo la modalidad que corresponda (Mercancías o Viajeros).
@@ -297,5 +339,6 @@ function fusionar(base: Pregunta[], nuevas: Pregunta[]) {
  
 - Calidad de los datos: revisar respuestas y temas; botón "reportar error" en cada pregunta.
 - Exportar/importar el progreso (JSON), porque sin backend se pierde al borrar datos o cambiar de móvil.
-- Pendiente: procesar los 4 exámenes oficiales + hojas de respuestas → `questions.json` (deduplicar, clasificar por tema, explicaciones).
+- Pendiente: procesar los otros exámenes oficiales + hojas de respuestas → `questions.json` (deduplicar, clasificar por tema).
+- Pendiente: escribir las explicaciones (`explicacion` está vacía en las 202 actuales).
 - Pendiente: elegir nombre definitivo y modalidad (Mercancías o Viajeros).
