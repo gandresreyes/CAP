@@ -108,7 +108,9 @@ Estilos
 - Todos los estilos en `src/styles.css` (global). Nada de CSS por componente.
 - Línea visual (Vercel / GitHub):
   - Fuentes Geist y Geist Mono desde `@fontsource-variable/*` (van en la build, funcionan sin conexión). Se usan con `font-sans` y `font-mono`.
-  - Fondo `#FAFAFA` y tarjetas blancas con `border border-separador` (`#EAEAEA`); en oscuro, `#000` / `#0A0A0A` con bordes `#2E2E2E`. Sin sombras, salvo avisos flotantes.
+  - Fondo `#FAFAFA` y tarjetas con `border border-separador` (`#EAEAEA`); en oscuro, `#000` / `#0A0A0A` con bordes `#2E2E2E`.
+  - Sin bordes de color en las tarjetas: se probó un borde con el degradado del lema en "Repaso diario" y al usuario no le gustó nada. Todas las tarjetas con borde gris.
+  - Tarjetas lisas por dentro. El acabado metálico dentro de las tarjetas se probó y se descartó: el usuario prefiere el efecto por fuera, como el brillo de la cabecera de Inicio.
   - Botón principal (`.boton`) relleno del color del texto: negro en claro, blanco en oscuro. Secundario (`.boton-secundario`) blanco con borde.
   - Azul (`acento` #0070F3 / #3291FF) solo para enlaces, selección y progreso. Verde y rojo de GitHub (`correcto` #1A7F37, `error` #CF222E) solo para acierto/fallo y apto/no apto.
   - Estados con insignias suaves (`.insignia-exito` / `.insignia-error`: fondo al 10 % y texto del color), no con píldoras de color sólido.
@@ -257,7 +259,10 @@ Lógica en `shared/utils/simulacro.ts`, estado en `shared/services/simulacros.ts
  
 ## Pantallas
  
-1. Inicio: cabecera con la fecha y el lema animado "Estudia. Repasa. Aprueba." (efecto de la portada de Vercel: cada palabra se ilumina por turnos con su degradado; solo CSS, clases `.lema` / `.palabra-N` / `.palabra-brillo`, sin animación con "Reducir movimiento"); repasos pendientes de hoy, racha, acceso al simulacro, temas más flojos.
+1. Inicio:
+   - Cabecera con la fecha y el lema "Estudia. Repasa. Aprueba." en una sola línea (tamaño `clamp(22px, 7.4vw, 34px)` + `whitespace-nowrap`). Las palabras están en gris y cada una se enciende por turnos con su degradado de colores de la portada de Vercel ("Develop. Preview. Ship."): azul → cian, morado → rosa, rojo → amarillo. Los colores solo aparecen al encenderse. Solo CSS: `.lema`, `.palabra-N`, `.palabra-brillo` y `@keyframes brillo-palabra`. Quieto con "Reducir movimiento". El espacio entre palabras va en CSS (`margin-right`), porque Angular elimina los espacios entre etiquetas.
+   - Detrás, una sombra metalizada quieta, sin colores: un abanico de grises tipo metal pulido (`--metal-*`) con textura de grano (ruido SVG en `.resplandor::after`, `--grano-*`), inspirado en el triángulo de la portada de Vercel. Se desvanece antes de las tarjetas. La pantalla tiene que ser `relative isolate`.
+   - Repasos pendientes de hoy, racha, acceso al simulacro y temas más flojos.
 2. Repaso: pregunta, 4 opciones; tras responder, correcta en verde, la elegida en rojo, explicación "Por qué" y "Volverá a salir mañana".
 3. Simulacro: 100 preguntas con temporizador.
 4. Resultado: nota, acierto por tema de peor a mejor, botón "Sesión de refuerzo" (falladas + temas flojos) y "Ver preguntas falladas".

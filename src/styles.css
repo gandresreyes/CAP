@@ -32,9 +32,36 @@
   --color-error: #cf222e; /* rojo GitHub */
 }
 
+/*
+ * Sombra metalizada de la cabecera de Inicio (inspirada en el triángulo de la
+ * portada de Vercel), sin colores: solo grises. No son tokens de la interfaz.
+ * - `--metal-brillo` / `--metal-medio` / `--metal-sombra`: los tres grises que se
+ *   alternan para imitar los reflejos del metal pulido.
+ * - `--metal-opacidad`: intensidad de la sombra metalizada.
+ * - `--grano-opacidad`: intensidad de la textura de grano encima.
+ * - `--grano-mezcla`: cómo se funde el grano con el metal. En claro `multiply`
+ *   (solo oscurece: puntitos de sombra); en oscuro `screen` (solo aclara: puntitos de brillo).
+ */
+:root {
+  --metal-brillo: #ffffff;
+  --metal-medio: #d4d4d4;
+  --metal-sombra: #a3a3a3;
+  --metal-opacidad: 0.5;
+  --grano-opacidad: 0.35;
+  --grano-mezcla: multiply;
+}
+
 /* Modo oscuro: solo se redefinen los tokens; las clases no cambian */
 @media (prefers-color-scheme: dark) {
   :root {
+    /* En oscuro, el metal es grafito: grises que brillan un poco sobre el negro */
+    --metal-brillo: #5c5c5c;
+    --metal-medio: #2a2a2a;
+    --metal-sombra: #141414;
+    --metal-opacidad: 0.6;
+    --grano-opacidad: 0.3;
+    --grano-mezcla: screen;
+
     --color-fondo: #000000;
     --color-superficie: #0a0a0a;
     --color-texto: #ededed;
@@ -171,7 +198,7 @@
 
   /* ===== Contenedores ===== */
 
-  /* Caja blanca con borde fino y esquinas suaves */
+  /* Tarjeta: caja lisa con borde fino y esquinas suaves */
   .tarjeta {
     @apply rounded-xl border border-separador bg-superficie p-4;
   }
@@ -293,28 +320,44 @@
     @apply opacity-40;
   }
 
-  /* ===== Lema animado de Inicio ("Estudia. Repasa. Aprueba.") ===== */
+  /* ===== Cabecera de Inicio: lema animado y sombra metalizada detrás ===== */
 
   /*
-   * Efecto como el "Develop. Preview. Ship." de la portada de Vercel: cada palabra
-   * se ilumina por turnos con su propio degradado y vuelve al color del texto.
+   * Lema "Estudia. Repasa. Aprueba." como el "Develop. Preview. Ship." de Vercel:
+   * las palabras están en gris y, por turnos, cada una se "enciende" con su propio
+   * degradado de colores (los de la portada de Vercel) y vuelve al gris.
    *
    * Cómo: cada `.palabra` tiene dentro una copia de sí misma (`.palabra-brillo`)
    * colocada exactamente encima. La copia lleva el degradado recortado a la forma
-   * de las letras (`background-clip: text` + texto transparente) y su opacidad
-   * sube y baja con la animación `brillo-palabra`. Las tres palabras usan la misma
-   * animación de 6 s desfasada 2 s, así se van turnando sin JavaScript.
+   * de las letras (`background-clip: text` + texto transparente) y su opacidad sube
+   * y baja con la animación `brillo-palabra` (definida arriba, fuera de las capas).
+   * Las tres palabras usan la misma animación de 6 s desfasada 2 s, así se van
+   * turnando sin JavaScript.
+   */
+  /*
+   * Tamaño: `clamp(22px, 7.4vw, 34px)` = el 7,4 % del ancho de la pantalla, entre
+   * 22 y 34 px. Así las tres palabras caben siempre en una línea (en un iPhone SE
+   * salen a ~28 px; en pantallas grandes se quedan en 34 px). `whitespace-nowrap`
+   * asegura que no se partan en dos líneas.
    */
   .lema {
-    @apply text-[34px] leading-[1.05] font-extrabold tracking-[-0.05em];
+    @apply text-[clamp(22px,7.4vw,34px)] leading-[1.1] font-extrabold tracking-tighter whitespace-nowrap;
   }
 
-  /* Palabra: en línea pero sin partirse, y de referencia para colocar su copia encima */
+  /*
+   * Palabra apagada: en gris, en línea sin partirse y de referencia para colocar su
+   * copia encima. El espacio entre palabras es un margen y no un espacio en el HTML,
+   * porque Angular elimina los espacios entre etiquetas al compilar.
+   */
   .palabra {
-    @apply relative inline-block;
+    @apply relative inline-block text-texto-2/60;
+
+    &:not(:last-child) {
+      margin-right: 0.24em;
+    }
   }
 
-  /* Copia con degradado, encima de la palabra e invisible al principio */
+  /* Copia "encendida": encima de la palabra e invisible al principio; su degradado depende de la palabra */
   .palabra-brillo {
     @apply pointer-events-none absolute inset-0 opacity-0 select-none;
     background-clip: text;
@@ -323,29 +366,85 @@
     animation: brillo-palabra 6s ease-in-out infinite;
   }
 
-  /* Degradado y turno de cada palabra (los colores de la portada de Vercel) */
+  /* Degradado y turno de cada palabra (colores de la portada de Vercel; empiezan con 2 s de diferencia) */
   .palabra-1 .palabra-brillo {
-    background-image: linear-gradient(90deg, #007cf0, #00dfd8);
-    animation-delay: 0s;
+    background-image: linear-gradient(90deg, #007cf0, #00dfd8); /* azul → cian */
   }
 
   .palabra-2 .palabra-brillo {
-    background-image: linear-gradient(90deg, #7928ca, #ff0080);
+    background-image: linear-gradient(90deg, #7928ca, #ff0080); /* morado → rosa */
     animation-delay: 2s;
   }
 
   .palabra-3 .palabra-brillo {
-    background-image: linear-gradient(90deg, #ff4d4d, #f9cb28);
+    background-image: linear-gradient(90deg, #ff4d4d, #f9cb28); /* rojo → amarillo */
     animation-delay: 4s;
   }
 
   /* Accesibilidad: con "Reducir movimiento" activado en el móvil, sin animación
-     y con los tres degradados a la vez, quietos. */
+     y con las tres palabras encendidas en sus colores, quietas. */
   @media (prefers-reduced-motion: reduce) {
     .palabra-brillo {
       animation: none;
       opacity: 1;
     }
+  }
+
+  /*
+   * Sombra metalizada detrás de la cabecera, como el triángulo de la portada de
+   * Vercel: grises que imitan reflejos de metal pulido, con textura de grano.
+   * Quieta y sutil. Es una capa decorativa al fondo (`-z-10`) de la parte de arriba
+   * de la pantalla; no se puede tocar ni la lee el lector de pantalla.
+   * - El contenedor recorta lo que se sale (`overflow-hidden`) y se desvanece hacia
+   *   abajo con una máscara (`mask-image`), para que no llegue a las tarjetas.
+   * - Requiere que el contenedor de la pantalla sea `relative isolate`.
+   */
+  .resplandor {
+    @apply pointer-events-none absolute inset-x-0 top-0 -z-10 h-80 overflow-hidden;
+    mask-image: linear-gradient(to bottom, #000 30%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent);
+  }
+
+  /*
+   * El metal: un abanico (degradado cónico con el centro por encima de la pantalla,
+   * `at 50% -10%`) que alterna sombra → brillo → gris, como las caras de un metal
+   * pulido que reflejan la luz de forma distinta. Solo ocupa de 128° a 232° (el
+   * resto, transparente) y se difumina un poco (`blur`) para suavizar los cortes sin
+   * perder los reflejos. `-inset-10` lo agranda para que el difuminado no oscurezca los bordes.
+   */
+  .resplandor::before {
+    @apply absolute -inset-10;
+    content: '';
+    background-image: conic-gradient(
+      from 0deg at 50% -10%,
+      transparent 0deg 128deg,
+      var(--metal-sombra) 140deg,
+      var(--metal-brillo) 154deg,
+      var(--metal-medio) 166deg,
+      var(--metal-sombra) 178deg,
+      var(--metal-brillo) 192deg,
+      var(--metal-medio) 206deg,
+      var(--metal-sombra) 220deg,
+      transparent 232deg 360deg
+    );
+    filter: blur(14px);
+    opacity: var(--metal-opacidad);
+  }
+
+  /*
+   * La textura: grano fino generado con un filtro SVG de ruido (`feTurbulence`),
+   * pasado a gris (`feColorMatrix saturate 0`) y repetido como mosaico. Una máscara
+   * con la misma forma de abanico hace que el grano solo se vea sobre el metal, no
+   * en toda la cabecera.
+   */
+  .resplandor::after {
+    @apply absolute inset-0;
+    content: '';
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    opacity: var(--grano-opacidad);
+    mix-blend-mode: var(--grano-mezcla);
+    mask-image: conic-gradient(from 0deg at 50% -10%, transparent 0deg 130deg, #000 148deg 212deg, transparent 230deg 360deg);
+    -webkit-mask-image: conic-gradient(from 0deg at 50% -10%, transparent 0deg 130deg, #000 148deg 212deg, transparent 230deg 360deg);
   }
 
   /* ===== Índice del simulacro ===== */

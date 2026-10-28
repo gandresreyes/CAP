@@ -1,8 +1,11 @@
-<div class="pagina pb-4">
+<div class="pagina relative isolate pb-4">
+  <!-- Sombra metalizada con textura detrás de la cabecera (decorativa; ver "Cabecera de Inicio" en styles.css) -->
+  <div class="resplandor" aria-hidden="true"></div>
+
   <!-- Cabecera: fecha en monoespaciada pequeña y el lema animado.
        Cada palabra lleva dentro una copia con degradado (`palabra-brillo`) que se
-       enciende por turnos (ver "Lema animado" en styles.css). Las copias van con
-       `aria-hidden` para que el lector de pantalla lea cada palabra una sola vez. -->
+       enciende por turnos. Las copias van con `aria-hidden` para que el lector de
+       pantalla lea cada palabra una sola vez. -->
   <header>
     <p class="font-mono text-xs tracking-wide text-texto-2 uppercase">{{ fecha }}</p>
     <h1 class="lema mt-2">
@@ -111,7 +114,7 @@
   </section>
 
   <!-- Simulacro: toda la tarjeta es un enlace; el texto cambia si hay uno a medias o ya se hizo alguno -->
-  <a routerLink="/simulacro" class="tarjeta mt-3 flex items-center justify-between gap-3 transition-colors active:bg-fondo">
+  <a routerLink="/simulacro" class="tarjeta mt-3 flex items-center justify-between gap-3 transition-opacity active:opacity-75">
     <span>
       <span class="block text-[15px] font-semibold tracking-tight">Simulacro de examen</span>
       <span class="mt-0.5 block text-sm text-texto-2">{{ textoSimulacro() }}</span>
