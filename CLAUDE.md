@@ -141,7 +141,7 @@ type Progreso = Record<string, Estado>; // por id de pregunta
 ```
  
 - `id`: `cyl-AAAA-MM-NNN` (comunidad, convocatoria, número en el modelo A). Ej.: `cyl-2026-10-007`. Las de reserva son 101–103.
-- `explicacion`: puede ir vacía (`""`); la pantalla oculta "Por qué" si no hay texto.
+- `explicacion`: 1–2 frases que justifican la respuesta oficial. Puede ir vacía (`""`); entonces la pantalla oculta "Por qué".
 ## Temas
  
 Los del temario de Mercancías (RD 284/2021), con el número del índice del libro del curso. Usar exactamente estos textos en `tema`:
@@ -263,7 +263,7 @@ Lógica en `shared/utils/simulacro.ts`, estado en `shared/services/simulacros.ts
    - Cabecera con la fecha y el lema "Estudia. Repasa. Aprueba." en una sola línea (tamaño `clamp(22px, 7.4vw, 34px)` + `whitespace-nowrap`). Las palabras están en gris y cada una se enciende por turnos con su degradado de colores de la portada de Vercel ("Develop. Preview. Ship."): azul → cian, morado → rosa, rojo → amarillo. Los colores solo aparecen al encenderse. Solo CSS: `.lema`, `.palabra-N`, `.palabra-brillo` y `@keyframes brillo-palabra`. Quieto con "Reducir movimiento". El espacio entre palabras va en CSS (`margin-right`), porque Angular elimina los espacios entre etiquetas.
    - Detrás, una sombra metalizada quieta, sin colores: un abanico de grises tipo metal pulido (`--metal-*`) con textura de grano (ruido SVG en `.resplandor::after`, `--grano-*`), inspirado en el triángulo de la portada de Vercel. Se desvanece antes de las tarjetas. La pantalla tiene que ser `relative isolate`.
    - Repasos pendientes de hoy, racha, acceso al simulacro y temas más flojos.
-2. Repaso: pregunta, 4 opciones; tras responder, correcta en verde, la elegida en rojo, explicación "Por qué" y "Volverá a salir mañana".
+2. Repaso: pregunta, 4 opciones; tras responder, correcta en verde, la elegida en rojo, y explicación "Por qué". No se dice cuándo vuelve a salir la pregunta (el usuario no lo quiere, ni al acertar ni al fallar).
 3. Simulacro: 100 preguntas con temporizador.
 4. Resultado: nota, acierto por tema de peor a mejor, botón "Sesión de refuerzo" (falladas + temas flojos) y "Ver preguntas falladas".
 5. Temas: los 14 temas agrupados por módulo (`MODULOS` en `shared/models/temas.ts`; los nombres tienen que coincidir con `tema` del JSON), con vistas/total y % de acierto. Al tocar uno se abre la práctica: la misma pantalla de repaso en `/repaso?tema=…` (input `tema`), solo con ese tema, sin límite diario, sin guardar para retomar (no pisa la sesión diaria) y con el título "Práctica". Lo respondido sí actualiza el progreso. Los temas flojos de Inicio también abren su práctica.
@@ -353,5 +353,7 @@ Hecho: `@angular/service-worker` instalado y `provideServiceWorker` en `app.conf
 - Calidad de los datos: revisar respuestas y temas; botón "reportar error" en cada pregunta.
 - Hecho: exportar/importar el progreso (JSON) en la pestaña Progreso, porque sin backend se pierde al borrar datos o cambiar de móvil.
 - Pendiente: procesar los otros exámenes oficiales + hojas de respuestas → `questions.json` (deduplicar, clasificar por tema).
-- Pendiente: escribir las explicaciones (`explicacion` está vacía en las 202 actuales).
+- Hecho: explicaciones de las 202 preguntas (1–2 frases, ~150 caracteres). Justifican siempre la respuesta de la plantilla oficial y citan la norma cuando aporta (Reg. 561/2006, LOTT, Ley 44/2015, RD 159/2021, Acuerdo ATP…). Lo dudoso se comprobó en la web (BOE, bancos de preguntas del CAP).
+  - Donde no se encontró la base legal exacta, la explicación dice «Según la plantilla oficial…» en vez de inventarla: `cyl-2026-10-022` (MPCE, cualquier MMA), `cyl-2026-01-021` (transporte funerario exento) y `cyl-2026-01-092` (la inercia varía con el freno). Conviene revisarlas con el profesor.
+  - Al añadir preguntas nuevas, escribir su explicación con el mismo criterio.
 - Pendiente: elegir nombre definitivo y modalidad (Mercancías o Viajeros).

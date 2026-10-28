@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { borrarJSON, guardarJSON, leerJSON } from '../utils/almacen';
 
 /** Clave con la que se guarda la sesión a medias en `localStorage`. */
 const KEY = 'cap-sesion-en-curso';
@@ -23,15 +24,6 @@ export interface SesionGuardada {
   puntuadas: string[];
 }
 
-/** Lee la sesión guardada; si no hay o el dato está corrupto, no hay sesión a medias. */
-function leer(): SesionGuardada | null {
-  try {
-    return JSON.parse(localStorage.getItem(KEY) ?? 'null');
-  } catch {
-    return null;
-  }
-}
-
 /**
  * Guarda la sesión de repaso que está a medias, para poder retomarla.
  *
@@ -44,8 +36,11 @@ function leer(): SesionGuardada | null {
  */
 @Injectable({ providedIn: 'root' })
 export class SesionEnCurso {
-  /** La sesión guardada, o `null` si no hay ninguna a medias. Privado: solo se cambia con los métodos. */
-  private readonly estado = signal<SesionGuardada | null>(leer());
+  /**
+   * La sesión guardada, o `null` si no hay ninguna a medias (o el dato guardado está
+   * corrupto). Privado: solo se cambia con los métodos.
+   */
+  private readonly estado = signal<SesionGuardada | null>(leerJSON<SesionGuardada | null>(KEY, null));
 
   /** Versión de solo lectura para el resto de la app. */
   readonly guardada = this.estado.asReadonly();
@@ -53,12 +48,12 @@ export class SesionEnCurso {
   /** Guarda (o sobrescribe) la sesión a medias, en memoria y en el navegador. */
   guardar(s: SesionGuardada): void {
     this.estado.set(s);
-    localStorage.setItem(KEY, JSON.stringify(s));
+    guardarJSON(KEY, s);
   }
 
   /** Olvida la sesión a medias (terminada o descartada). */
   borrar(): void {
     this.estado.set(null);
-    localStorage.removeItem(KEY);
+    borrarJSON(KEY);
   }
 }

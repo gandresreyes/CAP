@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { BancoPreguntas } from '../../shared/services/banco-preguntas';
 import { ProgresoStore } from '../../shared/services/progreso-store';
 import { Instalacion } from '../../shared/services/instalacion';
+import { Reloj } from '../../shared/services/reloj';
 import { SesionEnCurso } from '../../shared/services/sesion-en-curso';
 import { Simulacros } from '../../shared/services/simulacros';
 import { formatearNota } from '../../shared/utils/simulacro';
@@ -51,13 +52,18 @@ export class Inicio {
   private readonly simulacros = inject(Simulacros);
   /** Aviso "Instala la app" para iPhone (público para la plantilla). */
   protected readonly instalacion = inject(Instalacion);
+  /** Fecha de hoy como signal, para que la pantalla se entere del cambio de día. */
+  private readonly reloj = inject(Reloj);
 
   // ---------------------------------------------------------------------------
   // Datos fijos para la plantilla
   // ---------------------------------------------------------------------------
 
-  /** Fecha de hoy ya formateada. Se calcula al abrir la pantalla. */
-  protected readonly fecha = FECHA.format(new Date());
+  /**
+   * Fecha de hoy ya formateada. Es un `computed` sobre `reloj.hoy()` (y no un valor
+   * fijo) para que cambie sola al pasar la medianoche con la app abierta.
+   */
+  protected readonly fecha = computed(() => FECHA.format(this.reloj.hoy()));
   protected readonly maxSesiones = MAX_SESIONES_DIA;
   /** `[0, 1, 2]`: uno por sesión diaria, para pintar los puntos con `@for`. */
   protected readonly puntos = Array.from({ length: MAX_SESIONES_DIA }, (_, i) => i);
@@ -112,10 +118,15 @@ export class Inicio {
     () => this.estados().filter((e) => e.caja >= CAJA_DOMINADA).length,
   );
 
-  /** Preguntas vistas a las que les toca repaso hoy (su fecha `proximo` ya ha llegado). */
+  /**
+   * Preguntas vistas a las que les toca repaso hoy (su fecha `proximo` ya ha llegado).
+   * `proximo` siempre es una medianoche, así que compararla con la medianoche de hoy
+   * equivale a compararla con la hora actual; y al leer `reloj.hoy()`, la cuenta se
+   * actualiza sola al cambiar el día.
+   */
   protected readonly pendientes = computed(() => {
-    const ahora = Date.now();
-    return this.estados().filter((e) => e.proximo <= ahora).length;
+    const hoy = this.reloj.hoy();
+    return this.estados().filter((e) => e.proximo <= hoy).length;
   });
 
   /**

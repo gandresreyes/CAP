@@ -11,12 +11,10 @@ import {
 import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Pregunta } from '../../shared/models/pregunta';
-import { Estado } from '../../shared/models/progreso';
 import { BancoPreguntas } from '../../shared/services/banco-preguntas';
 import { ProgresoStore } from '../../shared/services/progreso-store';
 import { SesionEnCurso } from '../../shared/services/sesion-en-curso';
 import { MAX_SESIONES_DIA, SesionesDiarias } from '../../shared/services/sesiones-diarias';
-import { INTERVALOS } from '../../shared/utils/leitner';
 import { ordenarOpciones } from '../../shared/utils/opciones';
 import { crearSesion } from '../../shared/utils/sesion';
 
@@ -158,12 +156,6 @@ export class Repaso {
   protected readonly aciertos = signal(0);
 
   /**
-   * Estado Leitner de la pregunta tras la última respuesta (para decir "Volverá a
-   * salir en N días"). `null` si fue una repetición, que no cambia el progreso.
-   */
-  private readonly estado = signal<Estado | null>(null);
-
-  /**
    * Ids de las preguntas que ya cambiaron de caja en esta sesión. Sirve para que
    * solo cuente la primera respuesta: si fallas y luego aciertas en el repaso de
    * fallos, la pregunta no debe subir de caja (no la sabías a la primera).
@@ -282,14 +274,6 @@ export class Repaso {
   /** Porcentaje de la barra de avance: se llena con las 25 y se queda llena en la fase de fallos. */
   protected readonly avance = computed(() => Math.min(this.indice() / this.total(), 1) * 100);
 
-  /** Mensaje bajo la corrección: cuándo volverá a salir la pregunta según su nueva caja. */
-  protected readonly cuandoVuelve = computed(() => {
-    const e = this.estado();
-    if (!e) return 'Repetición: no cambia tu progreso.';
-    const dias = INTERVALOS[e.caja];
-    return dias === 1 ? 'Volverá a salir mañana.' : `Volverá a salir en ${dias} días.`;
-  });
-
   // ---------------------------------------------------------------------------
   // Acciones (las llama la plantilla al tocar botones)
   // ---------------------------------------------------------------------------
@@ -307,14 +291,12 @@ export class Repaso {
     this.elegida.set(opcion);
     const acierto = opcion === this.correcta();
 
-    if (this.puntuadas.has(p.id)) {
-      // Repetición de una fallada: es solo práctica, no toca el progreso ni la nota.
-      this.estado.set(null);
-    } else {
-      // Primera respuesta de esta pregunta en la sesión: actualiza su caja Leitner
-      // (y lo guarda) y suma a la nota si acertó.
+    // Solo la primera respuesta de cada pregunta en la sesión cuenta: actualiza su
+    // caja Leitner (y lo guarda) y suma a la nota si acertó. Las repeticiones del
+    // repaso de fallos son solo práctica y no tocan el progreso ni la nota.
+    if (!this.puntuadas.has(p.id)) {
       this.puntuadas.add(p.id);
-      this.estado.set(this.progreso.responder(p.id, acierto));
+      this.progreso.responder(p.id, acierto);
       if (acierto) this.aciertos.update((n) => n + 1);
     }
 
