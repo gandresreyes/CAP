@@ -140,7 +140,7 @@ type Estado = { caja: number; proximo: number; aciertos: number; fallos: number 
 type Progreso = Record<string, Estado>; // por id de pregunta
 ```
  
-- `id`: `cyl-AAAA-MM-NNN` (comunidad, convocatoria, número en el modelo A). Ej.: `cyl-2026-10-007`. Las de reserva son 101–103.
+- `id`: `cyl-AAAA-MM-NNN` (comunidad, convocatoria, número en el modelo A). Ej.: `cyl-2026-10-007`. Las de reserva son 101–103. Andalucía usa el prefijo `and-` y `origen` "AND AAAA-MM".
 - `explicacion`: 1–2 frases que justifican la respuesta oficial. Puede ir vacía (`""`); entonces la pantalla oculta "Por qué".
 ## Temas
  
@@ -344,6 +344,7 @@ Hecho: `@angular/service-worker` instalado y `provideServiceWorker` en `app.conf
  
 - Exámenes propios (4, de Castilla y León): base principal.
   - Procesados: Mercancías CyL 2026-01 (modelo A) y CyL 2026-10 (modelos A y B) → 202 preguntas únicas en `questions.json`.
+- Andalucía (examen en Sevilla): Mercancías AND 2026-03 (14-03-2026, modelo A) → 99 preguntas nuevas (4 ya estaban en el banco). Este PDF trae la respuesta marcada con un asterisco rojo y una «Referencia» (norma o manual) en cada pregunta, que sirve de base para la explicación. Total: 301 preguntas.
   - Cada examen trae 100 preguntas + 3 de reserva (1ª, 2ª, 3ª = 101–103). La plantilla es la página de casillas rellenas; si hay modelo B, cruzarlo con el A (mismas preguntas en otro orden) para validar las respuestas.
   - Los PDF originales no van en `public/` (se publicarían con la app).
   - Algunos PDF traen "¿" donde iban puntos suspensivos ("el par motor¿") → sustituir por "…".
@@ -355,7 +356,7 @@ Hecho: `@angular/service-worker` instalado y `provideServiceWorker` en `app.conf
 - Calidad de los datos: revisar respuestas y temas (sin botón "reportar error": el usuario no lo quiere).
 - Hecho: exportar/importar el progreso (JSON) en la pestaña Progreso, porque sin backend se pierde al borrar datos o cambiar de móvil.
 - Pendiente: procesar los otros exámenes oficiales + hojas de respuestas → `questions.json` (deduplicar, clasificar por tema).
-- Hecho: explicaciones de las 202 preguntas (1–2 frases, ~150 caracteres). Justifican siempre la respuesta de la plantilla oficial y citan la norma cuando aporta (Reg. 561/2006, LOTT, Ley 44/2015, RD 159/2021, Acuerdo ATP…). Lo dudoso se comprobó en la web (BOE, bancos de preguntas del CAP).
+- Hecho: explicaciones de las 301 preguntas (1–2 frases, ~150 caracteres). Justifican siempre la respuesta de la plantilla oficial y citan la norma cuando aporta (Reg. 561/2006, LOTT, Ley 44/2015, RD 159/2021, Acuerdo ATP…). Lo dudoso se comprobó en la web (BOE, bancos de preguntas del CAP).
   - Donde no se encontró la base legal exacta, la explicación dice «Según la plantilla oficial…» en vez de inventarla: `cyl-2026-10-022` (MPCE, cualquier MMA), `cyl-2026-01-021` (transporte funerario exento) y `cyl-2026-01-092` (la inercia varía con el freno). Conviene revisarlas con el profesor.
   - Al añadir preguntas nuevas, escribir su explicación con el mismo criterio.
 - Pendiente: elegir nombre definitivo y modalidad (Mercancías o Viajeros).

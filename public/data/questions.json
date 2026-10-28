@@ -2826,5 +2826,1391 @@
     "correcta": 0,
     "explicacion": "Si la empresa no sanciona disciplinariamente al conductor, la infracción por uso indebido del tacógrafo se imputa a la empresa transportista.",
     "origen": "CyL 2026-01"
+  },
+  {
+    "id": "and-2026-03-001",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿Cómo se denomina la comprobación periódica que realiza la Administración del mantenimiento, por parte del transportista, de los requisitos para ser titular de la autorización de transporte?",
+    "opciones": [
+      "Revisión periódica.",
+      "Visado.",
+      "Constatación periódica.",
+      "Certificación periódica."
+    ],
+    "correcta": 1,
+    "explicacion": "El visado es la comprobación periódica con la que la Administración verifica que el titular sigue cumpliendo los requisitos de su autorización de transporte (LOTT, art. 51).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-002",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "Cuando el conductor de un camión acelera en una pendiente ascendente, ¿qué ocurrirá con la mercancía?",
+    "opciones": [
+      "Tenderá a desplazarse hacia el lateral del vehículo que soporte más peso.",
+      "Tenderá a desplazarse en el mismo sentido de la marcha del vehículo.",
+      "Tenderá a desplazarse en sentido opuesto a la marcha del vehículo.",
+      "No tenderá a desplazarse hacia ninguna parte."
+    ],
+    "correcta": 2,
+    "explicacion": "Al acelerar, la carga tiende por inercia a quedarse atrás, es decir, a desplazarse en sentido contrario a la marcha; en una subida la pendiente lo acentúa.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-003",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "Según la Comisión Europea, ¿cuáles son las desventajas del transporte ferroviario de mercancías en Europa frente al transporte por carretera?",
+    "opciones": [
+      "El tiempo que se emplea en el transporte ferroviario de mercancías para realizar los recorridos es más previsible y fiable que en el transporte por carretera.",
+      "Los trámites necesarios para la contratación de un transporte ferroviario de mercancías son menos largos y complicados que para un transporte por carretera.",
+      "El ferrocarril puede dar en todos los casos un servicio puerta a puerta y mejor adaptado a las necesidades de cada cliente.",
+      "Todas las respuestas anteriores son incorrectas."
+    ],
+    "correcta": 3,
+    "explicacion": "Según el Libro Blanco de 2001, el ferrocarril tiene plazos menos fiables, trámites más complicados y no ofrece servicio puerta a puerta. Las tres opciones dicen lo contrario, así que ninguna es correcta.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-004",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "Entre las fuerzas que intervienen en el movimiento de un camión, ¿cómo se denomina a la fuerza de la atracción terrestre?",
+    "opciones": [
+      "Fuerza centrípeta.",
+      "Fuerza de presión vertical.",
+      "Fuerza de gravedad.",
+      "Fuerza de guiado interno."
+    ],
+    "correcta": 2,
+    "explicacion": "La gravedad es la fuerza con la que la Tierra atrae al vehículo y a su carga; actúa siempre hacia abajo, sobre el centro de gravedad.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-005",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Cuándo se dice que un camión tarda en apoyarse?",
+    "opciones": [
+      "Cuando la inclinación que alcanza es la mínima posible.",
+      "Cuando el intervalo entre girar la dirección y el apoyo es pequeño.",
+      "Cuando el apoyo se va cambiando con la altura.",
+      "Cuando el intervalo entre girar la dirección y el apoyo es grande."
+    ],
+    "correcta": 3,
+    "explicacion": "El apoyo es cuando, al girar, la carrocería se inclina y carga el peso sobre las ruedas exteriores. Si pasa mucho tiempo entre girar el volante y ese apoyo, el camión «tarda en apoyarse».",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-006",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Cómo se denomina uno de los efectos que provoca la resistencia del aire y que hace que el camión tenga que realizar un esfuerzo para avanzar?",
+    "opciones": [
+      "Desplazamiento de masas transversales.",
+      "Turbulencias.",
+      "Balanceo del motor.",
+      "Desplazamiento del centro de gravedad."
+    ],
+    "correcta": 1,
+    "explicacion": "El aire que choca con el camión forma turbulencias, sobre todo detrás y entre cabina y caja; frenan el avance y obligan al motor a hacer más esfuerzo.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-007",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿En qué momento se produce el deslizamiento de un neumático?",
+    "opciones": [
+      "Cuando llueve mucho.",
+      "Cuando la velocidad angular o de giro de la rueda no coincide con la velocidad lineal del camión.",
+      "Cuando la velocidad angular o de giro de la rueda coincide con la velocidad lineal del camión.",
+      "Cuando está nevando."
+    ],
+    "correcta": 1,
+    "explicacion": "Hay deslizamiento cuando la rueda gira más deprisa o más despacio de lo que avanza el camión (patina al acelerar o se bloquea al frenar).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-008",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Cómo se nota el subviraje en un camión?",
+    "opciones": [
+      "El volante ofrece menos resistencia de lo normal.",
+      "El volante ofrece más resistencia de lo normal.",
+      "El volante no se puede mover.",
+      "El volante se parte."
+    ],
+    "correcta": 0,
+    "explicacion": "En el subviraje las ruedas delanteras pierden adherencia y el camión tiende a seguir recto aunque se gire; por eso el volante se nota más ligero de lo normal.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-009",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "Un factor que puede afectar a la estabilidad del vehículo es:",
+    "opciones": [
+      "la masa neta que se puede levantar.",
+      "la masa de velocidad máxima.",
+      "la fuerza termotecnia lateral.",
+      "la rigidez torsional de la carrocería."
+    ],
+    "correcta": 3,
+    "explicacion": "Una carrocería con poca rigidez a la torsión se retuerce en curvas y apoyos, y empeora la estabilidad. Las demás opciones no son conceptos reales.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-010",
+    "tema": "1.4 Carga del vehículo",
+    "enunciado": "¿Cuál de las siguientes fuerzas intervienen en el movimiento de un camión?",
+    "opciones": [
+      "La fuerza mayor.",
+      "La fuerza menor.",
+      "La fuerza motriz.",
+      "La fuerza nula."
+    ],
+    "correcta": 2,
+    "explicacion": "La fuerza motriz es la que genera el motor y llega a las ruedas para mover el camión. Las demás opciones no son fuerzas del movimiento.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-011",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "Para realizar transporte internacional de mercancías que exija contar con licencia comunitaria, es necesario que las empresas dispongan, como mínimo, de:",
+    "opciones": [
+      "5 vehículos pesados.",
+      "3 vehículos entre pesados y ligeros.",
+      "1 vehículo.",
+      "10 vehículos."
+    ],
+    "correcta": 2,
+    "explicacion": "La licencia comunitaria se concede a quien tiene autorización de transporte público, y para ello basta con disponer de al menos 1 vehículo (Reg. 1072/2009, art. 4; ROTT).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-012",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "¿Cuáles son factores que no juegan a favor del transporte de mercancías por carretera?",
+    "opciones": [
+      "El coste del transporte.",
+      "El plazo de entrega.",
+      "Reacción ágil frente a posibles incidencias.",
+      "Ninguna de las respuestas anteriores es correcta."
+    ],
+    "correcta": 3,
+    "explicacion": "El coste, el plazo de entrega y la rapidez para reaccionar ante incidencias son ventajas de la carretera frente a otros modos, así que ninguno juega en contra.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-013",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "El transporte de animales vivos…",
+    "opciones": [
+      "no requiere en ningún caso autorización genérica de transporte, pues este tipo de transporte ya está controlado por las autoridades sanitarias por sus implicaciones en la salud pública.",
+      "solo se puede efectuar en régimen de transporte privado complementario, previa autorización del Ministerio de Sanidad.",
+      "solo se puede efectuar con un vehículo adscrito a autorización de transporte MDPE.",
+      "requiere, además de la autorización genérica de transporte en los casos en los que resulte preceptiva, una autorización específica del órgano competente en materia de sanidad animal."
+    ],
+    "correcta": 3,
+    "explicacion": "Además de la autorización de transporte cuando sea obligatoria, el transporte de animales vivos necesita una autorización de la autoridad de sanidad animal (RD 990/2022, art. 5).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-014",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "Cuando no se solicita la inscripción de la escritura de constitución de una sociedad anónima antes de que transcurra un año de su otorgamiento, la sociedad deviene:",
+    "opciones": [
+      "nula.",
+      "inexistente.",
+      "viciada.",
+      "irregular."
+    ],
+    "correcta": 3,
+    "explicacion": "Si pasa un año desde la escritura sin pedir la inscripción en el Registro Mercantil, la sociedad se considera irregular (Ley de Sociedades de Capital, art. 39).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-015",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿Para qué conductores es necesario un certificado de conductor de tercer país?",
+    "opciones": [
+      "Para todos los que no sean españoles.",
+      "Solo para todos los conductores extranjeros que no hayan convalidado su permiso de conducir.",
+      "Para los conductores que no tengan nacionalidad de un estado de la Unión Europea o del Espacio Económico Europeo cuando no tengan residencia de larga duración-UE.",
+      "Solamente para los conductores extranjeros que no hayan convalidado el CAP obtenido fuera de España."
+    ],
+    "correcta": 2,
+    "explicacion": "El certificado de conductor lo necesitan los conductores que no son de la UE ni del EEE, salvo que sean residentes de larga duración-UE (Orden TRM/59/2025).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-016",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿Para qué conductores es necesario un certificado de conductor de tercer país?",
+    "opciones": [
+      "Solo para los conductores que se designen en los tratados bilaterales.",
+      "Para todos los que no sean de nacionalidad española.",
+      "Para los procedentes de países cuyo permiso de conducción no sea reconocido en España.",
+      "Para los que no tengan nacionalidad de un Estado de la Unión Europea o del Espacio Económico Europeo que no tengan residencia de larga duración-UE."
+    ],
+    "correcta": 3,
+    "explicacion": "El certificado de conductor lo necesitan los conductores que no son de la UE ni del EEE, salvo que sean residentes de larga duración-UE (Orden TRM/59/2025).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-017",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "Cuando el consignatario no se encuentre en el domicilio y el cargador no facilite instrucciones, ¿qué puede hacer el porteador?",
+    "opciones": [
+      "Debe devolver la mercancía al cargador.",
+      "Esperará a que regrese el consignatario.",
+      "No puede hacer nada hasta que no reciba instrucciones del cargador.",
+      "Podrá solicitar el depósito de la carga ante la Junta Arbitral del Transporte, quedando liberado de las obligaciones de entrega."
+    ],
+    "correcta": 3,
+    "explicacion": "Si el destinatario no está y el cargador no da instrucciones, el porteador puede pedir a la Junta Arbitral del Transporte el depósito de la carga y queda liberado de entregarla (Ley 15/2009, art. 44).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-018",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "En una sociedad anónima, el capital social no puede ser nunca inferior a:",
+    "opciones": [
+      "30.000 euros.",
+      "60.000 euros.",
+      "100.000 euros.",
+      "120.000 euros."
+    ],
+    "correcta": 1,
+    "explicacion": "La Ley de Sociedades de Capital (art. 4) fija un capital mínimo de 60.000 € para la sociedad anónima.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-019",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "Para el transporte de animales vivos, ¿es necesario que los conductores cuenten con un certificado de formación en materia de protección de los animales durante su transporte?",
+    "opciones": [
+      "Sí, en todos los casos y además deberán poseerlo también los acompañantes en todos los recorridos.",
+      "Sí, en todos los casos y además deberán poseerlo también los acompañantes, pero solo en los recorridos que duren más de 8 horas.",
+      "No es necesario para los conductores, pero sí para los acompañantes.",
+      "Sí, pero solo en el transporte de algunas especies animales."
+    ],
+    "correcta": 3,
+    "explicacion": "El Reglamento (CE) 1/2005 (art. 6.5) exige el certificado de competencia solo para transportar ciertas especies: équidos, bovinos, ovinos, caprinos, porcinos y aves de corral.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-020",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "La garantía exigida en el caso de transportes efectuados en régimen de tránsito de la Unión será:",
+    "opciones": [
+      "individual para cada transporte.",
+      "global para varios transportes, previa autorización de las autoridades aduaneras.",
+      "global para varios transportes, sin necesidad de autorización previa.",
+      "Las respuestas A y B son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "En el tránsito de la Unión la garantía puede ser individual, para un solo transporte, o global para varios si la aduana lo autoriza (Código Aduanero de la Unión, art. 89).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-021",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "El titular de una autorización de transporte público de mercancías podrá sustituir alguno de los vehículos adscritos a la autorización si…",
+    "opciones": [
+      "es autorizado por el órgano competente mediante una anotación registral.",
+      "el vehículo sustituido tiene una antigüedad superior a cinco años.",
+      "el nuevo vehículo adscrito tiene una antigüedad inferior a dos años.",
+      "la antigüedad media de su flota no se ve incrementada con la sustitución."
+    ],
+    "correcta": 0,
+    "explicacion": "Sustituir un vehículo adscrito a la autorización requiere que la Administración lo autorice y lo anote en el Registro de Empresas y Actividades de Transporte (ROTT, art. 44).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-022",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "La declaración previa a la salida de mercancías del territorio aduanero de la Unión se hace mediante una:",
+    "opciones": [
+      "declaración en aduana.",
+      "declaración de reexportación.",
+      "declaración sumaria de salida.",
+      "Todas las respuestas son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "Según el Código Aduanero de la Unión (art. 263), la salida se declara con una declaración en aduana, de reexportación o sumaria de salida, según el caso; por eso valen todas.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-023",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿Qué transporte permite realizar una autorización CEMT?",
+    "opciones": [
+      "Transporte entre estados miembros de la CEMT.",
+      "Transporte entre estados miembros de la CEMT y países terceros.",
+      "Transporte de cabotaje en estados miembros.",
+      "Ninguna es correcta."
+    ],
+    "correcta": 0,
+    "explicacion": "La autorización multilateral CEMT permite el transporte internacional entre los países miembros de la CEMT; no permite el cabotaje ni el tráfico con países terceros.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-024",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "En una sociedad anónima, ¿qué se aprueba en la Junta Constituyente?",
+    "opciones": [
+      "Los estatutos.",
+      "El valor de las aportaciones no dinerarias.",
+      "El nombramiento de las personas encargadas de la administración.",
+      "Todas son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "En la junta constituyente de una sociedad anónima se aprueban los estatutos, el valor de las aportaciones no dinerarias y el nombramiento de los administradores (Ley de Sociedades de Capital).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-025",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "Una empresa titular de una autorización de transporte público de mercancías, ¿a qué semirremolques necesita asignarles copia de la autorización para poder hacer transporte con ellos?",
+    "opciones": [
+      "A los que vayan a hacer transporte internacional.",
+      "A los que superen las 20 toneladas de MMA.",
+      "A los que tengan certificado ATP o ADR.",
+      "A ninguno."
+    ],
+    "correcta": 3,
+    "explicacion": "Las autorizaciones de transporte se adscriben a vehículos con tracción propia (camiones y tractoras); los semirremolques no necesitan copia (LOTT, art. 54).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-026",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Cómo define la normativa comunitaria el tiempo diario de conducción?",
+    "opciones": [
+      "La conducción efectuada en 24 horas.",
+      "El tiempo acumulado de conducción entre dos descansos diarios o entre un descanso diario y un descanso semanal.",
+      "La conducción efectuada en un día laboral.",
+      "La conducción acumulada de toda la semana."
+    ],
+    "correcta": 1,
+    "explicacion": "El Reglamento 561/2006 (art. 4.k) define el tiempo diario de conducción como el total conducido entre dos descansos diarios, o entre un descanso diario y uno semanal.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-027",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "¿Cuál de estas afirmaciones es incorrecta?",
+    "opciones": [
+      "Al efectuar las revisiones periódicas del vehículo, conviene supervisar el sistema de climatización.",
+      "El diseño del habitáculo de conducción debe ser tal que, en caso de accidente, se maximicen los daños del conductor al impactar con el mismo.",
+      "No interesa dejar objetos sueltos en el habitáculo de conducción.",
+      "Es necesario asegurar la renovación del aire en el habitáculo de conducción."
+    ],
+    "correcta": 1,
+    "explicacion": "La cabina se diseña para minimizar los daños del conductor en un choque, no para maximizarlos. Las demás afirmaciones son recomendaciones correctas.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-028",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Cuál de las siguientes afirmaciones es cierta?",
+    "opciones": [
+      "La potencia máxima se alcanza a la velocidad máxima.",
+      "Los valores máximos de par y potencia no se alcanzan al mismo régimen de funcionamiento del motor.",
+      "El par máximo se alcanza al ralentí.",
+      "La potencia máxima se alcanza al ralentí."
+    ],
+    "correcta": 1,
+    "explicacion": "El par máximo se alcanza a un régimen medio de revoluciones y la potencia máxima a uno más alto, así que nunca coinciden.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-029",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Qué depende del buen estado del vehículo?",
+    "opciones": [
+      "La seguridad del conductor.",
+      "La seguridad de los pasajeros (en caso de transporte de viajeros).",
+      "La seguridad del resto de los usuarios de las carreteras.",
+      "Todas las respuestas anteriores son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "Un vehículo bien mantenido protege al conductor, a los pasajeros y al resto de usuarios de la vía: de su estado depende la seguridad de todos.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-030",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "¿Qué es aconsejable en el puesto de conducción?",
+    "opciones": [
+      "Que la mayoría de los elementos sean ajustables para poder alcanzar una posición correcta.",
+      "Que todos los elementos sean rígidos y sin posibilidad de regulación.",
+      "Que solo sea regulable el asiento de forma que se pueda alcanzar correctamente el volante.",
+      "Que solo se pueda regular el volante para adecuarlo a la altura del conductor."
+    ],
+    "correcta": 0,
+    "explicacion": "Un puesto de conducción ergonómico debe poder ajustarse (asiento, volante, espejos…) para que cada conductor encuentre una postura correcta.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-031",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "¿Qué son enfermedades profesionales?",
+    "opciones": [
+      "Aquellas que presentan relación con una determinada rama de actividad.",
+      "Aquellas que tienen un nivel bajo de ocurrencia entre los trabajadores de una rama de actividad.",
+      "Aquellas que tienen un nivel alto de ocurrencia entre los trabajadores de una rama de actividad.",
+      "Las respuestas A y C son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "Según la plantilla oficial, son las ligadas a una rama de actividad y frecuentes entre sus trabajadores (A y C). La Ley General de la Seguridad Social (art. 157) las vincula al cuadro oficial de actividades.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-032",
+    "tema": "3.6 Imagen de marca",
+    "enunciado": "¿En qué caso de los siguientes se considera que una empresa de transporte ha prestado un servicio de calidad?",
+    "opciones": [
+      "Cuando el servicio que se ha dado alcanza el nivel que la empresa se había propuesto.",
+      "Cuando el servicio ha dado respuesta a las necesidades del cliente.",
+      "Cuando el servicio no ha sido percibido como adecuado por el cliente.",
+      "Las respuestas A y B son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "Un servicio es de calidad cuando alcanza el nivel que se había propuesto la empresa y, además, responde a lo que necesita el cliente.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-033",
+    "tema": "3.5 Emergencias",
+    "enunciado": "Al socorrer a los heridos en un accidente de circulación, ¿debemos taparlos con una manta o prenda similar?",
+    "opciones": [
+      "Sí, tanto en verano como en invierno para evitar la pérdida de calor.",
+      "No, salvo que la temperatura exterior sea muy fría.",
+      "No, en ningún caso, pues no es conveniente que suden.",
+      "No, salvo que los heridos estén inconscientes."
+    ],
+    "correcta": 0,
+    "explicacion": "Un herido pierde calor con facilidad por el shock, así que conviene taparlo siempre, en verano y en invierno, para mantener su temperatura.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-034",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "La empresa de transportes es una empresa:",
+    "opciones": [
+      "que produce bienes.",
+      "de servicios.",
+      "cuyo trabajo tiene por objetivo beneficiarse de los clientes.",
+      "Las respuestas B y C son correctas."
+    ],
+    "correcta": 1,
+    "explicacion": "El transporte no fabrica bienes: presta un servicio, que es trasladar mercancías o personas.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-035",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "La prevención de riesgos laborales implica obligaciones en el ámbito del transporte:",
+    "opciones": [
+      "solo para el empresario.",
+      "solo para el trabajador.",
+      "para el empresario y da consejos al trabajador.",
+      "para el empresario y el trabajador."
+    ],
+    "correcta": 3,
+    "explicacion": "La Ley de Prevención de Riesgos Laborales obliga al empresario a proteger a sus trabajadores, y a estos a cumplir las medidas de prevención (arts. 14 y 29).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-036",
+    "tema": "3.1 Riesgos de la carretera",
+    "enunciado": "Los gastos que un accidente de tráfico implica para los afectados con lesiones están relacionados con:",
+    "opciones": [
+      "ayudas técnicas.",
+      "ayudas de tercera persona.",
+      "tratamientos físicos y psicológicos.",
+      "Todas las respuestas anteriores son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "Los lesionados en un accidente necesitan ayudas técnicas, ayuda de otra persona y tratamientos físicos y psicológicos; todo forma parte de su coste.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-037",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "Los movimientos rutinarios y repetidos de subir o bajar del vehículo:",
+    "opciones": [
+      "se pueden convertir en motivo de lesiones.",
+      "se pueden convertir en motivo de accidentes.",
+      "no es necesario realizarlos con precaución.",
+      "Las respuestas A y B son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "Subir y bajar de la cabina muchas veces al día puede causar lesiones y caídas; por eso se hace con cuidado, de cara al vehículo y con tres puntos de apoyo.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-038",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "De acuerdo con el Reglamento (CE) 561/2006, ¿qué debe tenerse en cuenta para calcular el tiempo diario de conducción?",
+    "opciones": [
+      "Únicamente las horas de conducción efectuadas en territorio comunitario.",
+      "Todas las horas de conducción efectuadas en territorio comunitario o en un país tercero.",
+      "Únicamente las horas de conducción efectuadas en un país tercero.",
+      "El Reglamento (CE) 561/2006 no considera el tiempo diario de conducción."
+    ],
+    "correcta": 1,
+    "explicacion": "Para el tiempo diario de conducción cuentan todas las horas, tanto las hechas en la UE como en un país tercero (Reg. 561/2006, art. 6.4).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-039",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Qué conductores están exentos de la obligación de cualificación inicial para la obtención del certificado de aptitud profesional (CAP)?",
+    "opciones": [
+      "Los titulares del permiso D1+E, expedido después del 10-09-2009.",
+      "Los titulares del permiso D+E, expedido después del 10-09-2010.",
+      "Los titulares del permiso C+E, expedido después del 11-09-2011.",
+      "Los titulares del permiso C+E, expedido antes del 11-09-2009."
+    ],
+    "correcta": 3,
+    "explicacion": "En mercancías están exentos de la cualificación inicial los titulares de permisos C1, C1+E, C o C+E expedidos antes del 11-09-2009 (RD 284/2021, art. 3).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-040",
+    "tema": "3.2 Delincuencia e inmigración",
+    "enunciado": "Los transportistas están obligados a remitir a las autoridades policiales españolas, respecto de las rutas de fuera del Espacio Schengen, la información sobre los viajeros que vayan a ser transportados:",
+    "opciones": [
+      "por vía aérea, únicamente.",
+      "por vía marítima o aérea, exclusivamente.",
+      "por vía aérea, marítima o terrestre.",
+      "solo por vía terrestre (carretera o ferrocarril)."
+    ],
+    "correcta": 2,
+    "explicacion": "La Ley de Extranjería (art. 66.1) obliga a los transportistas a enviar a la policía los datos de los viajeros de rutas de fuera de Schengen, ya sea por aire, mar o tierra.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-041",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "Una finalidad de las actividades de prevención de riesgos laborales es:",
+    "opciones": [
+      "evitar los riesgos que son inevitables.",
+      "detectar y evaluar los riesgos que no son evitables.",
+      "evitar los riesgos evitables.",
+      "Las respuestas B y C son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "La Ley de Prevención de Riesgos Laborales (art. 15) manda evitar los riesgos evitables y evaluar los que no se pueden evitar; por eso B y C.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-042",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "Un período de 10 horas ininterrumpidas durante el cual un conductor dispone libremente de su tiempo, ¿puede ser considerado como un período de descanso diario?",
+    "opciones": [
+      "Sí, en todo caso.",
+      "No, en ningún caso.",
+      "Sí, porque entre dos períodos de descanso semanales podrán tomarse hasta tres períodos de descanso diario reducidos.",
+      "Sí, pero solo si el vehículo lleva instalado un tacógrafo digital."
+    ],
+    "correcta": 2,
+    "explicacion": "Un descanso de entre 9 y 11 horas es un descanso diario reducido, y se permiten hasta tres entre dos descansos semanales (Reg. 561/2006, art. 8).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-043",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "Señale la opción que no es acorde con el mantenimiento de unas buenas condiciones en cuanto al espacio y medios de trabajo.",
+    "opciones": [
+      "Es recomendable que siempre haya ruido, el silencio absoluto no es bueno.",
+      "Existirá espacio suficiente para los movimientos del cuerpo.",
+      "Los instrumentos de mando estarán situados en una zona que permita su fácil alcance.",
+      "Los mangos y empuñaduras se adaptarán a la anatomía de la mano."
+    ],
+    "correcta": 0,
+    "explicacion": "El ruido constante causa fatiga y daña el oído; un buen puesto de trabajo debe reducirlo, no mantenerlo.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-045",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "Lo más recomendable para trabajar de pie es utilizar zapatos:",
+    "opciones": [
+      "con la suela plana.",
+      "con tacón de 2 a 4 cm.",
+      "con tacón de 10 cm.",
+      "con tacón de 15 cm."
+    ],
+    "correcta": 1,
+    "explicacion": "Para trabajar de pie conviene un tacón bajo, de 2 a 4 cm: reparte mejor el peso que una suela plana y no fuerza el pie como un tacón alto.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-046",
+    "tema": "3.5 Emergencias",
+    "enunciado": "Ante una situación como la caída de carga sobre la vía, ¿qué actuaciones no deben realizarse?",
+    "opciones": [
+      "Señalizar convenientemente el obstáculo.",
+      "Avisar del peligro al resto de usuarios de la vía.",
+      "Dar cuenta inmediatamente a los servicios de auxilio en carretera.",
+      "Abandonar la zona inmediatamente para evitar males mayores."
+    ],
+    "correcta": 3,
+    "explicacion": "Ante una carga caída en la vía hay que señalizarla, avisar al resto de usuarios y a los servicios de auxilio (Reglamento General de Circulación, art. 130); no se puede abandonar la zona.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-047",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Qué factor es el que más influye en la potencia de un motor?",
+    "opciones": [
+      "El número de revoluciones.",
+      "La aerodinámica del vehículo.",
+      "El grado de llenado del cilindro.",
+      "La masa del vehículo."
+    ],
+    "correcta": 0,
+    "explicacion": "La potencia es el par por la velocidad de giro del motor, así que lo que más influye en ella es el número de revoluciones.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-048",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Un motor consumirá más combustible si:",
+    "opciones": [
+      "se circula con marchas largas.",
+      "se aprovecha la inercia del vehículo.",
+      "se circula con marchas cortas.",
+      "se circula a velocidad moderada."
+    ],
+    "correcta": 2,
+    "explicacion": "Con marchas cortas el motor gira más revolucionado para la misma velocidad y gasta más; por eso se recomiendan marchas largas.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-049",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "¿En qué consiste el aquaplaning?",
+    "opciones": [
+      "En la limpieza del motor con agua caliente a presión.",
+      "En el efecto del agua sobre determinados desgastes de los neumáticos.",
+      "Es una situación que se produce cuando los neumáticos no son capaces de evacuar toda el agua que hay en la calzada.",
+      "Es el riesgo que existe de tormenta durante un trayecto."
+    ],
+    "correcta": 2,
+    "explicacion": "El aquaplaning ocurre cuando el dibujo del neumático no evacua toda el agua y se forma una película entre rueda y asfalto: se pierde la adherencia y la dirección.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-050",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "En caso de trabajo nocturno, efectuado por trabajadores móviles del transporte por carretera que no tienen la consideración de trabajador nocturno, según normativa laboral española, la jornada de trabajo diaria:",
+    "opciones": [
+      "será de 15 horas máximo.",
+      "no podrá exceder de 10 horas por período de 24 horas.",
+      "será de 12 horas al menos.",
+      "será de 3 horas máximo."
+    ],
+    "correcta": 1,
+    "explicacion": "Si se trabaja de noche, la jornada no puede superar 10 horas por cada periodo de 24 horas (RD 1561/1995, art. 10 bis.2).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-051",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "Un conductor que lleva acumuladas 50 horas de conducción en una semana, ¿cuántas horas más puede hacer esa semana, según la reglamentación social europea?",
+    "opciones": [
+      "10 horas más.",
+      "2 horas más.",
+      "6 horas más.",
+      "Todas las que quiera."
+    ],
+    "correcta": 2,
+    "explicacion": "El máximo de conducción semanal es de 56 horas (Reg. 561/2006, art. 6): con 50 hechas, quedan 6.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-052",
+    "tema": "3.6 Imagen de marca",
+    "enunciado": "¿Cuál de los siguientes no es un elemento básico en un servicio de transporte por lo que se refiere a su influencia en la percepción de calidad por parte de los clientes?",
+    "opciones": [
+      "Fiabilidad del transporte.",
+      "Trato correcto del conductor.",
+      "Seguridad del vehículo.",
+      "Tipo de lubricante que usan los vehículos."
+    ],
+    "correcta": 3,
+    "explicacion": "La fiabilidad, el trato del conductor y la seguridad influyen en cómo ve el cliente el servicio; el lubricante de los vehículos no lo percibe.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-053",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "¿Cuáles son las principales medidas que deben tomarse en caso de hielo en la carretera?",
+    "opciones": [
+      "Frenado a fondo para poder detener el vehículo en pocos metros.",
+      "La arrancada debe hacerse en una relación de marchas lo más corta posible.",
+      "En caso de pérdida de control no debe frenarse, debe levantarse suavemente el pie del acelerador.",
+      "En las curvas se debe tocar suavemente el freno."
+    ],
+    "correcta": 2,
+    "explicacion": "Sobre hielo cualquier maniobra brusca hace perder la adherencia: si se pierde el control no se frena, se levanta suavemente el pie del acelerador.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-054",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "¿Cuáles son equipos de protección individual de pies y piernas?",
+    "opciones": [
+      "Equipos filtrantes.",
+      "Dediles.",
+      "Equipos aislantes.",
+      "Todas las respuestas anteriores son incorrectas."
+    ],
+    "correcta": 3,
+    "explicacion": "Los equipos filtrantes y aislantes protegen las vías respiratorias y los dediles, los dedos; ninguno protege pies y piernas (RD 773/1997).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-055",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "Al accionar el freno eléctrico…",
+    "opciones": [
+      "se reducirá la velocidad de giro del árbol de transmisión, pero no de las ruedas motrices.",
+      "se reducirá la velocidad de giro de las ruedas motrices, pero no del árbol de transmisión.",
+      "se reducirá la velocidad de giro del árbol de transmisión y de las ruedas motrices.",
+      "no se reducirá la velocidad de giro del árbol de transmisión ni de las ruedas motrices, ya que actúa sobre el embrague."
+    ],
+    "correcta": 2,
+    "explicacion": "El freno eléctrico (ralentizador) actúa sobre el árbol de transmisión y, como este mueve las ruedas motrices, frena ambos.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-056",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "¿Qué puede producir la alternancia en los horarios de trabajo?",
+    "opciones": [
+      "Una mejor adaptación a los horarios sociales.",
+      "Perturbaciones en el sueño.",
+      "Facilidad para conciliar el sueño.",
+      "Alimentación adecuada."
+    ],
+    "correcta": 1,
+    "explicacion": "Cambiar de horario a menudo desajusta el reloj biológico y altera el sueño, lo que aumenta la fatiga.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-057",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Qué acción debe realizar el conductor para extraer su tarjeta del tacógrafo digital?",
+    "opciones": [
+      "Acceder al menú.",
+      "Desconectar el tacógrafo.",
+      "Abrir la impresora para que así salga la tarjeta.",
+      "Presionar el botón de expulsión."
+    ],
+    "correcta": 3,
+    "explicacion": "La tarjeta de conductor se saca del tacógrafo digital con el botón de expulsión; así el aparato registra la retirada correctamente.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-058",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "Si el vehículo que conduce está dotado de un sistema de frenado ABS, ¿cómo actúa durante una frenada?",
+    "opciones": [
+      "Deteniendo inmediatamente el vehículo, incluso si la vía está mojada.",
+      "Deteniendo inmediatamente el vehículo, incluso si la vía tiene nieve.",
+      "Evitando el bloqueo de las ruedas, únicamente si la vía por donde se circula está mojada.",
+      "Evitando que las ruedas se bloqueen, cualquiera que sea el estado de la vía."
+    ],
+    "correcta": 3,
+    "explicacion": "El ABS evita que las ruedas se bloqueen al frenar sobre cualquier firme, para no perder la dirección; no garantiza detener el vehículo de inmediato.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-059",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "El número de revoluciones del motor, ¿influye en el consumo de carburante?",
+    "opciones": [
+      "Sí, es menor cuanto mayor es el número de revoluciones.",
+      "Sí, es menor cuanto menor es el número de revoluciones.",
+      "No, el consumo depende de la cilindrada del motor, únicamente.",
+      "No, el consumo solo depende de la velocidad."
+    ],
+    "correcta": 1,
+    "explicacion": "Cuantas menos revoluciones (dentro de la zona verde), menos combustible inyecta el motor y menor es el consumo.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-060",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Cuando se utiliza un aceite de alta calidad para lubricar un motor:",
+    "opciones": [
+      "se reduce el consumo de carburante.",
+      "se dificulta la refrigeración del motor.",
+      "se mejora el poder acidulante de las piezas.",
+      "se reduce la velocidad de movimiento de las piezas."
+    ],
+    "correcta": 0,
+    "explicacion": "Un aceite de buena calidad reduce el rozamiento entre las piezas del motor, que pierde menos energía y consume menos.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-061",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Cuál es la función principal del ralentizador eléctrico?",
+    "opciones": [
+      "Aumentar la energía cinética del vehículo.",
+      "Disminuir el desgaste de los neumáticos.",
+      "Evitar el fenómeno «fading».",
+      "Aumentar el coeficiente de rozamiento de las pastillas de freno."
+    ],
+    "correcta": 2,
+    "explicacion": "El ralentizador frena sin usar el freno de servicio, que así no se calienta ni pierde eficacia (fading) en las bajadas largas.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-062",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Con qué siglas se conoce al dispositivo antibloqueo de ruedas?",
+    "opciones": [
+      "EBV.",
+      "ASR.",
+      "ABS.",
+      "ABF."
+    ],
+    "correcta": 2,
+    "explicacion": "ABS son las siglas del sistema antibloqueo de ruedas; ASR es el control de tracción.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-063",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Qué objetivo tienen los reposacabezas?",
+    "opciones": [
+      "Son un elemento de seguridad activa.",
+      "Disminuyen considerablemente la gravedad de las lesiones en el cuello y en las vértebras.",
+      "Disminuyen considerablemente la gravedad de las lesiones en las piernas.",
+      "Ninguno, ya que es un elemento decorativo."
+    ],
+    "correcta": 1,
+    "explicacion": "El reposacabezas es seguridad pasiva: reduce las lesiones de cuello y cervicales en un choque, sobre todo en un golpe por detrás.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-064",
+    "tema": "2.2 Reglamentación de mercancías",
+    "enunciado": "¿En qué plazo dictará su laudo la Junta Arbitral del Transporte?",
+    "opciones": [
+      "En el mismo acto de la vista.",
+      "5 días.",
+      "1 mes.",
+      "6 meses."
+    ],
+    "correcta": 3,
+    "explicacion": "La Junta Arbitral del Transporte tiene un máximo de 6 meses para dictar el laudo, que es el plazo general de la Ley de Arbitraje (art. 37).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-065",
+    "tema": "3.5 Emergencias",
+    "enunciado": "¿Con qué otra acción se debe combinar el masaje cardiaco a un herido de accidente de tráfico para que surta efecto?",
+    "opciones": [
+      "Con respiración boca a boca.",
+      "Con palmaditas en la cara.",
+      "Con golpes en la nuca.",
+      "Con masajes en el brazo."
+    ],
+    "correcta": 0,
+    "explicacion": "La reanimación cardiopulmonar combina compresiones en el pecho con respiraciones boca a boca (30 compresiones y 2 insuflaciones).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-066",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "¿A quién corresponde, en una empresa de transporte, la responsabilidad del cuidado y limpieza del vehículo?",
+    "opciones": [
+      "A la policía local.",
+      "A la empresa municipal de limpieza del punto de origen.",
+      "Al conductor.",
+      "A la empresa municipal del ayuntamiento de destino."
+    ],
+    "correcta": 2,
+    "explicacion": "El cuidado y la limpieza del vehículo forman parte de las funciones del conductor, según el Acuerdo general para las empresas de transporte de mercancías.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-067",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Conducir de forma que se reduzca la velocidad media de circulación tiene como ventaja:",
+    "opciones": [
+      "aumentar el coeficiente aerodinámico del vehículo y prolongar la vida del motor.",
+      "no tener que comprobar el nivel del aceite motor ya que, conducir de esta manera, hace que el consumo de aceite sea nulo.",
+      "aumentar la frecuencia de la inspección técnica periódica y reducir los plazos de mantenimiento del vehículo.",
+      "un menor consumo y menor desgaste mecánico."
+    ],
+    "correcta": 3,
+    "explicacion": "Reducir la velocidad media baja el consumo, porque la resistencia del aire crece mucho con la velocidad, y también el desgaste mecánico.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-068",
+    "tema": "3.1 Riesgos de la carretera",
+    "enunciado": "Las estadísticas sobre accidentes de tráfico indican que, con relación a la situación de hace 30 años, el número de accidentes:",
+    "opciones": [
+      "aumenta.",
+      "solo disminuye en las zonas urbanas.",
+      "disminuye tanto en zonas urbanas como interurbanas.",
+      "aumenta solo en zonas urbanas."
+    ],
+    "correcta": 2,
+    "explicacion": "Comparado con hace 30 años, el número de accidentes ha bajado tanto en ciudad como en carretera, gracias a mejores vías, vehículos y normas.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-069",
+    "tema": "3.1 Riesgos de la carretera",
+    "enunciado": "Entre las siguientes clases de vehículos, ¿cuáles intervienen en más accidentes de tráfico?",
+    "opciones": [
+      "Camión de más de 3.500 kg.",
+      "Furgonetas.",
+      "Vehículos articulados.",
+      "Autobuses de transporte regular."
+    ],
+    "correcta": 1,
+    "explicacion": "Según el Observatorio social del transporte por carretera, las furgonetas son las que intervienen en más accidentes, en buena parte porque hay muchas más en circulación.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-070",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "La somnolencia diurna crónica se relaciona con:",
+    "opciones": [
+      "fatiga.",
+      "trastornos del sueño.",
+      "estrés.",
+      "ingesta de alcohol."
+    ],
+    "correcta": 1,
+    "explicacion": "La somnolencia diurna que se mantiene en el tiempo suele deberse a trastornos del sueño, como la apnea del sueño.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-071",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "¿Cuál es la droga ilegal más consumida en España?",
+    "opciones": [
+      "LSD.",
+      "Marihuana.",
+      "Cocaína.",
+      "Heroína."
+    ],
+    "correcta": 1,
+    "explicacion": "El cannabis (marihuana) es la droga ilegal más consumida en España, según el Plan Nacional sobre Drogas.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-072",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "En transporte de mercancías, para conducir un vehículo para el que se precise un permiso de conducir de clase C1 o C1+E, se necesita:",
+    "opciones": [
+      "el certificado de aptitud profesional y el permiso de conducir correspondiente.",
+      "ser propietario del vehículo que se conduce.",
+      "un certificado de la jefatura de tráfico.",
+      "el título de competencia profesional."
+    ],
+    "correcta": 0,
+    "explicacion": "Para conducir por trabajo camiones de las clases C1, C1+E, C o C+E hace falta el permiso correspondiente y, además, el CAP (RD 284/2021, art. 1).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-073",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Cómo puede un conductor conseguir el certificado de aptitud profesional que acredite su cualificación inicial?",
+    "opciones": [
+      "Es necesario seguir el curso establecido en la normativa y superar el examen.",
+      "Debe acreditar experiencia profesional suficiente.",
+      "Debe acreditar experiencia profesional suficiente y superar el examen que establece la normativa.",
+      "Únicamente debe seguir el curso establecido en la normativa vigente."
+    ],
+    "correcta": 0,
+    "explicacion": "La cualificación inicial se obtiene haciendo el curso obligatorio y aprobando el examen (RD 284/2021, art. 4); la experiencia no sirve para obtenerla.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-074",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "El abuso del freno eléctrico puede provocar:",
+    "opciones": [
+      "un desgaste anormal en la banda de rodamiento de las ruedas delanteras.",
+      "un calentamiento del ralentizador.",
+      "un desgaste anormal en la banda de rodamiento de las ruedas directrices.",
+      "el desgaste prematuro de las pastillas o las zapatas."
+    ],
+    "correcta": 1,
+    "explicacion": "Si se abusa del freno eléctrico, el ralentizador se calienta y pierde eficacia; no desgasta pastillas ni zapatas porque no las usa.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-075",
+    "tema": "3.6 Imagen de marca",
+    "enunciado": "¿Qué se entiende por «competencia» en la prestación de un servicio de transporte?",
+    "opciones": [
+      "Experiencia y contactos.",
+      "Capacidad para enmascarar un mal servicio.",
+      "Conocimiento y habilidades necesarias para llevarlo a cabo correctamente.",
+      "Transporte sin riesgos."
+    ],
+    "correcta": 2,
+    "explicacion": "En calidad del servicio, «competencia» es tener los conocimientos y habilidades necesarios para hacer bien el trabajo (norma UNE-EN 13816).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-076",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Cuál de los siguientes supuestos se considera tiempo de presencia en la jornada de un conductor, según la normativa laboral española?",
+    "opciones": [
+      "El tiempo de carga y descarga.",
+      "El tiempo dedicado a limpieza y mantenimiento técnico del vehículo.",
+      "Los períodos de espera causados por las prohibiciones de circular, si se ha comunicado de antemano su existencia y duración.",
+      "Todas las tareas cuyo objeto sea garantizar la seguridad del vehículo y de la carga."
+    ],
+    "correcta": 2,
+    "explicacion": "Las esperas por prohibiciones de circular son tiempo de presencia si se conocían de antemano su existencia y duración (RD 1561/1995); la carga, la limpieza o la seguridad del vehículo son trabajo efectivo.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-077",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "Para ahorrar carburante, es conveniente:",
+    "opciones": [
+      "conocer con exactitud datos técnicos del vehículo como el coeficiente aerodinámico o la carrera del pistón.",
+      "conocer el material del que está fabricado el motor.",
+      "observar a lo lejos para anticiparse a los acontecimientos.",
+      "conocer el material del que está fabricada la carrocería."
+    ],
+    "correcta": 2,
+    "explicacion": "Mirar lejos permite anticiparse, evitar frenazos y aprovechar la inercia, que es clave para ahorrar combustible.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-078",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "La utilización que haga un conductor de la caja de velocidades de un vehículo pesado, ¿tiene influencia en el consumo de carburante?",
+    "opciones": [
+      "No, solo influirá en la potencia suministrada por el motor.",
+      "No, solo influirá en la mayor o menor aceleración del vehículo.",
+      "Sí, ya que, dependiendo de la relación de marcha seleccionada, el número de revoluciones será mayor o menor e influirá en el consumo.",
+      "No, solo influirá en el par motor suministrado."
+    ],
+    "correcta": 2,
+    "explicacion": "Cada marcha hace girar el motor a unas revoluciones distintas para la misma velocidad, y de las revoluciones depende el consumo.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-079",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "En el cuentarrevoluciones de un vehículo pesado existe una zona marcada, generalmente, de color verde, ¿qué supone circular con un número de revoluciones por encima de esa zona?",
+    "opciones": [
+      "Un mayor consumo.",
+      "Una carrera del pistón menor.",
+      "Una carrera del pistón mayor.",
+      "Un menor consumo."
+    ],
+    "correcta": 0,
+    "explicacion": "La zona verde marca las revoluciones de menor consumo; por encima de ella el motor gasta más combustible.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-080",
+    "tema": "1.3 Consumo de carburante",
+    "enunciado": "¿Qué factor no influye en el consumo de carburante de un automóvil?",
+    "opciones": [
+      "El perfil de la carretera.",
+      "La presión de los neumáticos.",
+      "La posición del pedal del acelerador.",
+      "El tipo de neumático: con o sin cámara."
+    ],
+    "correcta": 3,
+    "explicacion": "Que el neumático lleve cámara o no, no cambia el consumo; sí influyen el perfil de la carretera, la presión de los neumáticos y cómo se pisa el acelerador.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-081",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Qué efecto produce el abuso del freno?",
+    "opciones": [
+      "Incremento del consumo de aceite.",
+      "Alteración de los registros del tacógrafo.",
+      "Reducción del par motor.",
+      "Calentamiento excesivo de los frenos."
+    ],
+    "correcta": 3,
+    "explicacion": "Usar demasiado el freno lo calienta en exceso y pierde eficacia (fading); por eso en las bajadas se ayuda con el freno motor y el ralentizador.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-082",
+    "tema": "1.1 Cadena cinemática",
+    "enunciado": "¿Qué es la potencia de un motor?",
+    "opciones": [
+      "La cantidad de trabajo que puede desarrollar un motor en un determinado tiempo.",
+      "La velocidad máxima de trabajo de un motor en un determinado tiempo.",
+      "La cantidad de aceleración que puede desarrollar un par motor.",
+      "La cantidad de energía que se transmite a las ruedas."
+    ],
+    "correcta": 0,
+    "explicacion": "La potencia es el trabajo que hace el motor por unidad de tiempo; se mide en kW o CV.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-083",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "De los siguientes datos, ¿cuál no tiene que anotar el conductor obligatoriamente en el disco-diagrama u hoja de registro?",
+    "opciones": [
+      "La lectura del cuentakilómetros al inicio y al final de la jornada.",
+      "La matrícula del vehículo.",
+      "El lugar y la fecha al inicio y al final de la jornada.",
+      "El consumo de combustible al final de la jornada."
+    ],
+    "correcta": 3,
+    "explicacion": "En la hoja de registro se anotan nombre, fechas, lugares de inicio y fin, matrícula y kilómetros (Reg. 165/2014, art. 34.6); el consumo de combustible no.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-084",
+    "tema": "3.5 Emergencias",
+    "enunciado": "¿Qué regula la Orden de 27 de julio de 1999, sobre condiciones que deben reunir determinados extintores de incendios?",
+    "opciones": [
+      "Los tipos de extintor que deben llevar los vehículos de transporte de personas.",
+      "Los tipos de extintor que deben llevar los vehículos de transporte de mercancías.",
+      "Los tipos de extintor que debe haber en un garaje.",
+      "Las respuestas A y B son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "La Orden de 27 de julio de 1999 regula los extintores que deben llevar los vehículos de transporte de personas y de mercancías.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-085",
+    "tema": "3.2 Delincuencia e inmigración",
+    "enunciado": "¿Cuál es el importe máximo de las sanciones aplicables a los transportistas que no cumplan con la obligación de devolver al lugar de procedencia a los viajeros respecto de los que corresponda dicha devolución?",
+    "opciones": [
+      "25.000 euros.",
+      "50.000 euros.",
+      "100.000 euros.",
+      "Depende del número de viajeros."
+    ],
+    "correcta": 2,
+    "explicacion": "No hacerse cargo de devolver a los viajeros rechazados en frontera es infracción muy grave de la Ley de Extranjería, con multa de 10.001 a 100.000 € (art. 55.1): el máximo es 100.000 €.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-086",
+    "tema": "3.2 Delincuencia e inmigración",
+    "enunciado": "Las infracciones administrativas muy graves de la normativa sobre derechos y libertades de los extranjeros, cometidas por los transportistas, salvo la referida a la falta de comprobación de la validez de pasaportes, serán sancionadas con:",
+    "opciones": [
+      "pena de prisión menor.",
+      "multa de 10.001 a 100.000 euros.",
+      "la incautación de su flota.",
+      "pena de prisión mayor."
+    ],
+    "correcta": 1,
+    "explicacion": "Las infracciones muy graves de los transportistas se multan con 10.001 a 100.000 €; la excepción es no comprobar los pasaportes, que se multa por viajero (LO 4/2000, art. 55.1 c).",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-087",
+    "tema": "3.3 Riesgos físicos",
+    "enunciado": "¿Cuál de las siguientes es la lesión menos habitual en los conductores profesionales?",
+    "opciones": [
+      "Molestias en la parte alta de la espalda.",
+      "Molestias en la parte baja de la espalda.",
+      "Molestias en la nuca o en el cuello.",
+      "Molestias en las rodillas."
+    ],
+    "correcta": 3,
+    "explicacion": "Los conductores sufren sobre todo molestias de espalda (zona alta y lumbar) y de cuello por estar muchas horas sentados; las de rodilla son las menos habituales.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-089",
+    "tema": "3.2 Delincuencia e inmigración",
+    "enunciado": "Las infracciones muy graves que cometan los transportistas contra la normativa reguladora de la extranjería se sancionarán con:",
+    "opciones": [
+      "penas de privación de libertad de uno a tres años.",
+      "el embargo de sus flotas de vehículos.",
+      "multa de 10.001 a 100.000 euros.",
+      "multa de 601 a 6.000 euros."
+    ],
+    "correcta": 2,
+    "explicacion": "La Ley de Extranjería (art. 55) castiga las infracciones muy graves de los transportistas con multa de 10.001 a 100.000 €, no con cárcel ni embargo.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-091",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "Una vez colocadas las cadenas, hay que parar a los:",
+    "opciones": [
+      "50 metros para comprobar la holgura.",
+      "100 metros para destensarlas.",
+      "100 metros para tensarlas.",
+      "50 metros para comprobar su correcta colocación."
+    ],
+    "correcta": 2,
+    "explicacion": "Tras montar las cadenas se recorren unos 100 metros y se para a tensarlas de nuevo, porque al rodar se asientan y quedan flojas.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-092",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "¿Qué circunstancias de la vía condicionan la actitud del conductor?",
+    "opciones": [
+      "Las condiciones ambientales.",
+      "El nivel de adherencia.",
+      "El trazado.",
+      "Todas las respuestas son correctas."
+    ],
+    "correcta": 3,
+    "explicacion": "El conductor debe adaptar su conducción a la vía: las condiciones ambientales, la adherencia del firme y el trazado (curvas, pendientes) influyen en cómo debe circular.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-093",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Con qué elemento de seguridad activa del vehículo está relacionado el EDS (electronic differential system)?",
+    "opciones": [
+      "Con la suspensión.",
+      "Con la dirección.",
+      "Con los frenos.",
+      "Con el alumbrado."
+    ],
+    "correcta": 2,
+    "explicacion": "El EDS es un bloqueo electrónico del diferencial: frena la rueda motriz que patina para pasar la fuerza a la otra, así que actúa a través de los frenos.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-094",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "El TCS, Traction Control System, es un elemento de seguridad:",
+    "opciones": [
+      "pasiva.",
+      "activa.",
+      "activa y pasiva.",
+      "No se considera elemento de seguridad al no ser obligatoria su instalación en los vehículos."
+    ],
+    "correcta": 1,
+    "explicacion": "El control de tracción evita que las ruedas patinen al acelerar para no perder el control: es seguridad activa, porque ayuda a evitar el accidente.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-095",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "Durante la conducción, ¿qué información recibe el conductor proveniente del vehículo?",
+    "opciones": [
+      "Estado del firme de la carretera.",
+      "Vibraciones y ruidos del vehículo.",
+      "Velocidad de vehículos cercanos.",
+      "Condiciones de luminosidad."
+    ],
+    "correcta": 1,
+    "explicacion": "Del propio vehículo el conductor recibe vibraciones, ruidos y lo que indican los mandos; el firme, el tráfico o la luz son información del entorno.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-096",
+    "tema": "1.3 bis Riesgos del tráfico",
+    "enunciado": "¿Qué puede ocurrir si el conductor presta atención a todos los estímulos que recibe durante la conducción?",
+    "opciones": [
+      "Que realiza una conducción más eficiente.",
+      "Que realiza una conducción más consciente.",
+      "Que realiza una conducción preventiva.",
+      "Que dispersa su atención, incrementando el riesgo de accidente."
+    ],
+    "correcta": 3,
+    "explicacion": "La atención es limitada: si se atiende a todo, se dispersa y se pierden los estímulos importantes, y aumenta el riesgo de accidente.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-097",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "Según el Reglamento (CE) 561/2006, un conductor puede prolongar su conducción semanal hasta un máximo de 1 hora si:",
+    "opciones": [
+      "el total de pausas reglamentarias acumuladas en la última jornada de la semana supera las 2 horas.",
+      "realiza una pausa superior a 15 minutos inmediatamente antes de realizar la prolongación de la jornada.",
+      "es necesario para realizar el descanso semanal en un hotel o lugar semejante.",
+      "es necesario para realizar el descanso semanal en su domicilio."
+    ],
+    "correcta": 3,
+    "explicacion": "El Reglamento 561/2006 (art. 12) permite alargar hasta 1 hora la conducción para llegar al domicilio o a la base y hacer allí el descanso semanal.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-098",
+    "tema": "3.4 Aptitud física y mental",
+    "enunciado": "El elemento básico a tener en cuenta para evitar la aparición de sueño al volante es:",
+    "opciones": [
+      "tener el habitáculo ventilado.",
+      "mantener hábitos de sueño correctos.",
+      "tomar mucho café durante el viaje.",
+      "parar con mucha frecuencia."
+    ],
+    "correcta": 1,
+    "explicacion": "La mejor prevención del sueño al volante es dormir bien y con horarios regulares; el café o la ventilación solo lo retrasan un poco.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-099",
+    "tema": "3.5 Emergencias",
+    "enunciado": "Los extintores de polvo ABC:",
+    "opciones": [
+      "pueden utilizarse sin problema en cualquier tipo de equipo.",
+      "pueden dañar los equipos delicados.",
+      "pueden utilizarse sin necesidad de adoptar ninguna precaución frente a fuegos de cualquier tipo, dado que son polivalentes.",
+      "Las respuestas A y C son correctas."
+    ],
+    "correcta": 1,
+    "explicacion": "El polvo ABC sirve para muchos tipos de fuego, pero es corrosivo y ensucia: puede estropear equipos delicados, como los electrónicos.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-100",
+    "tema": "1.2 Dispositivos de seguridad",
+    "enunciado": "¿Qué función tiene, entre otras, el sistema de ayuda a la conducción identificado con las letras ACC?",
+    "opciones": [
+      "Avisar de un cambio de carril.",
+      "Reconocer señales de tráfico.",
+      "Reducir automáticamente la velocidad.",
+      "Realizar un frenado de emergencia."
+    ],
+    "correcta": 2,
+    "explicacion": "El ACC (control de crucero adaptativo) mantiene la velocidad elegida y la reduce sola para guardar la distancia con el vehículo de delante.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-101",
+    "tema": "3.7 Entorno económico",
+    "enunciado": "¿Cuáles son las funciones propias del jefe de tráfico de una empresa de transporte de mercancías por carretera?",
+    "opciones": [
+      "Distribuir las órdenes de ruta entre los conductores.",
+      "Contratar los servicios con los clientes.",
+      "Representar a la empresa.",
+      "Conducir los vehículos."
+    ],
+    "correcta": 0,
+    "explicacion": "El jefe de tráfico organiza los servicios: asigna rutas y vehículos y reparte las órdenes a los conductores. Contratar o representar a la empresa son funciones de dirección.",
+    "origen": "AND 2026-03"
+  },
+  {
+    "id": "and-2026-03-103",
+    "tema": "2.1 Entorno social y tacógrafo",
+    "enunciado": "¿Cuál de las siguientes afirmaciones es correcta respecto a cómo puede tomarse el período de descanso diario normal?",
+    "opciones": [
+      "Puede ser dividido en dos períodos, el primero de los cuales deberá tener una duración ininterrumpida mínima de 9 horas y el segundo una duración ininterrumpida mínima de 3 horas.",
+      "Puede ser de 11 horas consecutivas.",
+      "Exclusivamente puede ser de 9 horas consecutivas.",
+      "Puede ser dividido en dos períodos, el primero de los cuales deberá tener una duración ininterrumpida mínima de 4 horas y el segundo una duración ininterrumpida mínima de 8 horas."
+    ],
+    "correcta": 1,
+    "explicacion": "El descanso diario normal es de al menos 11 horas seguidas, o puede dividirse en dos partes: primero 3 horas y después 9 (Reg. 561/2006, art. 4.g).",
+    "origen": "AND 2026-03"
   }
 ]
