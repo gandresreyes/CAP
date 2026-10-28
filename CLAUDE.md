@@ -33,7 +33,7 @@ Nombre provisional de la app: por decidir (candidatos: Tira Millas, Dale Gas, Ro
 - Angular (standalone components + signals, sin librerías de estado).
 - PWA con `ng add @angular/pwa` (instalable en el móvil y funciona sin conexión).
 - Datos estáticos en `public/data/questions.json` (+ imágenes en `public/data/img/`), cargados con `fetch` y cacheados por el service worker.
-- Progreso en `localStorage`.
+- Progreso en `localStorage`, siempre con `leerJSON` / `guardarJSON` de `shared/utils/almacen.ts`. Los servicios escuchan los cambios de otras pestañas (`alCambiarEnOtraPestana`, evento `storage`) para no pisarse.
 - Despliegue en Vercel o Cloudflare Pages, conectado al repo (cada push publica solo).
 - Las respuestas correctas van en el JSON sin ocultar: es una herramienta de estudio, no se protege.
 - Angular 22, Tailwind CSS 4, Vitest, Prettier. Gestor de paquetes: `bun` (`bun install`, `bun run start`, `bunx ng g ...`).
@@ -48,12 +48,11 @@ src/app/
   app.routes.ts                    # rutas, todas con lazy loading
   pages/
     inicio/        inicio.ts · inicio.html
-    repaso/
-    simulacro/
-    resultado/
+    repaso/        # sesión diaria y práctica por tema (?tema=…)
+    simulacro/     # intro, examen y resultado (las tres fases en la misma pantalla)
     temas/
-    acerca-de/
-    admin/
+    progreso/
+    # Pendiente (aún no existen): acerca-de/ y admin/
   shared/
     components/    # UI reutilizable; pestanas/ = layout con la barra inferior
     services/      # estado y datos: banco de preguntas, progreso (Leitner), sesión, simulacro
@@ -166,7 +165,7 @@ Los del temario de Mercancías (RD 284/2021), con el número del índice del lib
 ## Repaso espaciado (Leitner)
  
 - 5 cajas, intervalos: caja 1 = 1 día, 2 = 3, 3 = 6, 4 = 10, 5 = 15. Máximo 15 días (antes 30) a petición del usuario, para que nada pase más de dos semanas sin repasarse; la escala se repartió para que la caja 5 no quede casi igual que la 4.
-- Acierto: sube una caja (máx. 5). Fallo: vuelve a la caja 1 (sale mañana).
+- Acierto: sube una caja (máx. 5), solo si ya tocaba (`proximo <= ahora`). Un acierto antes de tiempo (práctica por tema, adelantadas) solo suma a `aciertos`: no cambia ni la caja ni `proximo` (si se recalculara la fecha, una pregunta adelantada a menudo no llegaría a tocar nunca). Fallo: vuelve a la caja 1 (sale mañana), también antes de tiempo.
 - `proximo` cuenta por días naturales: es la medianoche local del día que toca, no "ahora + 24 h" (si no, lo fallado a las 20:00 no saldría al estudiar a las 9:00 del día siguiente).
 - Dentro de una sesión, solo la primera respuesta a cada pregunta cambia su caja; las repeticiones de falladas son práctica.
 ```ts
@@ -250,7 +249,7 @@ export function crearSesion(banco: Pregunta[], total = 25, maxNuevas = 8) {
 Lógica en `shared/utils/simulacro.ts`, estado en `shared/services/simulacros.ts`, pantalla en `pages/simulacro/`.
  
 - Reglas del examen oficial: acierto +1, fallo −0,5, en blanco 0; apto con 50 puntos o más. Constantes `PREGUNTAS_SIMULACRO`, `DURACION_SIMULACRO`, `PENALIZACION`, `NOTA_APROBADO`.
-- Reparto por temas proporcional a su peso en el banco: como el banco sale entero de exámenes oficiales, refleja el peso real. Redondeo por el método del resto mayor: cada tema recibe la parte entera de su cuota y las que faltan van a los de mayor parte decimal; suma exactamente 100. Si en el futuro hay preguntas de otras comunidades, dar más peso a las de Castilla y León (`origen`).
+- Reparto por temas proporcional a su peso en el banco: como el banco sale entero de exámenes oficiales, refleja el peso real. Redondeo por el método del resto mayor: cada tema recibe la parte entera de su cuota y las que faltan van a los de mayor parte decimal; suma exactamente 100. Dentro de cada tema salen primero las menos vistas (aciertos + fallos del progreso; las nunca vistas antes que nada) y, a igualdad, al azar. Si en el futuro hay preguntas de otras comunidades, dar más peso a las de Castilla y León (`origen`).
 - Como en papel: sin corrección hasta entregar; se puede dejar en blanco (tocar otra vez la opción marcada), cambiar respuestas y saltar con el índice (cuadrícula de 100). Las opciones salen en el orden original, sin barajar.
 - Cuenta atrás de 2 horas; en rojo con menos de 5 minutos; al llegar a 0 se entrega solo.
 - Se guarda tras cada respuesta (`'cap-simulacro'`: ids, respuestas como índice de opción o `null`, inicio, fin). El tiempo se guarda como hora de fin, así que sigue corriendo con la app cerrada; si se vuelve con el tiempo agotado, se corrige con lo respondido.
@@ -265,15 +264,15 @@ Lógica en `shared/utils/simulacro.ts`, estado en `shared/services/simulacros.ts
    - Repasos pendientes de hoy, racha, acceso al simulacro y temas más flojos.
 2. Repaso: pregunta, 4 opciones; tras responder, correcta en verde, la elegida en rojo, y explicación "Por qué". No se dice cuándo vuelve a salir la pregunta (el usuario no lo quiere, ni al acertar ni al fallar).
 3. Simulacro: 100 preguntas con temporizador.
-4. Resultado: nota, acierto por tema de peor a mejor, botón "Sesión de refuerzo" (falladas + temas flojos) y "Ver preguntas falladas".
+4. Resultado: no es una pantalla aparte, sino la última fase de `pages/simulacro/` (ver "Simulacro"): nota, acierto por tema de peor a mejor, "Practicar <tema más flojo>" y "Ver falladas y en blanco". Pendiente: "Sesión de refuerzo" (falladas + temas flojos juntos).
 5. Temas: los 14 temas agrupados por módulo (`MODULOS` en `shared/models/temas.ts`; los nombres tienen que coincidir con `tema` del JSON), con vistas/total y % de acierto. Al tocar uno se abre la práctica: la misma pantalla de repaso en `/repaso?tema=…` (input `tema`), solo con ese tema, sin límite diario, sin guardar para retomar (no pisa la sesión diaria) y con el título "Práctica". Lo respondido sí actualiza el progreso. Los temas flojos de Inicio también abren su práctica.
 6. Progreso (pestaña): resumen (vistas, dominadas, racha, acierto global), simulacros (columnas con las últimas 10 notas, línea de apto en 50, media y lista de los últimos 5 con APTO/NO APTO escrito), acierto por tema de peor a mejor (sin datos al final; cada fila abre su práctica) y copia de seguridad. Sin bloque de cajas Leitner ni fechas en los simulacros: el usuario no los quiere.
    - Copia de seguridad (`CopiaSeguridad`): "Exportar" descarga `cap-progreso-AAAA-MM-DD.json` con todas las claves `cap-*`; "Importar" valida que sea una copia de la app (`app: "cap-estudio"`), pide confirmación, sustituye los datos y recarga.
-7. Acerca de: avisos (ver abajo).
-8. `/admin` (sin enlace en el menú, solo para el autor): ver abajo.
-Barra inferior: Hoy · Temas · Progreso. Solo en esas tres pantallas: son rutas hijas del layout `Pestanas` en `app.routes.ts`. Repaso y simulacro van a pantalla completa, sin barra, con un "Cerrar" arriba a la izquierda. La racha cuenta los días con al menos una sesión terminada (`dias` en `'cap-sesiones'`). Colores: ver "Estilos" (tokens en `styles.css`). La pestaña activa va en el color del texto, no en azul.
+7. Pendiente: Acerca de, con los avisos (ver abajo). Aún no existe.
+8. Pendiente: `/admin` (sin enlace en el menú, solo para el autor), ver abajo. Aún no existe.
+Barra inferior: Hoy · Temas · Progreso. Solo en esas tres pantallas: son rutas hijas del layout `Pestanas` en `app.routes.ts`. Repaso y simulacro van a pantalla completa, sin barra, con un "Cerrar" arriba a la izquierda. La racha cuenta los días con al menos una sesión terminada (`dias` en `'cap-sesiones'`). Colores: ver "Estilos" (tokens en `styles.css`). La pestaña activa va en el color del texto, no en azul, con una cápsula gris suave detrás. La barra es una cápsula flotante tipo iOS 26 (`.barra-flotante`): cristal translúcido con desenfoque, borde de 1 px, reflejo en el canto (`--vidrio-reflejo`) y una sombra exterior muy suave (única excepción a "bordes en vez de sombras", porque flota sobre el contenido).
  
-## Administración de preguntas (`/admin`)
+## Administración de preguntas (`/admin`) — pendiente, aún no existe
  
 Sin backend: no publica nada, solo genera un archivo.
  
@@ -319,8 +318,10 @@ Hecho: `@angular/service-worker` instalado y `provideServiceWorker` en `app.conf
 - Manifest (`public/manifest.webmanifest`): `name` "CAP Estudio" (o el nombre final), `short_name` "CAP", `display` "standalone", `theme_color` y `background_color` #FAFAFA (el fondo de la app).
 - Iconos propios en `public/icons/` (fondo negro y "CAP" en blanco, dentro de la zona segura de los iconos *maskable*), más `apple-touch-icon.png` (180 px, para iPhone) y `favicon-32x32.png`. Si cambia el nombre de la app, regenerarlos.
 - `index.html`: enlaces al manifest, al icono de iPhone y metas `apple-mobile-web-app-*` (sin barras de Safari al abrirla instalada).
-- Aviso de versión nueva: servicio `Actualizaciones` (`SwUpdate.versionUpdates` → `VERSION_READY`), que muestra arriba "Hay una versión nueva · Actualizar". No recarga sola.
-- Aviso de instalación en iPhone: servicio `Instalacion`, tarjeta en Inicio solo si es iOS, no está instalada y no se ha cerrado (`'cap-aviso-instalar-cerrado'`).
+- Aviso de versión nueva: servicio `Actualizaciones` (`SwUpdate.versionUpdates` → `VERSION_READY`), que muestra arriba "Hay una versión nueva · Actualizar". No recarga sola. Busca versión nueva (`checkForUpdate`) cada vez que la app vuelve a primer plano (en iPhone la PWA no se recarga al volver del segundo plano) y recarga si el service worker queda roto (`unrecoverable`).
+- Aviso de instalación: servicio `Instalacion` (se crea al arrancar con `provideAppInitializer` para no perder el evento), tarjeta en Inicio si no está instalada y no se ha cerrado (`'cap-aviso-instalar-cerrado'`).
+  - Android/Chrome: botón "Instalar" que abre la ventana nativa (`beforeinstallprompt` → `prompt()`).
+  - iPhone: Apple no permite instalar desde un botón en ningún navegador, así que se explica en una sola línea, sin pasos y sin nombrar Safari: "Toca Compartir en tu navegador y elige «Añadir a pantalla de inicio»" (el usuario no quiere el paso a paso).
 - En `ngsw-config.json` está el grupo `preguntas` (prefetch), así que funciona sin conexión desde la primera visita:
 ```json
 {
@@ -332,12 +333,12 @@ Hecho: `@angular/service-worker` instalado y `provideServiceWorker` en `app.conf
 ```
  
 - El service worker solo funciona en build de producción: probar con `ng build` + `npx http-server dist/<app>/browser`.
-## Avisos (pantalla "Acerca de" + una línea al pie del inicio)
+## Avisos (pantalla "Acerca de" + una línea al pie del inicio) — pendiente, aún no están en la app
  
 - Privacidad: "No recogemos datos personales. Tu progreso se guarda solo en tu dispositivo." Sin banner de cookies (solo `localStorage` funcional). Si se añade analítica, que sea sin cookies (p. ej. Vercel Analytics).
 - No oficial: "Proyecto de estudio sin relación con la DGT ni con ninguna administración."
 - Contenido: "Las preguntas proceden de exámenes oficiales anteriores. La normativa cambia y puede haber preguntas desactualizadas o errores. Ante la duda, consulta el temario oficial."
-- Contacto o botón "reportar error".
+- Contacto o botón "reportar error" (pendiente: aún no existe).
 ## Fuentes de exámenes
  
 - Exámenes propios (4, de Castilla y León): base principal.
@@ -350,7 +351,7 @@ Hecho: `@angular/service-worker` instalado y `provideServiceWorker` en `app.conf
 - Usar solo exámenes oficiales (no bancos de academias). Descargar solo la modalidad que corresponda (Mercancías o Viajeros).
 ## Riesgos y pendientes
  
-- Calidad de los datos: revisar respuestas y temas; botón "reportar error" en cada pregunta.
+- Calidad de los datos: revisar respuestas y temas. Pendiente: botón "reportar error" en cada pregunta (aún no existe).
 - Hecho: exportar/importar el progreso (JSON) en la pestaña Progreso, porque sin backend se pierde al borrar datos o cambiar de móvil.
 - Pendiente: procesar los otros exámenes oficiales + hojas de respuestas → `questions.json` (deduplicar, clasificar por tema).
 - Hecho: explicaciones de las 202 preguntas (1–2 frases, ~150 caracteres). Justifican siempre la respuesta de la plantilla oficial y citan la norma cuando aporta (Reg. 561/2006, LOTT, Ley 44/2015, RD 159/2021, Acuerdo ATP…). Lo dudoso se comprobó en la web (BOE, bancos de preguntas del CAP).

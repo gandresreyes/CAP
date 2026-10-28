@@ -1,7 +1,14 @@
-import { ApplicationConfig, isDevMode, provideBrowserGlobalErrorListeners } from '@angular/core';
+import {
+  ApplicationConfig,
+  inject,
+  isDevMode,
+  provideAppInitializer,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { routes } from './app.routes';
+import { Instalacion } from './shared/services/instalacion';
 
 /**
  * Configuración global de la app. `main.ts` la pasa al arrancar.
@@ -31,6 +38,14 @@ export const appConfig: ApplicationConfig = {
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
+    }),
+
+    // Crea el servicio de instalación nada más arrancar (`provideAppInitializer`
+    // ejecuta la función antes de pintar la primera pantalla). Así escucha desde el
+    // principio el aviso de "se puede instalar" de Chrome, que llega una sola vez al
+    // cargar la página y se perdería si se esperase a abrir Inicio.
+    provideAppInitializer(() => {
+      inject(Instalacion);
     }),
   ],
 };

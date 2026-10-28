@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
-import { Estado, Progreso } from '../models/progreso';
-import { guardarJSON, leerJSON } from '../utils/almacen';
+import { Progreso } from '../models/progreso';
+import { alCambiarEnOtraPestana, guardarJSON, leerJSON } from '../utils/almacen';
 import { siguienteEstado } from '../utils/leitner';
 
 /** Clave con la que se guarda el progreso en `localStorage`. No cambiarla: se perdería todo. */
@@ -18,7 +18,6 @@ const KEY = 'cap-progreso';
  */
 @Injectable({ providedIn: 'root' })
 export class ProgresoStore {
-  /** El progreso real. Privado: solo este servicio puede modificarlo. */
   /**
    * El progreso real, leído del navegador al arrancar. Si no hay nada (primera visita)
    * o el dato está corrupto, se empieza con `{}` en vez de romper la app.
@@ -33,14 +32,20 @@ export class ProgresoStore {
    */
   readonly progreso = this.estado.asReadonly();
 
+  constructor() {
+    // Si otra pestaña guarda progreso, se recarga aquí para no pisarlo al responder.
+    alCambiarEnOtraPestana(KEY, () => this.estado.set(leerJSON<Progreso>(KEY, {})));
+  }
+
   /**
    * Registra una respuesta: calcula el nuevo estado de la pregunta (sube o baja de
-   * caja), lo guarda y lo devuelve (la pantalla lo usa para decir cuándo volverá a salir).
+   * caja) y lo guarda. No se devuelve: la pantalla no dice cuándo volverá a salir
+   * la pregunta (el usuario no lo quiere).
    *
    * @param id id de la pregunta respondida
    * @param acierto si la respuesta fue correcta
    */
-  responder(id: string, acierto: boolean): Estado {
+  responder(id: string, acierto: boolean): void {
     // Calcular el nuevo estado a partir del anterior (o de cero si es nueva).
     const e = siguienteEstado(this.estado()[id], acierto, Date.now());
 
@@ -52,6 +57,5 @@ export class ProgresoStore {
     // Copiar al navegador para que sobreviva al cerrar la app. Si falla (almacenamiento
     // lleno o bloqueado), el progreso sigue en memoria y se puede seguir estudiando.
     guardarJSON(KEY, this.estado());
-    return e;
   }
 }

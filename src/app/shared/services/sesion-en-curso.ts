@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { borrarJSON, guardarJSON, leerJSON } from '../utils/almacen';
+import { alCambiarEnOtraPestana, borrarJSON, guardarJSON, leerJSON } from '../utils/almacen';
 
 /** Clave con la que se guarda la sesión a medias en `localStorage`. */
 const KEY = 'cap-sesion-en-curso';
@@ -44,6 +44,11 @@ export class SesionEnCurso {
 
   /** Versión de solo lectura para el resto de la app. */
   readonly guardada = this.estado.asReadonly();
+
+  constructor() {
+    // Si otra pestaña guarda o termina la sesión, se recarga aquí para no pisarla.
+    alCambiarEnOtraPestana(KEY, () => this.estado.set(leerJSON<SesionGuardada | null>(KEY, null)));
+  }
 
   /** Guarda (o sobrescribe) la sesión a medias, en memoria y en el navegador. */
   guardar(s: SesionGuardada): void {

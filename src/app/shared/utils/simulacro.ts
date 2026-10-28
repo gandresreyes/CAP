@@ -1,4 +1,5 @@
 import { Pregunta } from '../models/pregunta';
+import { Progreso } from '../models/progreso';
 import { barajar } from './barajar';
 import { nivelAcierto, NivelAcierto } from './estadisticas';
 import { porTema } from './sesion';
@@ -26,8 +27,12 @@ export const NOTA_APROBADO = 50;
  *
  * Como todo el banco sale de exámenes oficiales, el peso de cada tema en el banco
  * es el mismo que tiene en los exámenes: si "Consumo de carburante" es el 17 % del
- * banco, el simulacro tendrá unas 17 preguntas de ese tema. Dentro de cada tema se
- * eligen al azar.
+ * banco, el simulacro tendrá unas 17 preguntas de ese tema.
+ *
+ * Dentro de cada tema se priorizan las menos vistas (menos veces respondidas en
+ * total, sumando aciertos y fallos): primero las que nunca han salido, luego las
+ * vistas una vez, etc. Así cada simulacro trae preguntas distintas y se recorre
+ * todo el banco. A igualdad de veces vistas, salen al azar.
  *
  * Las cuotas casi nunca salen enteras (p. ej. 17,3 preguntas). Se usa el "método
  * del resto mayor": cada tema recibe la parte entera de su cuota (17), y las
@@ -35,14 +40,25 @@ export const NOTA_APROBADO = 50;
  * mayor parte decimal. Así el reparto es lo más fiel posible y suma exactamente 100.
  *
  * @param banco todas las preguntas disponibles
+ * @param progreso progreso del usuario, para saber cuántas veces se ha visto cada pregunta
  * @param total cuántas preguntas tendrá (100); si el banco tiene menos, salen todas
  */
-export function crearSimulacro(banco: readonly Pregunta[], total = PREGUNTAS_SIMULACRO): Pregunta[] {
+export function crearSimulacro(
+  banco: readonly Pregunta[],
+  progreso: Progreso = {},
+  total = PREGUNTAS_SIMULACRO,
+): Pregunta[] {
   if (banco.length <= total) return barajar(banco);
 
+  /** Veces que se ha respondido una pregunta (0 si nunca se ha visto). */
+  const vistas = (p: Pregunta) => (progreso[p.id] ? progreso[p.id].aciertos + progreso[p.id].fallos : 0);
+
   // 1. Cuota exacta de cada tema, proporcional a su peso en el banco, y su parte entera.
-  //    `porTema` devuelve cada tema con sus preguntas ya barajadas.
-  const cuotas = [...porTema(banco).values()].map((preguntas) => {
+  //    `porTema` devuelve cada tema con sus preguntas ya barajadas; luego se ordenan de
+  //    menos a más vistas. `sort` es estable: las que empatan conservan el orden al
+  //    azar del barajado, así que no salen siempre las mismas.
+  const cuotas = [...porTema(banco).values()].map((grupo) => {
+    const preguntas = grupo.sort((a, b) => vistas(a) - vistas(b));
     const exacta = (total * preguntas.length) / banco.length;
     return { preguntas, n: Math.floor(exacta), resto: exacta - Math.floor(exacta) };
   });
@@ -55,7 +71,7 @@ export function crearSimulacro(banco: readonly Pregunta[], total = PREGUNTAS_SIM
     .slice(0, faltan)
     .forEach((c) => c.n++);
 
-  // 3. Coger las primeras `n` de cada tema (ya barajadas) y mezclar todas.
+  // 3. Coger las primeras `n` de cada tema (las menos vistas) y mezclar todas.
   return barajar(cuotas.flatMap((c) => c.preguntas.slice(0, c.n)));
 }
 

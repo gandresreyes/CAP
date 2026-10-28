@@ -11,8 +11,12 @@ import { Estado } from '../models/progreso';
  * El máximo es 15 días (no 30) porque el examen está cerca: así ninguna pregunta
  * pasa más de dos semanas sin repasarse.
  *
- * - Acertar sube la pregunta una caja (como máximo hasta la 5).
- * - Fallar la devuelve a la caja 1, sea cual sea la caja en la que estaba.
+ * - Acertar sube la pregunta una caja (como máximo hasta la 5), pero solo si ya le
+ *   tocaba salir. Acertarla antes de tiempo (práctica por tema, preguntas
+ *   adelantadas de la sesión diaria) no la cambia: si no, repitiendo rondas se
+ *   llegaría a la caja 5 en un minuto y los intervalos no servirían de nada.
+ * - Fallar la devuelve a la caja 1, sea cual sea la caja en la que estaba (también
+ *   antes de tiempo: un fallo siempre indica que no se sabe).
  *
  * Así se repasa mucho lo que cuesta y poco lo que ya se sabe.
  */
@@ -58,10 +62,18 @@ export function inicioDelDia(ahora: number, dias = 0): number {
  * @param ahora momento de la respuesta (se pasa como parámetro para poder probarla con cualquier fecha)
  */
 export function siguienteEstado(previo: Estado | undefined, acierto: boolean, ahora: number): Estado {
-  // Primera vez: se parte de la caja 1 sin aciertos ni fallos.
+  // Primera vez: se parte de la caja 1 sin aciertos ni fallos. Con `proximo: 0`
+  // cuenta como que ya tocaba, así que el primer acierto sí la sube a la caja 2.
   const e = previo ?? { caja: 1, proximo: 0, aciertos: 0, fallos: 0 };
 
-  // Acierto: sube una caja sin pasar de la 5. Fallo: vuelta a la caja 1.
+  // Acierto antes de tiempo: solo suma al contador de aciertos. Caja y fecha se
+  // quedan como estaban; si se recalculara la fecha, una pregunta adelantada cada
+  // pocos días nunca llegaría a tocar y no subiría nunca de caja.
+  if (acierto && e.proximo > ahora) {
+    return { ...e, aciertos: e.aciertos + 1 };
+  }
+
+  // Acierto cuando tocaba: sube una caja sin pasar de la 5. Fallo: vuelta a la caja 1.
   const caja = acierto ? Math.min(e.caja + 1, CAJA_MAX) : 1;
 
   return {

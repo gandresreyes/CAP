@@ -79,10 +79,6 @@ export class Simulacro {
     penalizacion: formatearNota(PENALIZACION),
     aprobado: NOTA_APROBADO,
   };
-  /** Puntos que resta cada fallo (para calcular cuánto restaron en el resultado). */
-  protected readonly penalizacion = PENALIZACION;
-  protected readonly formatearNota = formatearNota;
-  protected readonly formatearTiempo = formatearTiempo;
 
   // ---------------------------------------------------------------------------
   // Reloj
@@ -151,6 +147,9 @@ export class Simulacro {
     return s ? Math.max(0, s.fin - this.ahora()) : 0;
   });
 
+  /** Tiempo restante como reloj ("1:59:07"), para la cabecera, la intro y el índice. */
+  protected readonly restanteTexto = computed(() => formatearTiempo(this.restante()));
+
   /** Si quedan menos de 5 minutos (el reloj se pone en rojo). */
   protected readonly pocoTiempo = computed(() => this.restante() < AVISO_TIEMPO);
 
@@ -168,8 +167,28 @@ export class Simulacro {
   /** Total de preguntas del simulacro en curso. */
   protected readonly total = computed(() => this.guardado()?.ids.length ?? 0);
 
+  /** Preguntas aún sin responder (en blanco), para el índice. */
+  protected readonly enBlanco = computed(() => this.total() - this.respondidas());
+
+  /** % de preguntas respondidas: ancho de la barra de avance de la cabecera. */
+  protected readonly avance = computed(() => (this.total() ? (this.respondidas() / this.total()) * 100 : 0));
+
   /** Si se está en la última pregunta (el botón "Siguiente" pasa a ser "Entregar"). */
   protected readonly esUltima = computed(() => this.indice() === this.total() - 1);
+
+  /**
+   * Textos ya formateados del resultado: la nota ("62,5"), los puntos que restaron
+   * los fallos y el tiempo empleado ("1:12:30"). `null` mientras no se ha entregado.
+   */
+  protected readonly textosResultado = computed(() => {
+    const r = this.resultado();
+    if (!r) return null;
+    return {
+      nota: formatearNota(r.nota),
+      restados: formatearNota(r.fallos * PENALIZACION),
+      duracion: formatearTiempo(r.duracion),
+    };
+  });
 
   /**
    * En el resultado: las preguntas falladas y en blanco, con lo que se respondió,
@@ -201,7 +220,8 @@ export class Simulacro {
     if (this.guardado() && !confirm('Se descartará el simulacro que tienes a medias. ¿Empezar uno nuevo?')) {
       return;
     }
-    const ids = crearSimulacro(this.banco.preguntas()).map((p) => p.id);
+    // Se pasa el progreso para que salgan primero las preguntas menos vistas.
+    const ids = crearSimulacro(this.banco.preguntas(), this.progreso.progreso()).map((p) => p.id);
     this.simulacros.empezar(ids, Date.now());
     this.ahora.set(Date.now());
     this.indice.set(0);

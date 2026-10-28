@@ -7,7 +7,7 @@ import { SesionesDiarias } from '../../shared/services/sesiones-diarias';
 import { Simulacros } from '../../shared/services/simulacros';
 import {
   aciertoGlobal,
-  distribucionCajas,
+  contarDominio,
   nivelAcierto,
   resumenPorTema,
 } from '../../shared/utils/estadisticas';
@@ -48,7 +48,6 @@ export class Progreso {
   private readonly simulacros = inject(Simulacros);
   private readonly copia = inject(CopiaSeguridad);
 
-  protected readonly formatearNota = formatearNota;
   protected readonly notaAprobado = NOTA_APROBADO;
 
   // ---------------------------------------------------------------------------
@@ -58,16 +57,16 @@ export class Progreso {
   /** Preguntas del banco. */
   protected readonly total = computed(() => this.banco.preguntas().length);
 
-  /** [sin ver, caja 1, …, caja 5]: de aquí salen las vistas y las dominadas. */
-  private readonly distribucion = computed(() =>
-    distribucionCajas(this.banco.preguntas(), this.progreso.progreso()),
+  /** Vistas y dominadas, con el mismo cálculo que Inicio (`contarDominio`). */
+  private readonly dominio = computed(() =>
+    contarDominio(this.banco.preguntas(), this.progreso.progreso()),
   );
 
-  /** Preguntas respondidas al menos una vez (todas menos las "sin ver"). */
-  protected readonly vistas = computed(() => this.total() - this.distribucion()[0]);
+  /** Preguntas respondidas al menos una vez. */
+  protected readonly vistas = computed(() => this.dominio().vistas);
 
-  /** Preguntas en caja 4 o 5 (acertadas varias veces seguidas). */
-  protected readonly dominadas = computed(() => this.distribucion()[4] + this.distribucion()[5]);
+  /** Preguntas dominadas (caja 4 o 5, ver `CAJA_DOMINADA`). */
+  protected readonly dominadas = computed(() => this.dominio().dominadas);
 
   /** % de acierto de todas las respuestas, o `null` si aún no hay ninguna. */
   protected readonly acierto = computed(() =>
@@ -100,16 +99,26 @@ export class Progreso {
       })),
   );
 
-  /** Los últimos 5 resultados, del más reciente al más antiguo, para la lista. */
+  /**
+   * Los últimos 5 resultados, del más reciente al más antiguo, para la lista. Cada
+   * uno lleva su nota ya formateada (`notaTexto`, "62,5") para no formatear en la plantilla.
+   */
   protected readonly recientes = computed(() =>
-    this.simulacros.historial().slice(-SIMULACROS_LISTA).reverse(),
+    this.simulacros
+      .historial()
+      .slice(-SIMULACROS_LISTA)
+      .reverse()
+      .map((s) => ({ ...s, notaTexto: formatearNota(s.nota) })),
   );
 
   /** Nota media de los últimos 5 simulacros (la tendencia reciente importa más que la de siempre). */
-  protected readonly media = computed(() => {
+  private readonly media = computed(() => {
     const r = this.recientes();
     return r.length ? r.reduce((suma, s) => suma + s.nota, 0) / r.length : 0;
   });
+
+  /** La media formateada con coma decimal ("58,5"). */
+  protected readonly mediaTexto = computed(() => formatearNota(this.media()));
 
   // ---------------------------------------------------------------------------
   // 3. Acierto por tema

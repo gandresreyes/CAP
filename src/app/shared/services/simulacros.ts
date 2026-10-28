@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { borrarJSON, guardarJSON, leerJSON } from '../utils/almacen';
+import { alCambiarEnOtraPestana, borrarJSON, guardarJSON, leerJSON } from '../utils/almacen';
 import { DURACION_SIMULACRO } from '../utils/simulacro';
 
 /** Clave del simulacro en curso en `localStorage`. */
@@ -57,6 +57,16 @@ export class Simulacros {
   /** Resultados anteriores, del más antiguo al más reciente. */
   private readonly historialS = signal<ResultadoSimulacro[]>(leerJSON<ResultadoSimulacro[]>(KEY_HISTORIAL, []));
   readonly historial = this.historialS.asReadonly();
+
+  constructor() {
+    // Si otra pestaña cambia el simulacro o el historial, se recargan aquí para no pisarlos.
+    alCambiarEnOtraPestana(KEY_EN_CURSO, () =>
+      this.enCursoS.set(leerJSON<SimulacroGuardado | null>(KEY_EN_CURSO, null)),
+    );
+    alCambiarEnOtraPestana(KEY_HISTORIAL, () =>
+      this.historialS.set(leerJSON<ResultadoSimulacro[]>(KEY_HISTORIAL, [])),
+    );
+  }
 
   /**
    * Empieza un simulacro nuevo (sustituye al que hubiera a medias).

@@ -46,7 +46,7 @@
     <section class="tarjeta">
       <p class="dato-etiqueta">Media de los últimos {{ recientes().length }}</p>
       <p class="dato-valor">
-        {{ formatearNota(media()) }}<span class="text-sm font-normal text-texto-2"> puntos</span>
+        {{ mediaTexto() }}<span class="text-sm font-normal text-texto-2"> puntos</span>
       </p>
 
       <!-- Gráfica: una columna por simulacro (altura = nota sobre 100), verde si apto
@@ -85,7 +85,7 @@
             <span class="min-w-0 flex-1 font-mono text-xs text-texto-2">
               {{ s.aciertos }}✓ · {{ s.fallos }}✗ · {{ s.blancos }} en blanco
             </span>
-            <span class="text-sm font-semibold tabular-nums">{{ formatearNota(s.nota) }}</span>
+            <span class="text-sm font-semibold tabular-nums">{{ s.notaTexto }}</span>
             <!-- Insignia de estado: fondo suave y texto del color (el texto dice el estado, no solo el color) -->
             <span
               class="insignia w-18"

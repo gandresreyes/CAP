@@ -8,19 +8,13 @@ import { SesionEnCurso } from '../../shared/services/sesion-en-curso';
 import { Simulacros } from '../../shared/services/simulacros';
 import { formatearNota } from '../../shared/utils/simulacro';
 import { MAX_SESIONES_DIA, SesionesDiarias } from '../../shared/services/sesiones-diarias';
-import { aciertoPorTema, nivelAcierto } from '../../shared/utils/estadisticas';
+import { aciertoPorTema, contarDominio, nivelAcierto } from '../../shared/utils/estadisticas';
 
 /**
  * Formateador de la fecha de la cabecera, en español: "martes, 28 de octubre".
  * Se crea una vez fuera de la clase porque crear un `Intl.DateTimeFormat` es costoso.
  */
 const FECHA = new Intl.DateTimeFormat('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
-
-/**
- * A partir de qué caja Leitner se considera que una pregunta está "dominada".
- * Llegar a la caja 4 exige haberla acertado al menos 3 veces seguidas sin fallar.
- */
-const CAJA_DOMINADA = 4;
 
 /**
  * Pantalla "Hoy" (ruta `/`): lo primero que se ve al abrir la app.
@@ -50,7 +44,7 @@ export class Inicio {
   private readonly enCurso = inject(SesionEnCurso);
   /** Simulacros: el que haya a medias y el historial de resultados. */
   private readonly simulacros = inject(Simulacros);
-  /** Aviso "Instala la app" para iPhone (público para la plantilla). */
+  /** Aviso "Instala la app": botón en Android, una línea en iPhone (público para la plantilla). */
   protected readonly instalacion = inject(Instalacion);
   /** Fecha de hoy como signal, para que la pantalla se entere del cambio de día. */
   private readonly reloj = inject(Reloj);
@@ -110,13 +104,16 @@ export class Inicio {
   /** Preguntas que hay en el banco (202 ahora mismo). */
   protected readonly total = computed(() => this.banco.preguntas().length);
 
-  /** Preguntas respondidas al menos una vez. */
-  protected readonly vistas = computed(() => this.estados().length);
-
-  /** Preguntas en caja 4 o 5 (ver `CAJA_DOMINADA`). */
-  protected readonly dominadas = computed(
-    () => this.estados().filter((e) => e.caja >= CAJA_DOMINADA).length,
+  /** Vistas y dominadas, con el mismo cálculo que Progreso (`contarDominio`). */
+  private readonly dominio = computed(() =>
+    contarDominio(this.banco.preguntas(), this.progreso.progreso()),
   );
+
+  /** Preguntas respondidas al menos una vez. */
+  protected readonly vistas = computed(() => this.dominio().vistas);
+
+  /** Preguntas dominadas (caja 4 o 5, ver `CAJA_DOMINADA`). */
+  protected readonly dominadas = computed(() => this.dominio().dominadas);
 
   /**
    * Preguntas vistas a las que les toca repaso hoy (su fecha `proximo` ya ha llegado).

@@ -88,18 +88,31 @@ export function aciertoPorTema(banco: readonly Pregunta[], prog: Progreso): Resu
 }
 
 /**
- * Cuántas preguntas del banco hay sin ver y en cada caja Leitner.
- *
- * Devuelve 6 números: `[sinVer, caja1, caja2, caja3, caja4, caja5]`. Así el índice
- * coincide con el número de caja y el 0 queda para las que nunca se han respondido.
- *
- * @example distribucionCajas(banco, prog) // → [150, 20, 15, 10, 5, 2]
+ * A partir de qué caja Leitner se considera que una pregunta está "dominada".
+ * Llegar a la caja 4 exige haberla acertado 3 veces seguidas, cada una en su día
+ * (los aciertos antes de tiempo no suben de caja), sin fallarla entre medias.
  */
-export function distribucionCajas(banco: readonly Pregunta[], prog: Progreso): number[] {
-  const cuenta = [0, 0, 0, 0, 0, 0];
-  // Sin progreso → posición 0 ("sin ver"); con progreso → la de su caja (1–5).
-  for (const p of banco) cuenta[prog[p.id]?.caja ?? 0]++;
-  return cuenta;
+export const CAJA_DOMINADA = 4;
+
+/**
+ * Cuántas preguntas del banco se han visto y cuántas están dominadas.
+ *
+ * Solo cuenta las preguntas que siguen en el banco: si en el futuro se borra una
+ * pregunta del JSON, su progreso antiguo no suma. Está aquí para que Inicio y
+ * Progreso muestren siempre las mismas cifras.
+ *
+ * @example contarDominio(banco, prog) // → { vistas: 52, dominadas: 7 }
+ */
+export function contarDominio(banco: readonly Pregunta[], prog: Progreso): { vistas: number; dominadas: number } {
+  let vistas = 0;
+  let dominadas = 0;
+  for (const p of banco) {
+    const e = prog[p.id];
+    if (!e) continue; // nunca respondida
+    vistas++;
+    if (e.caja >= CAJA_DOMINADA) dominadas++;
+  }
+  return { vistas, dominadas };
 }
 
 /**

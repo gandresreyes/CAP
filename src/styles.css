@@ -41,8 +41,11 @@
  * - `--grano-opacidad`: intensidad de la textura de grano encima.
  * - `--grano-mezcla`: cómo se funde el grano con el metal. En claro `multiply`
  *   (solo oscurece: puntitos de sombra); en oscuro `screen` (solo aclara: puntitos de brillo).
+ * - `--vidrio-reflejo`: línea de luz en el canto superior de la barra de pestañas
+ *   flotante (efecto cristal de iOS). En oscuro, más tenue para que no deslumbre.
  */
 :root {
+  --vidrio-reflejo: rgb(255 255 255 / 0.7);
   --metal-brillo: #ffffff;
   --metal-medio: #d4d4d4;
   --metal-sombra: #a3a3a3;
@@ -54,6 +57,8 @@
 /* Modo oscuro: solo se redefinen los tokens; las clases no cambian */
 @media (prefers-color-scheme: dark) {
   :root {
+    --vidrio-reflejo: rgb(255 255 255 / 0.08);
+
     /* En oscuro, el metal es grafito: grises que brillan un poco sobre el negro */
     --metal-brillo: #5c5c5c;
     --metal-medio: #2a2a2a;
@@ -142,9 +147,10 @@
     @apply mt-8 mb-3 text-[15px] font-semibold tracking-tight;
   }
 
-  /* Hueco al final del contenido para que no lo tape la barra inferior */
+  /* Hueco al final del contenido para que no lo tape la cápsula flotante
+     (56 px de cápsula + su separación del borde + un poco de aire) */
   .con-barra {
-    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
   }
 
   /* Cabecera que se queda arriba al hacer scroll (repaso, simulacro): translúcida y con borde abajo */
@@ -172,15 +178,33 @@
 
   /* ===== Barra inferior de pestañas ===== */
 
-  /* Barra fija abajo, translúcida, con borde fino arriba y hueco para la barra de inicio del iPhone */
+  /*
+   * Franja fija abajo que solo sirve para colocar la cápsula flotante (como la
+   * barra de pestañas de iOS 26). Es transparente y no recibe toques
+   * (`pointer-events-none`), así que el contenido que asoma por los lados de la
+   * cápsula se sigue pudiendo tocar. Separada del borde por la barra de inicio del iPhone.
+   */
   .barra-inferior {
-    @apply fixed inset-x-0 bottom-0 z-20 border-t border-separador bg-superficie/80 backdrop-blur-md;
-    padding-bottom: env(safe-area-inset-bottom);
+    @apply pointer-events-none fixed inset-x-0 bottom-0 z-20 px-4;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
   }
 
-  /* Cada pestaña: icono + texto, en gris; zona táctil grande */
+  /*
+   * Cápsula flotante con efecto cristal: fondo semitransparente, desenfoque y
+   * saturación de lo que pasa por detrás (`backdrop-*`), borde fino de 1 px y un
+   * reflejo de luz en el canto superior (sombra interior) que imita el vidrio de iOS.
+   * La sombra exterior, muy suave, la despega del contenido al flotar encima.
+   */
+  .barra-flotante {
+    @apply pointer-events-auto mx-auto flex max-w-xs gap-1 rounded-full border border-separador/70 bg-superficie/60 p-1 backdrop-blur-xl backdrop-saturate-150;
+    box-shadow:
+      inset 0 1px 0 var(--vidrio-reflejo),
+      0 8px 24px rgb(0 0 0 / 0.08);
+  }
+
+  /* Cada pestaña: icono + texto, en gris; zona táctil de 48 px de alto */
   .pestana {
-    @apply flex min-h-14 flex-1 flex-col items-center justify-center gap-1 text-[11px] font-medium text-texto-2 transition-colors active:opacity-60;
+    @apply flex min-h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-full text-[11px] font-medium text-texto-2 transition-colors active:opacity-60;
 
     /* Iconos de línea fina que toman el color del texto */
     svg {
@@ -191,9 +215,10 @@
     }
   }
 
-  /* Pestaña actual: en el color del texto principal (no en azul), como Vercel */
+  /* Pestaña actual: en el color del texto principal (no en azul) y con una cápsula
+     gris suave detrás, como la pestaña seleccionada de iOS */
   .pestana-activa {
-    @apply text-texto;
+    @apply bg-texto/[0.07] text-texto;
   }
 
   /* ===== Contenedores ===== */

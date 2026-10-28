@@ -3,10 +3,11 @@
   <router-outlet />
 </div>
 
-<!-- Barra inferior fija. `routerLinkActive` pinta en azul la pestaña actual
-     y `ariaCurrentWhenActive` se lo indica al lector de pantalla. -->
+<!-- Barra inferior flotante tipo iOS: cápsula de cristal centrada sobre el contenido.
+     `routerLinkActive` resalta la pestaña actual y `ariaCurrentWhenActive` se lo indica
+     al lector de pantalla. -->
 <nav class="barra-inferior" aria-label="Principal">
-  <div class="mx-auto flex max-w-md">
+  <div class="barra-flotante">
     <!-- Hoy. `exact: true` porque "/" coincidiría con cualquier ruta. -->
     <a
       routerLink="/"

@@ -16,20 +16,32 @@
     <p class="mt-2 text-sm text-texto-2">Tu preparación del CAP de Mercancías, un día cada vez.</p>
   </header>
 
-  <!-- Solo en iPhone sin la app instalada: cómo añadirla a la pantalla de inicio -->
-  @if (instalacion.mostrarAvisoIOS()) {
+  <!-- Instalar la app (solo si aún no está instalada):
+       - Android/Chrome: botón que abre la ventana nativa de instalación.
+       - iPhone: Apple no deja instalar con un botón, así que se explica en una línea. -->
+  @if (instalacion.puedeInstalar() || instalacion.mostrarAvisoIOS()) {
     <section class="tarjeta mt-5 flex gap-3">
       <img src="icons/icon-96x96.png" alt="" class="size-10 shrink-0 rounded-lg" />
       <div class="min-w-0 flex-1">
-        <p class="text-[15px] font-semibold">Instala la app en tu iPhone</p>
+        <p class="text-[15px] font-semibold">Instala la app</p>
         <p class="mt-1 text-sm leading-relaxed text-texto-2">
-          En Safari, toca
-          <!-- Icono de "Compartir" de iOS: cuadrado con flecha hacia arriba -->
-          <svg viewBox="0 0 24 24" class="inline size-4 fill-none stroke-texto align-[-2px]" stroke-width="2" aria-label="Compartir">
-            <path d="M12 3v12M8 7l4-4 4 4M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1" />
-          </svg>
-          y luego «Añadir a pantalla de inicio». Funcionará sin conexión.
+          Tendrás un icono en la pantalla de inicio y funcionará sin conexión.
         </p>
+
+        @if (instalacion.puedeInstalar()) {
+          <!-- Android/Chrome: un toque abre la ventana "¿Instalar app?" del sistema -->
+          <button type="button" class="boton mt-3" (click)="instalacion.instalar()">Instalar</button>
+        } @else {
+          <!-- iPhone: una sola línea, válida para cualquier navegador (todos tienen "Compartir") -->
+          <p class="mt-3 text-sm leading-relaxed">
+            Toca
+            <!-- Icono de "Compartir" de iOS: cuadrado con flecha hacia arriba -->
+            <svg viewBox="0 0 24 24" class="inline size-4 fill-none stroke-texto align-[-2px]" stroke-width="2" aria-label="Compartir">
+              <path d="M12 3v12M8 7l4-4 4 4M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1" />
+            </svg>
+            en tu navegador y elige <span class="font-semibold">Añadir a pantalla de inicio</span>.
+          </p>
+        }
       </div>
       <!-- Cerrar el aviso (icono ×) -->
       <button

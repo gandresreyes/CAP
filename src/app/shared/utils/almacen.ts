@@ -56,3 +56,24 @@ export function borrarJSON(clave: string): void {
     console.warn(`No se pudo borrar "${clave}" del almacenamiento`, error);
   }
 }
+
+/**
+ * Avisa cuando otra pestaña de la app cambia (o borra) un valor guardado.
+ *
+ * Por qué: cada servicio tiene sus datos en memoria y, al guardar, escribe el objeto
+ * entero. Con dos pestañas abiertas, la que escribe la última sobrescribiría lo que
+ * hizo la otra. El navegador lanza el evento `storage` en las demás pestañas cada vez
+ * que una cambia `localStorage`; al recibirlo, el servicio vuelve a leer el dato y
+ * su memoria queda al día antes de su próxima escritura.
+ *
+ * (En la pestaña que escribe no salta el evento, solo en las otras.)
+ *
+ * @param clave clave a vigilar (p. ej. `'cap-progreso'`)
+ * @param alCambiar qué hacer al cambiar: normalmente, volver a leerla con `leerJSON`
+ */
+export function alCambiarEnOtraPestana(clave: string, alCambiar: () => void): void {
+  addEventListener('storage', (e) => {
+    // `e.key === null` significa que se borró todo el almacenamiento (`localStorage.clear()`).
+    if (e.key === clave || e.key === null) alCambiar();
+  });
+}

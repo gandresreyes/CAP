@@ -15,11 +15,37 @@ import { filter, map } from 'rxjs';
  * No se recarga sola para no cortar a nadie en mitad de una pregunta (aunque el
  * repaso y el simulacro se guardan y se podrían retomar).
  *
+ * Además:
+ * - Busca versión nueva cada vez que la app vuelve a primer plano. En iPhone la PWA
+ *   instalada no se recarga al volver del segundo plano (puede pasar días abierta),
+ *   así que sin esto los compañeros tardarían mucho en ver los cambios.
+ * - Si el service worker queda en un estado roto (`unrecoverable`: por ejemplo, el
+ *   navegador borró parte de su caché y ya no puede servir la versión que tiene
+ *   abierta), recarga la página. Es lo que recomienda la documentación de Angular:
+ *   seguir sin recargar acabaría en errores al cargar pantallas.
+ *
  * En desarrollo (`ng serve`) el service worker está desactivado y el aviso nunca sale.
  */
 @Injectable({ providedIn: 'root' })
 export class Actualizaciones {
   private readonly sw = inject(SwUpdate);
+
+  constructor() {
+    // Sin service worker (en desarrollo, o navegador sin soporte) no hay nada que vigilar.
+    if (!this.sw.isEnabled) return;
+
+    // Estado roto e irrecuperable: recargar para cargar la versión buena desde el servidor.
+    // Este servicio vive toda la app (`providedIn: 'root'` y lo usa el componente raíz),
+    // así que la suscripción no hace falta cancelarla.
+    this.sw.unrecoverable.subscribe(() => document.location.reload());
+
+    // Al volver a la app (`visibilitychange` con la página visible), preguntar al
+    // servidor si hay versión nueva. Si la hay, se descarga y llega `VERSION_READY`,
+    // que muestra el aviso. Sin conexión falla sin más: se ignora el error.
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') this.sw.checkForUpdate().catch(() => {});
+    });
+  }
 
   /**
    * `true` cuando hay una versión nueva descargada y lista.

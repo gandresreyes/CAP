@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { guardarJSON, leerJSON } from '../utils/almacen';
+import { alCambiarEnOtraPestana, guardarJSON, leerJSON } from '../utils/almacen';
 import { calcularRacha } from '../utils/estadisticas';
 import { Reloj } from './reloj';
 
@@ -52,6 +52,11 @@ export class SesionesDiarias {
 
   /** El registro en memoria, como signal para que la pantalla se actualice al cambiar. */
   private readonly registro = signal<Registro>(leer());
+
+  constructor() {
+    // Si otra pestaña termina una sesión, se recarga aquí para no pisar su cuenta.
+    alCambiarEnOtraPestana(KEY, () => this.registro.set(leer()));
+  }
 
   /**
    * Sesiones terminadas hoy. Si lo guardado es de otro día, hoy aún no hay ninguna.
