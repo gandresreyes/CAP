@@ -73,6 +73,9 @@ function conTopePorTema(preguntas: readonly Pregunta[], n: number, max: number):
   return salida;
 }
 
+/** Preguntas de una sesión de repaso (y de cada ronda de práctica). */
+export const PREGUNTAS_SESION = 25;
+
 /**
  * Crea una sesión de repaso: una lista de `total` preguntas sin repetir.
  *
@@ -98,7 +101,7 @@ export function crearSesion(
   banco: readonly Pregunta[],
   prog: Progreso,
   ahora: number,
-  total = 25,
+  total = PREGUNTAS_SESION,
   maxNuevas = 8,
 ): Pregunta[] {
   // 1. Separar el banco en "pendientes de hoy" y "nunca vistas".

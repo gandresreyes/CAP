@@ -49,6 +49,11 @@ export const routes: Routes = [
     title: 'Simulacro · CAP Estudio',
     loadComponent: () => import('./pages/simulacro/simulacro').then((m) => m.Simulacro),
   },
+  {
+    path: 'acerca-de',
+    title: 'Acerca de · CAP Estudio',
+    loadComponent: () => import('./pages/acerca-de/acerca-de').then((m) => m.AcercaDe),
+  },
 
   // Cualquier otra URL (mal escrita o antigua) redirige al inicio en vez de
   // mostrar una pantalla en blanco. Tiene que ir la última: las rutas se

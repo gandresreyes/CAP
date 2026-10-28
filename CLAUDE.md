@@ -52,7 +52,8 @@ src/app/
     simulacro/     # intro, examen y resultado (las tres fases en la misma pantalla)
     temas/
     progreso/
-    # Pendiente (aún no existen): acerca-de/ y admin/
+    acerca-de/
+    # Pendiente (aún no existe): admin/
   shared/
     components/    # UI reutilizable; pestanas/ = layout con la barra inferior
     services/      # estado y datos: banco de preguntas, progreso (Leitner), sesión, simulacro
@@ -265,10 +266,10 @@ Lógica en `shared/utils/simulacro.ts`, estado en `shared/services/simulacros.ts
 2. Repaso: pregunta, 4 opciones; tras responder, correcta en verde, la elegida en rojo, y explicación "Por qué". No se dice cuándo vuelve a salir la pregunta (el usuario no lo quiere, ni al acertar ni al fallar).
 3. Simulacro: 100 preguntas con temporizador.
 4. Resultado: no es una pantalla aparte, sino la última fase de `pages/simulacro/` (ver "Simulacro"): nota, acierto por tema de peor a mejor, "Practicar <tema más flojo>" y "Ver falladas y en blanco". Pendiente: "Sesión de refuerzo" (falladas + temas flojos juntos).
-5. Temas: los 14 temas agrupados por módulo (`MODULOS` en `shared/models/temas.ts`; los nombres tienen que coincidir con `tema` del JSON), con vistas/total y % de acierto. Al tocar uno se abre la práctica: la misma pantalla de repaso en `/repaso?tema=…` (input `tema`), solo con ese tema, sin límite diario, sin guardar para retomar (no pisa la sesión diaria) y con el título "Práctica". Lo respondido sí actualiza el progreso. Los temas flojos de Inicio también abren su práctica.
+5. Temas: los 14 temas agrupados por módulo (`MODULOS` en `shared/models/temas.ts`; los nombres tienen que coincidir con `tema` del JSON), con vistas/total y % de acierto. Al tocar uno se abre la práctica: la misma pantalla de repaso en `/repaso?tema=…` (input `tema`), solo con ese tema, sin límite diario, sin guardar para retomar (no pisa la sesión diaria) y con el título "Práctica". Lo respondido sí actualiza el progreso. Los temas flojos de Inicio también abren su práctica. Encima de los módulos, bloque "Para reforzar" con "Mis falladas" (`/repaso?modo=falladas`, input `modo`): práctica de todos los temas con las preguntas que más cuestan (`preguntasFalladas` en `shared/utils/estadisticas.ts`: fallada alguna vez y `fallos >= aciertos`; sale sola al acertarla más veces de las que se falló), hasta 25 por ronda (`PREGUNTAS_SESION`), primero las de peor balance. Mismas reglas que la práctica por tema; si no queda ninguna, lo dice y vuelve a Temas.
 6. Progreso (pestaña): resumen (vistas, dominadas, racha, acierto global), simulacros (columnas con las últimas 10 notas, línea de apto en 50, media y lista de los últimos 5 con APTO/NO APTO escrito), acierto por tema de peor a mejor (sin datos al final; cada fila abre su práctica) y copia de seguridad. Sin bloque de cajas Leitner ni fechas en los simulacros: el usuario no los quiere.
    - Copia de seguridad (`CopiaSeguridad`): "Exportar" descarga `cap-progreso-AAAA-MM-DD.json` con todas las claves `cap-*`; "Importar" valida que sea una copia de la app (`app: "cap-estudio"`), pide confirmación, sustituye los datos y recarga.
-7. Pendiente: Acerca de, con los avisos (ver abajo). Aún no existe.
+7. Acerca de (`/acerca-de`, pantalla completa con "Volver", enlace desde el pie de Inicio): presentación, Privacidad, Proyecto no oficial, Las preguntas (total y convocatorias sacadas de `origen`) y Cómo funciona (repaso diario, dominadas, simulacro; las cifras salen de las constantes, no escritas a mano).
 8. Pendiente: `/admin` (sin enlace en el menú, solo para el autor), ver abajo. Aún no existe.
 Barra inferior: Hoy · Temas · Progreso. Solo en esas tres pantallas: son rutas hijas del layout `Pestanas` en `app.routes.ts`. Repaso y simulacro van a pantalla completa, sin barra, con un "Cerrar" arriba a la izquierda. La racha cuenta los días con al menos una sesión terminada (`dias` en `'cap-sesiones'`). Colores: ver "Estilos" (tokens en `styles.css`). La pestaña activa va en el color del texto, no en azul, con una cápsula gris suave detrás. La barra es una cápsula flotante tipo iOS 26 (`.barra-flotante`): cristal translúcido con desenfoque, borde de 1 px, reflejo en el canto (`--vidrio-reflejo`) y una sombra exterior muy suave (única excepción a "bordes en vez de sombras", porque flota sobre el contenido).
  
@@ -333,12 +334,12 @@ Hecho: `@angular/service-worker` instalado y `provideServiceWorker` en `app.conf
 ```
  
 - El service worker solo funciona en build de producción: probar con `ng build` + `npx http-server dist/<app>/browser`.
-## Avisos (pantalla "Acerca de" + una línea al pie del inicio) — pendiente, aún no están en la app
+## Avisos (pantalla "Acerca de" + una línea al pie del inicio)
  
 - Privacidad: "No recogemos datos personales. Tu progreso se guarda solo en tu dispositivo." Sin banner de cookies (solo `localStorage` funcional). Si se añade analítica, que sea sin cookies (p. ej. Vercel Analytics).
 - No oficial: "Proyecto de estudio sin relación con la DGT ni con ninguna administración."
 - Contenido: "Las preguntas proceden de exámenes oficiales anteriores. La normativa cambia y puede haber preguntas desactualizadas o errores. Ante la duda, consulta el temario oficial."
-- Contacto o botón "reportar error" (pendiente: aún no existe).
+- Sin contacto ni botón "reportar error": el usuario decidió que no hace falta.
 ## Fuentes de exámenes
  
 - Exámenes propios (4, de Castilla y León): base principal.
@@ -351,7 +352,7 @@ Hecho: `@angular/service-worker` instalado y `provideServiceWorker` en `app.conf
 - Usar solo exámenes oficiales (no bancos de academias). Descargar solo la modalidad que corresponda (Mercancías o Viajeros).
 ## Riesgos y pendientes
  
-- Calidad de los datos: revisar respuestas y temas. Pendiente: botón "reportar error" en cada pregunta (aún no existe).
+- Calidad de los datos: revisar respuestas y temas (sin botón "reportar error": el usuario no lo quiere).
 - Hecho: exportar/importar el progreso (JSON) en la pestaña Progreso, porque sin backend se pierde al borrar datos o cambiar de móvil.
 - Pendiente: procesar los otros exámenes oficiales + hojas de respuestas → `questions.json` (deduplicar, clasificar por tema).
 - Hecho: explicaciones de las 202 preguntas (1–2 frases, ~150 caracteres). Justifican siempre la respuesta de la plantilla oficial y citan la norma cuando aporta (Reg. 561/2006, LOTT, Ley 44/2015, RD 159/2021, Acuerdo ATP…). Lo dudoso se comprobó en la web (BOE, bancos de preguntas del CAP).

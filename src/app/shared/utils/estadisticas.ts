@@ -44,7 +44,10 @@ export type ResumenConAcierto = ResumenTema & { porcentaje: number };
  */
 export function resumenPorTema(banco: readonly Pregunta[], prog: Progreso): ResumenTema[] {
   // 1. Acumular por tema: cuántas preguntas hay, cuántas se vieron y sus aciertos/fallos.
-  const temas = new Map<string, { preguntas: number; vistas: number; aciertos: number; fallos: number }>();
+  const temas = new Map<
+    string,
+    { preguntas: number; vistas: number; aciertos: number; fallos: number }
+  >();
   for (const p of banco) {
     const t = temas.get(p.tema) ?? { preguntas: 0, vistas: 0, aciertos: 0, fallos: 0 };
     t.preguntas++;
@@ -103,7 +106,10 @@ export const CAJA_DOMINADA = 4;
  *
  * @example contarDominio(banco, prog) // → { vistas: 52, dominadas: 7 }
  */
-export function contarDominio(banco: readonly Pregunta[], prog: Progreso): { vistas: number; dominadas: number } {
+export function contarDominio(
+  banco: readonly Pregunta[],
+  prog: Progreso,
+): { vistas: number; dominadas: number } {
   let vistas = 0;
   let dominadas = 0;
   for (const p of banco) {
@@ -161,4 +167,32 @@ export function calcularRacha(dias: readonly number[], hoy: number): number {
     dia = inicioDelDia(dia, -1);
   }
   return racha;
+}
+
+/**
+ * Las preguntas que más cuestan, para la práctica "Mis falladas".
+ *
+ * Entra una pregunta si se ha fallado alguna vez y se ha fallado al menos tantas
+ * veces como se ha acertado (`fallos >= aciertos`). Sale sola de la lista cuando
+ * se acierta más veces de las que se falló: con un fallo, al acertarla 2 veces.
+ *
+ * Orden: primero las de peor balance (fallos − aciertos) y, a igualdad, las más
+ * falladas. Así, si hay más de las que caben en una ronda, salen las que más cuestan.
+ *
+ * @example
+ * // 3 fallos y 1 acierto → entra (balance 2)
+ * // 1 fallo y 1 acierto  → entra (balance 0)
+ * // 1 fallo y 2 aciertos → ya no entra
+ */
+export function preguntasFalladas(banco: readonly Pregunta[], prog: Progreso): Pregunta[] {
+  return banco
+    .filter((p) => {
+      const e = prog[p.id];
+      return !!e && e.fallos > 0 && e.fallos >= e.aciertos;
+    })
+    .sort((a, b) => {
+      const ea = prog[a.id];
+      const eb = prog[b.id];
+      return eb.fallos - eb.aciertos - (ea.fallos - ea.aciertos) || eb.fallos - ea.fallos;
+    });
 }

@@ -12,11 +12,17 @@
     <button type="button" class="boton mt-6" (click)="banco.recargar()">Reintentar</button>
   </section>
 
-<!-- 3. Banco vacío -->
+<!-- 3. Sin preguntas: en "Mis falladas", no queda ninguna; si no, el banco está vacío -->
 } @else if (cola().length === 0) {
   <section class="pantalla-centrada">
-    <p class="text-xl font-semibold tracking-tight">Aún no hay preguntas</p>
-    <p class="mt-1 text-texto-2">El banco de preguntas está vacío.</p>
+    @if (soloFalladas()) {
+      <p class="text-xl font-semibold tracking-tight">No te queda ninguna fallada</p>
+      <p class="mt-1 text-texto-2">Las que falles aparecerán aquí hasta que las aciertes más veces de las que las fallaste.</p>
+      <a routerLink="/temas" class="enlace mt-6">Volver a temas</a>
+    } @else {
+      <p class="text-xl font-semibold tracking-tight">Aún no hay preguntas</p>
+      <p class="mt-1 text-texto-2">El banco de preguntas está vacío.</p>
+    }
   </section>
 
 <!-- 4. Hay una sesión a medias guardada: preguntar si se retoma o se empieza otra -->

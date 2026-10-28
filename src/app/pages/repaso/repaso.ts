@@ -15,8 +15,10 @@ import { BancoPreguntas } from '../../shared/services/banco-preguntas';
 import { ProgresoStore } from '../../shared/services/progreso-store';
 import { SesionEnCurso } from '../../shared/services/sesion-en-curso';
 import { MAX_SESIONES_DIA, SesionesDiarias } from '../../shared/services/sesiones-diarias';
+import { barajar } from '../../shared/utils/barajar';
+import { preguntasFalladas } from '../../shared/utils/estadisticas';
 import { ordenarOpciones } from '../../shared/utils/opciones';
-import { crearSesion } from '../../shared/utils/sesion';
+import { crearSesion, PREGUNTAS_SESION } from '../../shared/utils/sesion';
 
 /** Letras que se muestran junto a cada opción, por posición en pantalla. */
 const LETRAS = ['A', 'B', 'C', 'D'];
@@ -41,6 +43,10 @@ const LETRAS = ['A', 'B', 'C', 'D'];
  * pero solo con preguntas de ese tema, sin límite diario y sin guardar para
  * retomar (así no pisa la sesión diaria a medias). Lo respondido sí cuenta para
  * el progreso.
+ *
+ * Modo "Mis falladas" (`/repaso?modo=falladas`, también desde Temas): igual que la
+ * práctica, pero con las preguntas que más cuestan de todos los temas
+ * (`preguntasFalladas`), hasta 25 por ronda.
  *
  * Todo el estado está en signals: cuando cambia uno, Angular vuelve a pintar
  * solo lo que depende de él. Con `OnPush` el componente no se repinta por
@@ -89,10 +95,22 @@ export class Repaso {
    */
   readonly tema = input<string>();
 
-  /** `true` si es una práctica de un tema (no cuenta para el límite diario ni se guarda). */
-  protected readonly practica = computed(() => !!this.tema());
+  /** Modo especial, desde la URL `/repaso?modo=…`. Por ahora solo existe `falladas`. */
+  readonly modo = input<string>();
 
-  /** Preguntas de las que se saca la sesión: las del tema en práctica, o todo el banco. */
+  /** `true` en la práctica de "Mis falladas". */
+  protected readonly soloFalladas = computed(() => this.modo() === 'falladas');
+
+  /**
+   * `true` si es una práctica (de un tema o de las falladas): no cuenta para el
+   * límite diario ni se guarda para retomar.
+   */
+  protected readonly practica = computed(() => !!this.tema() || this.soloFalladas());
+
+  /**
+   * Preguntas de las que se saca la sesión: las del tema en práctica, o todo el banco
+   * (en "Mis falladas" también todo el banco: las falladas se eligen al crear la ronda).
+   */
   private readonly bancoActivo = computed(() => {
     const tema = this.tema();
     const todas = this.banco.preguntas();
@@ -100,9 +118,11 @@ export class Repaso {
   });
 
   /** Título de la cabecera según el modo y la fase. */
-  protected readonly titulo = computed(() =>
-    this.enFallos() ? 'Repaso de fallos' : this.practica() ? 'Práctica' : 'Repaso',
-  );
+  protected readonly titulo = computed(() => {
+    if (this.enFallos()) return 'Repaso de fallos';
+    if (this.soloFalladas()) return 'Mis falladas';
+    return this.practica() ? 'Práctica' : 'Repaso';
+  });
 
   /** Adónde llevan "Cerrar" y "Volver": a Temas en la práctica, al inicio en el repaso diario. */
   protected readonly volverA = computed(() => (this.practica() ? '/temas' : '/'));
@@ -120,8 +140,8 @@ export class Repaso {
    * un `computed`) pero que además se puede sobrescribir con `.set()`, que es lo
    * que hace "Otra sesión".
    *
-   * Se recalcula cuando cambia `bancoActivo()`, es decir, cuando termina de
-   * cargar el JSON o cuando llega el tema de la URL. El progreso se lee dentro de
+   * Se recalcula cuando cambia `bancoActivo()` o el modo, es decir, cuando termina
+   * de cargar el JSON o cuando llegan el tema o el modo de la URL. El progreso se lee dentro de
    * `untracked`, que significa "leer sin vigilar": si no, cada respuesta (que
    * cambia el progreso) crearía una sesión nueva a mitad de la actual.
    *
@@ -130,7 +150,8 @@ export class Repaso {
    */
   private readonly sesion = linkedSignal(() => {
     const banco = this.bancoActivo();
-    return untracked(() => crearSesion(banco, this.progreso.progreso(), Date.now()));
+    const falladas = this.soloFalladas();
+    return untracked(() => this.crearRonda(banco, falladas));
   });
 
   /**
@@ -394,7 +415,24 @@ export class Repaso {
     this.elegida.set(null);
     this.indice.set(0);
     this.fallos.set([]);
-    // Se crea con el progreso actualizado, así tiene en cuenta lo respondido en la anterior.
-    this.sesion.set(crearSesion(this.bancoActivo(), this.progreso.progreso(), Date.now()));
+    // Se crea con el progreso actualizado, así tiene en cuenta lo respondido en la anterior
+    // (en "Mis falladas", las que ya se han superado salen de la lista).
+    this.sesion.set(this.crearRonda(this.bancoActivo(), this.soloFalladas()));
+  }
+
+  /**
+   * Elige las preguntas de una sesión o ronda con el progreso de este momento.
+   * - Normal (repaso diario o práctica de un tema): `crearSesion` (pendientes,
+   *   nuevas y adelantadas).
+   * - "Mis falladas": las 25 que más cuestan (`preguntasFalladas` ya las ordena de
+   *   peor a mejor), barajadas para que no salgan siempre en el mismo orden.
+   *
+   * @param banco preguntas de las que elegir
+   * @param falladas si es la práctica de "Mis falladas"
+   */
+  private crearRonda(banco: readonly Pregunta[], falladas: boolean): Pregunta[] {
+    const prog = this.progreso.progreso();
+    if (falladas) return barajar(preguntasFalladas(banco, prog).slice(0, PREGUNTAS_SESION));
+    return crearSesion(banco, prog, Date.now());
   }
 }

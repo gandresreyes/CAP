@@ -5,6 +5,43 @@
     <p class="mt-1 text-sm text-texto-2">Practica el tema que quieras, sin límite.</p>
   </header>
 
+  <!-- "Mis falladas": práctica con las preguntas que más cuestan, de todos los temas.
+       Si aún no hay ninguna, la fila no se puede tocar y explica qué saldrá aquí. -->
+  <section>
+    <h2 class="titulo-seccion">Para reforzar</h2>
+    <ul class="grupo">
+      <li>
+        @if (falladas()) {
+          <a routerLink="/repaso" [queryParams]="{ modo: 'falladas' }" class="fila">
+            <!-- Icono: círculo con una ✕, en rojo (fallo) -->
+            <svg viewBox="0 0 24 24" class="size-5 shrink-0 fill-none stroke-error" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="m9 9 6 6m0-6-6 6" />
+            </svg>
+            <span class="min-w-0 flex-1">
+              <span class="block leading-snug font-medium">Mis falladas</span>
+              <span class="mt-0.5 block text-sm text-texto-2">{{ textoFalladas() }}</span>
+            </span>
+            <svg viewBox="0 0 24 24" class="chevron" aria-hidden="true">
+              <path d="m9 6 6 6-6 6" />
+            </svg>
+          </a>
+        } @else {
+          <div class="fila">
+            <svg viewBox="0 0 24 24" class="size-5 shrink-0 fill-none stroke-texto-2" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="m9 9 6 6m0-6-6 6" />
+            </svg>
+            <span class="min-w-0 flex-1">
+              <span class="block leading-snug font-medium text-texto-2">Mis falladas</span>
+              <span class="mt-0.5 block text-sm text-texto-2">Aquí saldrán las preguntas que falles.</span>
+            </span>
+          </div>
+        }
+      </li>
+    </ul>
+  </section>
+
   <!-- Un bloque por módulo del temario, con sus temas en una lista agrupada -->
   @for (m of modulos(); track m.nombre) {
     <section>

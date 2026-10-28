@@ -1,0 +1,88 @@
+<!-- Cabecera fija: volver al inicio y título centrado.
+     Columnas laterales iguales para que el título quede en el centro. -->
+<header class="cabecera-fija">
+  <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-sm">
+    <a routerLink="/" class="enlace -ml-1 px-1">Volver</a>
+    <span class="font-semibold">Acerca de</span>
+    <span></span>
+  </div>
+</header>
+
+<div class="px-4 pt-6 pb-10">
+  <!-- Presentación: icono, nombre y para qué sirve -->
+  <section class="flex items-center gap-3">
+    <img src="icons/icon-96x96.png" alt="" class="size-12 shrink-0 rounded-xl" />
+    <div>
+      <h1 class="text-xl font-semibold tracking-tight">CAP Estudio</h1>
+      <p class="text-sm text-texto-2">Para preparar el examen del CAP de mercancías.</p>
+    </div>
+  </section>
+
+  <!-- Privacidad: qué se guarda y dónde -->
+  <h2 class="titulo-seccion">Privacidad</h2>
+  <div class="tarjeta space-y-2 text-[15px] leading-relaxed">
+    <p>No recogemos datos personales. Tu progreso se guarda solo en tu dispositivo.</p>
+    <p class="text-sm text-texto-2">
+      Sin cuentas, sin cookies y sin publicidad. Si borras los datos del navegador o cambias de
+      móvil, el progreso se pierde: haz una copia en
+      <a routerLink="/progreso" class="font-medium text-acento active:opacity-60">Progreso</a>.
+    </p>
+  </div>
+
+  <!-- Aviso de que no es una app oficial -->
+  <h2 class="titulo-seccion">Proyecto no oficial</h2>
+  <p class="tarjeta text-[15px] leading-relaxed">
+    Proyecto de estudio sin relación con la DGT ni con ninguna administración.
+  </p>
+
+  <!-- Origen de las preguntas y advertencia de posibles errores -->
+  <h2 class="titulo-seccion">Las preguntas</h2>
+  <div class="tarjeta space-y-3 text-[15px] leading-relaxed">
+    <p>
+      Las preguntas proceden de exámenes oficiales anteriores. La normativa cambia y puede haber
+      preguntas desactualizadas o errores. Ante la duda, consulta el temario oficial.
+    </p>
+    <!-- Datos del banco (etiqueta arriba, valor abajo): solo cuando ya ha cargado -->
+    @if (total()) {
+      <div class="grid grid-cols-2 gap-3 border-t border-separador pt-3">
+        <div>
+          <p class="dato-etiqueta">Preguntas</p>
+          <p class="mt-0.5 font-mono text-sm">{{ total() }}</p>
+        </div>
+        <div>
+          <p class="dato-etiqueta">Convocatorias</p>
+          @for (c of convocatorias(); track c) {
+            <p class="mt-0.5 font-mono text-sm">{{ c }}</p>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Cómo funciona: lo justo para entender las tres partes de la app -->
+  <h2 class="titulo-seccion">Cómo funciona</h2>
+  <ul class="grupo text-[15px] leading-relaxed">
+    <li class="px-4 py-3">
+      <p class="font-medium">Repaso diario</p>
+      <p class="mt-0.5 text-sm text-texto-2">
+        Hasta {{ reglas.sesionesDia }} sesiones de 25 preguntas al día. Lo que fallas vuelve a salir
+        pronto y lo que aciertas tarda cada vez más (de {{ reglas.diasMin }} a
+        {{ reglas.diasMax }} días).
+      </p>
+    </li>
+    <li class="px-4 py-3">
+      <p class="font-medium">Dominadas</p>
+      <p class="mt-0.5 text-sm text-texto-2">
+        Una pregunta está dominada cuando la aciertas {{ reglas.aciertosDominada }} veces seguidas,
+        cada una el día que le tocaba. Si la fallas, vuelve a empezar.
+      </p>
+    </li>
+    <li class="px-4 py-3">
+      <p class="font-medium">Simulacro</p>
+      <p class="mt-0.5 text-sm text-texto-2">
+        {{ reglas.preguntasSimulacro }} preguntas en 2 horas, como el examen real: acierto +1, fallo
+        −0,5 y en blanco 0. Apto con {{ reglas.aprobado }} puntos.
+      </p>
+    </li>
+  </ul>
+</div>

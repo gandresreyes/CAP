@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { MODULOS } from '../../shared/models/temas';
 import { BancoPreguntas } from '../../shared/services/banco-preguntas';
 import { ProgresoStore } from '../../shared/services/progreso-store';
-import { nivelAcierto, resumenPorTema } from '../../shared/utils/estadisticas';
+import { nivelAcierto, preguntasFalladas, resumenPorTema } from '../../shared/utils/estadisticas';
 import { partirTema } from '../../shared/utils/temas';
 
 /**
@@ -13,6 +13,9 @@ import { partirTema } from '../../shared/utils/temas';
  * cuántas preguntas has visto de cada uno y tu % de acierto. Al tocar un tema se
  * abre la pantalla de repaso en modo práctica, solo con preguntas de ese tema
  * (`/repaso?tema=…`).
+ *
+ * Encima de los módulos está "Mis falladas": la práctica de las preguntas que más
+ * cuestan, de todos los temas (`/repaso?modo=falladas`).
  *
  * La práctica es ilimitada (no cuenta para las 3 sesiones diarias), pero lo que
  * se responde sí actualiza el progreso.
@@ -34,6 +37,17 @@ export class Temas {
   // ---------------------------------------------------------------------------
   // Datos para la plantilla
   // ---------------------------------------------------------------------------
+
+  /** Cuántas preguntas hay ahora en "Mis falladas" (ver `preguntasFalladas`). */
+  protected readonly falladas = computed(
+    () => preguntasFalladas(this.banco.preguntas(), this.progreso.progreso()).length,
+  );
+
+  /** Texto bajo "Mis falladas": "1 pregunta por superar" / "12 preguntas por superar". */
+  protected readonly textoFalladas = computed(() => {
+    const n = this.falladas();
+    return n === 1 ? '1 pregunta por superar' : `${n} preguntas por superar`;
+  });
 
   /**
    * Los módulos con sus temas, listos para pintar.
