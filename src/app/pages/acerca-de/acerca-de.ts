@@ -5,6 +5,7 @@ import { MAX_SESIONES_DIA } from '../../shared/services/sesiones-diarias';
 import { CAJA_DOMINADA } from '../../shared/utils/estadisticas';
 import { INTERVALOS } from '../../shared/utils/leitner';
 import { NOTA_APROBADO, PREGUNTAS_SIMULACRO } from '../../shared/utils/simulacro';
+import { CONVOCATORIAS } from './convocatorias';
 
 /**
  * Pantalla "Acerca de" (ruta `/acerca-de`, a pantalla completa, sin barra inferior).
@@ -41,11 +42,32 @@ export class AcercaDe {
   protected readonly total = computed(() => this.banco.preguntas().length);
 
   /**
-   * Convocatorias de las que salen las preguntas ("CyL 2026-01", "CyL 2026-10"…),
-   * sacadas del campo `origen` del JSON, sin repetir y en orden. Así la lista se
-   * actualiza sola al añadir exámenes nuevos.
+   * Tabla de exámenes de los que salen las preguntas: nombre, fecha, prefijo de los
+   * ids y cuántas preguntas aporta cada uno.
+   *
+   * Los recuentos salen del campo `origen` del JSON, así que se actualizan solos al
+   * añadir preguntas. La comunidad, la fecha y el lugar salen de `CONVOCATORIAS`;
+   * si un `origen` aún no está ahí, se muestra con su propio texto para que no se
+   * quede fuera de la tabla.
    */
-  protected readonly convocatorias = computed(() =>
-    [...new Set(this.banco.preguntas().flatMap((p) => (p.origen ? [p.origen] : [])))].sort(),
-  );
+  protected readonly examenes = computed(() => {
+    // Preguntas por origen. Las repetidas entre exámenes están una sola vez en el
+    // banco, con el origen del primero en que salieron.
+    const cuenta = new Map<string, number>();
+    for (const p of this.banco.preguntas()) {
+      if (p.origen) cuenta.set(p.origen, (cuenta.get(p.origen) ?? 0) + 1);
+    }
+
+    const conocidos = CONVOCATORIAS.filter((c) => cuenta.has(c.origen)).map((c) => ({
+      origen: c.origen,
+      titulo: c.lugar ? `${c.comunidad} (${c.lugar})` : c.comunidad,
+      detalle: `${c.fecha} · ${c.ids}`,
+      preguntas: cuenta.get(c.origen)!,
+    }));
+    const sinDatos = [...cuenta.keys()]
+      .filter((o) => !CONVOCATORIAS.some((c) => c.origen === o))
+      .map((o) => ({ origen: o, titulo: o, detalle: '', preguntas: cuenta.get(o)! }));
+
+    return [...conocidos, ...sinDatos];
+  });
 }

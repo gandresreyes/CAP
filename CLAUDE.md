@@ -140,7 +140,7 @@ type Estado = { caja: number; proximo: number; aciertos: number; fallos: number 
 type Progreso = Record<string, Estado>; // por id de pregunta
 ```
  
-- `id`: `cyl-AAAA-MM-NNN` (comunidad, convocatoria, número en el modelo A). Ej.: `cyl-2026-10-007`. Las de reserva son 101–103. Andalucía usa el prefijo `and-` y `origen` "AND AAAA-MM".
+- `id`: `cyl-AAAA-MM-NNN` (comunidad, convocatoria, número en el modelo A). Ej.: `cyl-2026-10-007`. Las de reserva son 101–103. Andalucía usa el prefijo `and-` y `origen` "AND AAAA-MM"; Aragón, `ara-` y "ARA AAAA-MM"; Comunitat Valenciana, `gva-` y "GVA AAAA-MM".
 - `explicacion`: 1–2 frases que justifican la respuesta oficial. Puede ir vacía (`""`); entonces la pantalla oculta "Por qué".
 ## Temas
  
@@ -269,7 +269,7 @@ Lógica en `shared/utils/simulacro.ts`, estado en `shared/services/simulacros.ts
 5. Temas: los 14 temas agrupados por módulo (`MODULOS` en `shared/models/temas.ts`; los nombres tienen que coincidir con `tema` del JSON), con vistas/total y % de acierto. Al tocar uno se abre la práctica: la misma pantalla de repaso en `/repaso?tema=…` (input `tema`), solo con ese tema, sin límite diario, sin guardar para retomar (no pisa la sesión diaria) y con el título "Práctica". Lo respondido sí actualiza el progreso. Los temas flojos de Inicio también abren su práctica. Encima de los módulos, bloque "Para reforzar" con "Mis falladas" (`/repaso?modo=falladas`, input `modo`): práctica de todos los temas con las preguntas que más cuestan (`preguntasFalladas` en `shared/utils/estadisticas.ts`: fallada alguna vez y `fallos >= aciertos`; sale sola al acertarla más veces de las que se falló), hasta 25 por ronda (`PREGUNTAS_SESION`), primero las de peor balance. Mismas reglas que la práctica por tema; si no queda ninguna, lo dice y vuelve a Temas.
 6. Progreso (pestaña): resumen (vistas, dominadas, racha, acierto global), simulacros (columnas con las últimas 10 notas, línea de apto en 50, media y lista de los últimos 5 con APTO/NO APTO escrito), acierto por tema de peor a mejor (sin datos al final; cada fila abre su práctica) y copia de seguridad. Sin bloque de cajas Leitner ni fechas en los simulacros: el usuario no los quiere.
    - Copia de seguridad (`CopiaSeguridad`): "Exportar" descarga `cap-progreso-AAAA-MM-DD.json` con todas las claves `cap-*`; "Importar" valida que sea una copia de la app (`app: "cap-estudio"`), pide confirmación, sustituye los datos y recarga.
-7. Acerca de (`/acerca-de`, pantalla completa con "Volver", enlace desde el pie de Inicio): presentación, Privacidad, Proyecto no oficial, Las preguntas (total y convocatorias sacadas de `origen`) y Cómo funciona (repaso diario, dominadas, simulacro; las cifras salen de las constantes, no escritas a mano).
+7. Acerca de (`/acerca-de`, pantalla completa con "Volver", enlace desde el pie de Inicio): presentación, Privacidad, Proyecto no oficial, Las preguntas (aviso + tabla de exámenes: comunidad y ciudad, fecha, prefijo de ids y nº de preguntas de cada uno, con el total; recuentos sacados de `origen` y datos de `CONVOCATORIAS`) y Cómo funciona (repaso diario, dominadas, simulacro; las cifras salen de las constantes, no escritas a mano).
 8. Pendiente: `/admin` (sin enlace en el menú, solo para el autor), ver abajo. Aún no existe.
 Barra inferior: Hoy · Temas · Progreso. Solo en esas tres pantallas: son rutas hijas del layout `Pestanas` en `app.routes.ts`. Repaso y simulacro van a pantalla completa, sin barra, con un "Cerrar" arriba a la izquierda. La racha cuenta los días con al menos una sesión terminada (`dias` en `'cap-sesiones'`). Colores: ver "Estilos" (tokens en `styles.css`). La pestaña activa va en el color del texto, no en azul, con una cápsula gris suave detrás. La barra es una cápsula flotante tipo iOS 26 (`.barra-flotante`): cristal translúcido con desenfoque, borde de 1 px, reflejo en el canto (`--vidrio-reflejo`) y una sombra exterior muy suave (única excepción a "bordes en vez de sombras", porque flota sobre el contenido).
  
@@ -342,13 +342,34 @@ Hecho: `@angular/service-worker` instalado y `provideServiceWorker` en `app.conf
 - Sin contacto ni botón "reportar error": el usuario decidió que no hace falta.
 ## Fuentes de exámenes
  
+### Exámenes ya procesados (registro)
+
+Regla rápida (primero esta): leer solo las 5 primeras preguntas del PDF y buscarlas en `questions.json` (por enunciado + opciones). Si las 5 ya están, es un examen ya subido: decírselo al usuario («Esta hoja ya la subiste: …», con la convocatoria que coincide) y descartarlo sin leer ni procesar el resto.
+
+Regla completa: antes de procesar un PDF de examen, mirar su fecha, ciudad, modalidad y modelo (vienen en la cabecera) y compararlos con esta tabla. Si coincide con uno ya procesado, decírselo al usuario («Esta hoja ya la subiste: …») y no repetir el proceso. Si es la misma convocatoria pero otro modelo (B), solo sirve para validar las respuestas del A. Como segunda comprobación, si casi todas sus preguntas ya están en `questions.json` (por enunciado + opciones), avisar también. Al procesar uno nuevo, añadir su fila aquí y también en `CONVOCATORIAS` (`pages/acerca-de/convocatorias.ts`: `origen`, comunidad, lugar, fecha y prefijo de ids), que alimenta la tabla de exámenes de "Acerca de" (el usuario la quiere siempre al día).
+
+| Convocatoria (`origen`) | Fecha del examen | Ciudad / lugar | Modalidad y modelo | Preguntas | Ids |
+|---|---|---|---|---|---|
+| CyL 2026-01 | sin apuntar (enero 2026) | Castilla y León, sin apuntar | Mercancías, modelo A | 99 | `cyl-2026-01-*` |
+| CyL 2026-10 | sin apuntar (octubre 2026) | Castilla y León, sin apuntar | Mercancías, modelos A y B | 103 | `cyl-2026-10-*` |
+| AND 2026-03 | 14-03-2026, 09:00 | Sevilla (UNED, C/ Jericó 10) | Mercancías, modelo A | 99 nuevas (4 ya estaban) | `and-2026-03-*` |
+| ARA 2026-01 | 13-01-2026, 09:30 | Zaragoza (EOI nº 1, C/ Domingo Miral 23) | Mercancías, modelo B (sin el A: los ids usan la numeración del B) | 95 nuevas (8 ya estaban) | `ara-2026-01-*` |
+| AND 2026-05 | 16-05-2026, 09:00 | Sevilla (UNED, C/ Jericó 10) | Mercancías, modelo B (sin el A: los ids usan la numeración del B) | 94 nuevas (9 ya estaban) | `and-2026-05-*` |
+| AND 2026-01 | 24-01-2026, 09:00 | Málaga (IES nº 1 Universidad Laboral, C/ Julio Verne 6) | Mercancías, modelo A | 85 nuevas (18 ya estaban; la 54 es `and-2026-05-029` con otro enunciado) | `and-2026-01-*` |
+| GVA 2026-05 | 30-05-2026 (sin hora) | Comunitat Valenciana (web de la GVA; el PDF no indica ciudad) | Mercancías, modelo A (cuestionario sin respuestas + plantilla de casillas aparte) | 90 nuevas (13 ya estaban; en la 80 la plantilla marca C y el banco, de CyL 2026-10 validada con A y B, D: se deja D) | `gva-2026-05-*` |
+| GVA 2026-09 | 26-09-2026 (sin hora) | Comunitat Valenciana (web de la GVA; el PDF no indica ciudad) | Mercancías, modelo A (cuestionario sin respuestas + plantilla de casillas aparte) | 97 nuevas (6 ya estaban; la 80 es `and-2026-01-088` con «6 %» en vez de «0,06») | `gva-2026-09-*` |
+| transportes.gob.es | banco versión 16-03-2026 | Ministerio de Transportes (banco oficial de preguntas del CAP, `public/data/nuevaspreguntas.json`, 4.993 preguntas) | Mercancías (común + específicas) | 238 elegidas para llegar a 1.000, repartidas por tema en la misma proporción que el banco | `mit-2026-03-NNNNN` (NNNNN = `cod` del banco del ministerio) |
+
+Total en el banco: 1.000 preguntas. De los dos de CyL no se apuntaron la fecha exacta ni la ciudad al procesarlos: si el usuario vuelve a subir uno, reconocerlo por la convocatoria (año y mes) y por las preguntas repetidas, y completar aquí la fecha y la ciudad.
+
+### Notas sobre las fuentes
+
 - Exámenes propios (4, de Castilla y León): base principal.
-  - Procesados: Mercancías CyL 2026-01 (modelo A) y CyL 2026-10 (modelos A y B) → 202 preguntas únicas en `questions.json`.
-- Andalucía (examen en Sevilla): Mercancías AND 2026-03 (14-03-2026, modelo A) → 99 preguntas nuevas (4 ya estaban en el banco). Este PDF trae la respuesta marcada con un asterisco rojo y una «Referencia» (norma o manual) en cada pregunta, que sirve de base para la explicación. Total: 301 preguntas.
+- El PDF de Andalucía trae la respuesta marcada con un asterisco rojo y una «Referencia» (norma o manual) en cada pregunta, que sirve de base para la explicación.
   - Cada examen trae 100 preguntas + 3 de reserva (1ª, 2ª, 3ª = 101–103). La plantilla es la página de casillas rellenas; si hay modelo B, cruzarlo con el A (mismas preguntas en otro orden) para validar las respuestas.
   - Los PDF originales no van en `public/` (se publicarían con la app).
   - Algunos PDF traen "¿" donde iban puntos suspensivos ("el par motor¿") → sustituir por "…".
-- Generalitat Valenciana publica cuadernillos y plantillas oficiales (Mercancías y Viajeros, 2017–2024): https://mediambient.gva.es/es/web/transportes/preguntas-examen
+- Generalitat Valenciana publica cuadernillos y plantillas oficiales (el cuestionario sin respuestas y la plantilla de casillas vienen en PDF separados; no dicen la comunidad en el propio PDF, así que un examen con ese formato puede ser de la GVA y no de CyL: preguntar) (Mercancías y Viajeros, 2017–2024): https://mediambient.gva.es/es/web/transportes/preguntas-examen
 - El temario es nacional (RD 284/2021), así que sirven exámenes de otras comunidades.
 - Usar solo exámenes oficiales (no bancos de academias). Descargar solo la modalidad que corresponda (Mercancías o Viajeros).
 ## Riesgos y pendientes
@@ -356,7 +377,8 @@ Hecho: `@angular/service-worker` instalado y `provideServiceWorker` en `app.conf
 - Calidad de los datos: revisar respuestas y temas (sin botón "reportar error": el usuario no lo quiere).
 - Hecho: exportar/importar el progreso (JSON) en la pestaña Progreso, porque sin backend se pierde al borrar datos o cambiar de móvil.
 - Pendiente: procesar los otros exámenes oficiales + hojas de respuestas → `questions.json` (deduplicar, clasificar por tema).
-- Hecho: explicaciones de las 301 preguntas (1–2 frases, ~150 caracteres). Justifican siempre la respuesta de la plantilla oficial y citan la norma cuando aporta (Reg. 561/2006, LOTT, Ley 44/2015, RD 159/2021, Acuerdo ATP…). Lo dudoso se comprobó en la web (BOE, bancos de preguntas del CAP).
-  - Donde no se encontró la base legal exacta, la explicación dice «Según la plantilla oficial…» en vez de inventarla: `cyl-2026-10-022` (MPCE, cualquier MMA), `cyl-2026-01-021` (transporte funerario exento) y `cyl-2026-01-092` (la inercia varía con el freno). Conviene revisarlas con el profesor.
+- Banco oficial del Ministerio (`public/data/nuevaspreguntas.json`, campos `pregunta`, `opciones` A–D, `correcta` letra, `objetivo`, `norma`): casi todas las de los exámenes ya procesados están en él. Al sacar más preguntas de ahí: descartar las que ya estén en el banco (también las variantes con «mayor»/«menor» cambiado), las de viajeros, las de normas derogadas (Reg. 3821/85) y las de respuesta dudosa; clasificar por contenido (el ministerio mete preguntas de consumo en el objetivo 1.2) e id `mit-2026-03-` + `cod`. Ese JSON no debería ir en `public/` (se publica con la app: 3,5 MB).
+- Hecho: explicaciones de las 1.000 preguntas (1–2 frases, ~150 caracteres). Justifican siempre la respuesta de la plantilla oficial y citan la norma cuando aporta (Reg. 561/2006, LOTT, Ley 44/2015, RD 159/2021, Acuerdo ATP…). Lo dudoso se comprobó en la web (BOE, bancos de preguntas del CAP).
+  - Donde no se encontró la base legal exacta, la explicación dice «Según la plantilla oficial…» en vez de inventarla: `cyl-2026-10-022` (MPCE, cualquier MMA), `cyl-2026-01-021` (transporte funerario exento), `cyl-2026-01-092` (la inercia varía con el freno) y `ara-2026-01-043` ("transportes oficiales" exentos de tacógrafo). Conviene revisarlas con el profesor.
   - Al añadir preguntas nuevas, escribir su explicación con el mismo criterio.
 - Pendiente: elegir nombre definitivo y modalidad (Mercancías o Viajeros).

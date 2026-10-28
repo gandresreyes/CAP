@@ -37,27 +37,43 @@
 
   <!-- Origen de las preguntas y advertencia de posibles errores -->
   <h2 class="titulo-seccion">Las preguntas</h2>
-  <div class="tarjeta space-y-3 text-[15px] leading-relaxed">
-    <p>
-      Las preguntas proceden de exámenes oficiales anteriores. La normativa cambia y puede haber
-      preguntas desactualizadas o errores. Ante la duda, consulta el temario oficial.
+  <p class="tarjeta text-[15px] leading-relaxed">
+    Las preguntas proceden de exámenes oficiales anteriores. La normativa cambia y puede haber
+    preguntas desactualizadas o errores. Ante la duda, consulta el temario oficial.
+  </p>
+
+  <!-- Tabla de exámenes: de dónde sale cada pregunta y cuántas aporta cada uno.
+       Solo cuando el banco ya ha cargado. -->
+  @if (total()) {
+    <ul class="grupo mt-3">
+      <!-- Cabecera de la tabla -->
+      <li class="flex items-center gap-3 px-4 py-2">
+        <span class="dato-etiqueta flex-1">Examen</span>
+        <span class="dato-etiqueta">Preguntas</span>
+      </li>
+      <!-- Una fila por examen: comunidad (y ciudad), fecha + prefijo de los ids y recuento -->
+      @for (e of examenes(); track e.origen) {
+        <li class="flex items-center gap-3 px-4 py-3">
+          <div class="min-w-0 flex-1">
+            <p class="text-[15px] font-medium">{{ e.titulo }}</p>
+            @if (e.detalle) {
+              <p class="mt-0.5 font-mono text-xs text-texto-2">{{ e.detalle }}</p>
+            }
+          </div>
+          <span class="font-mono text-sm">{{ e.preguntas }}</span>
+        </li>
+      }
+      <!-- Total del banco -->
+      <li class="flex items-center gap-3 px-4 py-3">
+        <span class="flex-1 text-[15px] font-semibold">Total</span>
+        <span class="font-mono text-sm font-semibold">{{ total() }}</span>
+      </li>
+    </ul>
+    <p class="mt-2 px-1 text-xs leading-relaxed text-texto-2">
+      Las preguntas que se repiten entre exámenes cuentan una sola vez, en el primero en que
+      salieron.
     </p>
-    <!-- Datos del banco (etiqueta arriba, valor abajo): solo cuando ya ha cargado -->
-    @if (total()) {
-      <div class="grid grid-cols-2 gap-3 border-t border-separador pt-3">
-        <div>
-          <p class="dato-etiqueta">Preguntas</p>
-          <p class="mt-0.5 font-mono text-sm">{{ total() }}</p>
-        </div>
-        <div>
-          <p class="dato-etiqueta">Convocatorias</p>
-          @for (c of convocatorias(); track c) {
-            <p class="mt-0.5 font-mono text-sm">{{ c }}</p>
-          }
-        </div>
-      </div>
-    }
-  </div>
+  }
 
   <!-- Cómo funciona: lo justo para entender las tres partes de la app -->
   <h2 class="titulo-seccion">Cómo funciona</h2>
