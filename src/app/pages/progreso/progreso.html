@@ -1,0 +1,168 @@
+<div class="pagina pb-6">
+  <!-- Cabecera: título y subtítulo -->
+  <header>
+    <h1 class="titulo-grande">Progreso</h1>
+    <p class="mt-1 text-sm text-texto-2">Cómo vas con el temario y los simulacros.</p>
+  </header>
+
+  <!-- =====================================================================
+       1. RESUMEN: cuatro cifras (etiqueta arriba, valor abajo); un dato suelto
+          no necesita gráfica
+       ===================================================================== -->
+  <section class="mt-5 grid grid-cols-2 gap-3" aria-label="Resumen">
+    <div class="dato">
+      <p class="dato-etiqueta">Preguntas vistas</p>
+      <p class="dato-valor">
+        {{ vistas() }}<span class="text-sm font-normal text-texto-2">/{{ total() }}</span>
+      </p>
+    </div>
+    <div class="dato">
+      <p class="dato-etiqueta">Dominadas</p>
+      <p class="dato-valor">{{ dominadas() }}</p>
+    </div>
+    <div class="dato">
+      <p class="dato-etiqueta">Racha</p>
+      <p class="dato-valor">
+        {{ sesiones.racha() }}<span class="ml-1 text-sm font-normal text-texto-2">{{ sesiones.racha() === 1 ? 'día' : 'días' }}</span>
+      </p>
+    </div>
+    <div class="dato">
+      <p class="dato-etiqueta">Acierto</p>
+      <p class="dato-valor">
+        @if (acierto() === null) {
+          —
+        } @else {
+          {{ acierto() }}<span class="text-sm font-normal text-texto-2">%</span>
+        }
+      </p>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       2. SIMULACROS: gráfica de notas + lista de los últimos resultados
+       ===================================================================== -->
+  <h2 class="titulo-seccion">Simulacros</h2>
+  @if (haySimulacros()) {
+    <section class="tarjeta">
+      <p class="dato-etiqueta">Media de los últimos {{ recientes().length }}</p>
+      <p class="dato-valor">
+        {{ formatearNota(media()) }}<span class="text-sm font-normal text-texto-2"> puntos</span>
+      </p>
+
+      <!-- Gráfica: una columna por simulacro (altura = nota sobre 100), verde si apto
+           y rojo si no; la línea discontinua marca el aprobado (50).
+           `role="img"` + `aria-label` la describen para el lector de pantalla; la
+           lista de debajo hace de tabla con los mismos datos. -->
+      <div
+        class="relative mt-4 flex h-32 items-end gap-1 border-b border-separador"
+        role="img"
+        [attr.aria-label]="'Notas de los últimos ' + columnas().length + ' simulacros'"
+      >
+        <!-- Línea de aprobado a la altura del 50 % -->
+        <div
+          class="pointer-events-none absolute inset-x-0 border-t border-dashed border-texto-2/50"
+          [style.bottom.%]="notaAprobado"
+        >
+          <span class="absolute -top-4 right-0 font-mono text-[10px] text-texto-2">apto {{ notaAprobado }}</span>
+        </div>
+        @for (col of columnas(); track col.fecha) {
+          <!-- `title`: al mantener pulsada (o pasar el ratón) se ve la nota -->
+          <div
+            class="max-w-8 flex-1 rounded-t"
+            [class.bg-correcto]="col.aprobado"
+            [class.bg-error]="!col.aprobado"
+            [style.height.%]="col.alto"
+            [title]="col.etiqueta"
+          ></div>
+        }
+      </div>
+      <p class="mt-1.5 text-[11px] text-texto-2">Del más antiguo al más reciente</p>
+
+      <!-- Lista de los últimos resultados (el más reciente primero) -->
+      <ul class="mt-4 divide-y divide-separador">
+        @for (s of recientes(); track s.fecha) {
+          <li class="flex items-center gap-3 py-2.5">
+            <span class="min-w-0 flex-1 font-mono text-xs text-texto-2">
+              {{ s.aciertos }}✓ · {{ s.fallos }}✗ · {{ s.blancos }} en blanco
+            </span>
+            <span class="text-sm font-semibold tabular-nums">{{ formatearNota(s.nota) }}</span>
+            <!-- Insignia de estado: fondo suave y texto del color (el texto dice el estado, no solo el color) -->
+            <span
+              class="insignia w-18"
+              [class.insignia-exito]="s.aprobado"
+              [class.insignia-error]="!s.aprobado"
+            >
+              {{ s.aprobado ? 'APTO' : 'NO APTO' }}
+            </span>
+          </li>
+        }
+      </ul>
+    </section>
+  } @else {
+    <!-- Aún no hay simulacros: invitación a hacer el primero -->
+    <a routerLink="/simulacro" class="tarjeta flex items-center justify-between gap-3 transition-colors active:bg-fondo">
+      <span class="text-sm text-texto-2">
+        Aún no has hecho ningún simulacro. Haz uno para ver aquí tu evolución.
+      </span>
+      <svg viewBox="0 0 24 24" class="chevron" aria-hidden="true">
+        <path d="m9 6 6 6-6 6" />
+      </svg>
+    </a>
+  }
+
+  <!-- =====================================================================
+       3. ACIERTO POR TEMA: de peor a mejor; los que no tienen respuestas, al final.
+          Cada fila abre la práctica de ese tema.
+       ===================================================================== -->
+  <h2 class="titulo-seccion">Acierto por tema</h2>
+  <ul class="grupo">
+    @for (t of temas(); track t.tema) {
+      <li>
+        <a routerLink="/repaso" [queryParams]="{ tema: t.tema }" class="fila">
+          <span class="codigo-tema">{{ t.codigo }}</span>
+          <span class="min-w-0 flex-1">
+            <span class="flex items-baseline justify-between gap-3">
+              <span class="truncate text-sm font-medium">{{ t.titulo }}</span>
+              <span class="shrink-0 font-mono text-xs text-texto-2">
+                {{ t.porcentaje === null ? '—' : t.porcentaje + '%' }}
+              </span>
+            </span>
+            <span class="mt-2 block h-1 overflow-hidden rounded-full bg-separador">
+              @if (t.porcentaje !== null) {
+                <span
+                  class="block h-full rounded-full"
+                  [class.bg-error]="t.nivel === 'bajo'"
+                  [class.bg-acento]="t.nivel === 'medio'"
+                  [class.bg-correcto]="t.nivel === 'alto'"
+                  [style.width.%]="t.porcentaje"
+                ></span>
+              }
+            </span>
+          </span>
+        </a>
+      </li>
+    }
+  </ul>
+
+  <!-- =====================================================================
+       4. COPIA DE SEGURIDAD: exportar / importar el progreso a un archivo
+       ===================================================================== -->
+  <h2 class="titulo-seccion">Copia de seguridad</h2>
+  <section class="tarjeta">
+    <p class="text-sm leading-relaxed text-texto-2">
+      Tu progreso solo está guardado en este dispositivo. Haz una copia para no perderlo si borras
+      los datos del navegador o para pasarlo a otro móvil.
+    </p>
+    <div class="mt-4 flex gap-3">
+      <button type="button" class="boton-secundario flex-1" (click)="exportar()">Exportar</button>
+      <!-- El <input type="file"> va oculto dentro de la etiqueta: tocar "Importar" abre el selector de archivos -->
+      <label class="boton-secundario flex-1 cursor-pointer">
+        Importar
+        <input type="file" accept="application/json,.json" class="sr-only" (change)="importar($event)" />
+      </label>
+    </div>
+    @if (errorImportar(); as e) {
+      <p class="mt-3 text-sm font-medium text-error" role="alert">{{ e }}</p>
+    }
+  </section>
+</div>

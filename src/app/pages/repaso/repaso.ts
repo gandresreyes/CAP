@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   inject,
+  input,
   linkedSignal,
   signal,
   untracked,
@@ -37,6 +38,11 @@ const LETRAS = ['A', 'B', 'C', 'D'];
  * Tras cada respuesta la sesión se guarda en el navegador (`SesionEnCurso`). Si se
  * interrumpe (botón "Cerrar", recargar, cerrar la app…), al volver se pregunta si
  * se quiere retomar donde se dejó o empezar una nueva.
+ *
+ * Modo práctica (`/repaso?tema=…`, desde la pestaña Temas): la misma pantalla,
+ * pero solo con preguntas de ese tema, sin límite diario y sin guardar para
+ * retomar (así no pisa la sesión diaria a medias). Lo respondido sí cuenta para
+ * el progreso.
  *
  * Todo el estado está en signals: cuando cambia uno, Angular vuelve a pintar
  * solo lo que depende de él. Con `OnPush` el componente no se repinta por
@@ -73,6 +79,37 @@ export class Repaso {
   protected readonly maxSesiones = MAX_SESIONES_DIA;
 
   // ---------------------------------------------------------------------------
+  // Modo práctica por tema
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Tema a practicar, o `undefined` en el repaso diario normal.
+   *
+   * Llega desde la URL `/repaso?tema=…`: gracias a `withComponentInputBinding`
+   * (en `app.config.ts`), el router pasa los parámetros de la URL a los `input()`
+   * del componente que tengan el mismo nombre, sin más código.
+   */
+  readonly tema = input<string>();
+
+  /** `true` si es una práctica de un tema (no cuenta para el límite diario ni se guarda). */
+  protected readonly practica = computed(() => !!this.tema());
+
+  /** Preguntas de las que se saca la sesión: las del tema en práctica, o todo el banco. */
+  private readonly bancoActivo = computed(() => {
+    const tema = this.tema();
+    const todas = this.banco.preguntas();
+    return tema ? todas.filter((p) => p.tema === tema) : todas;
+  });
+
+  /** Título de la cabecera según el modo y la fase. */
+  protected readonly titulo = computed(() =>
+    this.enFallos() ? 'Repaso de fallos' : this.practica() ? 'Práctica' : 'Repaso',
+  );
+
+  /** Adónde llevan "Cerrar" y "Volver": a Temas en la práctica, al inicio en el repaso diario. */
+  protected readonly volverA = computed(() => (this.practica() ? '/temas' : '/'));
+
+  // ---------------------------------------------------------------------------
   // Estado de la sesión
   // Un `signal` guarda un valor; se lee llamándolo (`indice()`) y se cambia con
   // `.set(valor)` o `.update(anterior => nuevo)`.
@@ -85,13 +122,16 @@ export class Repaso {
    * un `computed`) pero que además se puede sobrescribir con `.set()`, que es lo
    * que hace "Otra sesión".
    *
-   * Se recalcula cuando cambia `banco.preguntas()`, es decir, cuando termina de
-   * cargar el JSON. El progreso se lee dentro de `untracked`, que significa "leer
-   * sin vigilar": si no, cada respuesta (que cambia el progreso) crearía una
-   * sesión nueva a mitad de la actual.
+   * Se recalcula cuando cambia `bancoActivo()`, es decir, cuando termina de
+   * cargar el JSON o cuando llega el tema de la URL. El progreso se lee dentro de
+   * `untracked`, que significa "leer sin vigilar": si no, cada respuesta (que
+   * cambia el progreso) crearía una sesión nueva a mitad de la actual.
+   *
+   * En la práctica de un tema con menos de 25 preguntas, la sesión tiene todas
+   * las del tema (p. ej. 3 en "Imagen de marca").
    */
   private readonly sesion = linkedSignal(() => {
-    const banco = this.banco.preguntas();
+    const banco = this.bancoActivo();
     return untracked(() => crearSesion(banco, this.progreso.progreso(), Date.now()));
   });
 
@@ -158,7 +198,8 @@ export class Repaso {
    */
   protected readonly oferta = computed(() => {
     const g = this.guardadaAlEntrar;
-    if (this.decidido() || !g) return null;
+    // En la práctica no se ofrece: la sesión guardada es la del repaso diario.
+    if (this.decidido() || !g || this.practica()) return null;
 
     // Índice id → pregunta para buscar cada id al instante.
     const porId = new Map(this.banco.preguntas().map((p) => [p.id, p]));
@@ -290,8 +331,9 @@ export class Repaso {
     this.elegida.set(null);
     this.indice.update((i) => i + 1);
 
-    // Si con esto se acabó la cola, la sesión está completa: cuenta para el límite diario.
-    if (this.terminada()) this.sesiones.registrar();
+    // Si con esto se acabó la cola, la sesión está completa: cuenta para el límite
+    // diario (salvo en la práctica, que es ilimitada).
+    if (this.terminada() && !this.practica()) this.sesiones.registrar();
 
     // Guardar el avance (o borrar lo guardado si la sesión ha terminado).
     this.guardar();
@@ -341,6 +383,8 @@ export class Repaso {
    * guardado si ya ha terminado.
    */
   private guardar(): void {
+    // La práctica no se guarda: no debe pisar la sesión diaria que haya a medias.
+    if (this.practica()) return;
     if (this.terminada()) {
       this.enCurso.borrar();
       return;
@@ -356,15 +400,19 @@ export class Repaso {
     });
   }
 
-  /** Botón "Otra sesión": deja todo como al principio, con 25 preguntas nuevas. */
+  /**
+   * Botón "Otra sesión" (u "Otra ronda" en la práctica): deja todo como al
+   * principio, con preguntas nuevas.
+   */
   protected nuevaSesion(): void {
-    this.enCurso.borrar();
+    // En la práctica no se toca la sesión diaria guardada.
+    if (!this.practica()) this.enCurso.borrar();
     this.puntuadas.clear();
     this.aciertos.set(0);
     this.elegida.set(null);
     this.indice.set(0);
     this.fallos.set([]);
     // Se crea con el progreso actualizado, así tiene en cuenta lo respondido en la anterior.
-    this.sesion.set(crearSesion(this.banco.preguntas(), this.progreso.progreso(), Date.now()));
+    this.sesion.set(crearSesion(this.bancoActivo(), this.progreso.progreso(), Date.now()));
   }
 }

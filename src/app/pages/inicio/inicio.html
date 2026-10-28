@@ -1,21 +1,58 @@
-<div class="pagina">
-  <!-- Cabecera estilo iOS: fecha pequeña y título grande -->
-  <header class="pb-2">
-    <p class="text-sm font-semibold text-texto-2 first-letter:uppercase">{{ fecha }}</p>
-    <h1 class="titulo-grande">Hoy</h1>
+<div class="pagina pb-4">
+  <!-- Cabecera: fecha en monoespaciada pequeña y el lema animado.
+       Cada palabra lleva dentro una copia con degradado (`palabra-brillo`) que se
+       enciende por turnos (ver "Lema animado" en styles.css). Las copias van con
+       `aria-hidden` para que el lector de pantalla lea cada palabra una sola vez. -->
+  <header>
+    <p class="font-mono text-xs tracking-wide text-texto-2 uppercase">{{ fecha }}</p>
+    <h1 class="lema mt-2">
+      <span class="palabra palabra-1">Estudia.<span class="palabra-brillo" aria-hidden="true">Estudia.</span></span>
+      <span class="palabra palabra-2">Repasa.<span class="palabra-brillo" aria-hidden="true">Repasa.</span></span>
+      <span class="palabra palabra-3">Aprueba.<span class="palabra-brillo" aria-hidden="true">Aprueba.</span></span>
+    </h1>
+    <p class="mt-2 text-sm text-texto-2">Tu preparación del CAP de Mercancías, un día cada vez.</p>
   </header>
 
+  <!-- Solo en iPhone sin la app instalada: cómo añadirla a la pantalla de inicio -->
+  @if (instalacion.mostrarAvisoIOS()) {
+    <section class="tarjeta mt-5 flex gap-3">
+      <img src="icons/icon-96x96.png" alt="" class="size-10 shrink-0 rounded-lg" />
+      <div class="min-w-0 flex-1">
+        <p class="text-[15px] font-semibold">Instala la app en tu iPhone</p>
+        <p class="mt-1 text-sm leading-relaxed text-texto-2">
+          En Safari, toca
+          <!-- Icono de "Compartir" de iOS: cuadrado con flecha hacia arriba -->
+          <svg viewBox="0 0 24 24" class="inline size-4 fill-none stroke-texto align-[-2px]" stroke-width="2" aria-label="Compartir">
+            <path d="M12 3v12M8 7l4-4 4 4M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1" />
+          </svg>
+          y luego «Añadir a pantalla de inicio». Funcionará sin conexión.
+        </p>
+      </div>
+      <!-- Cerrar el aviso (icono ×) -->
+      <button
+        type="button"
+        class="-mt-2 -mr-2 grid size-11 shrink-0 place-items-center text-texto-2 active:opacity-60"
+        aria-label="Cerrar aviso"
+        (click)="instalacion.cerrar()"
+      >
+        <svg viewBox="0 0 24 24" class="size-4 fill-none stroke-current" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </section>
+  }
+
   <!-- Repaso diario: sesiones de hoy (x/3) y botón para empezar -->
-  <section class="tarjeta mt-3">
+  <section class="tarjeta mt-5">
     <div class="flex items-center justify-between">
-      <h2 class="text-lg font-semibold">Repaso diario</h2>
-      <span class="text-sm text-texto-2">{{ sesiones.hechasHoy() }}/{{ maxSesiones }} sesiones</span>
+      <h2 class="text-[15px] font-semibold tracking-tight">Repaso diario</h2>
+      <span class="font-mono text-xs text-texto-2">{{ sesiones.hechasHoy() }}/{{ maxSesiones }} sesiones</span>
     </div>
-    <!-- Un punto por sesión: azul = hecha, gris = pendiente -->
-    <div class="mt-3 flex gap-2" aria-hidden="true">
+    <!-- Un segmento por sesión: relleno = hecha, gris = pendiente -->
+    <div class="mt-3 flex gap-1" aria-hidden="true">
       @for (i of puntos; track i) {
         <span
-          class="h-2 flex-1 rounded-full"
+          class="h-1 flex-1 rounded-full"
           [class.bg-acento]="i < sesiones.hechasHoy()"
           [class.bg-separador]="i >= sesiones.hechasHoy()"
         ></span>
@@ -26,14 +63,14 @@
          1. Hay una sesión a medias → "Continuar sesión" (aunque se haya llegado al
             límite: una sesión ya empezada siempre se puede terminar).
          2. Quedan sesiones hoy → texto + "Empezar sesión" / "Otra sesión".
-         3. Ya se hicieron las 3 → "¡Hecho por hoy!". -->
+         3. Ya se hicieron las 3 → "Hecho por hoy". -->
     @if (aMedias(); as m) {
-      <p class="mt-3 text-texto-2">
+      <p class="mt-3 text-sm text-texto-2">
         Tienes una sesión a medias: ibas por la pregunta {{ m.pregunta }} de {{ m.total }}.
       </p>
       <a routerLink="/repaso" class="boton mt-4">Continuar sesión</a>
     } @else if (sesiones.quedan() > 0) {
-      <p class="mt-3 text-texto-2">
+      <p class="mt-3 text-sm text-texto-2">
         @if (pendientes() > 0) {
           Tienes {{ pendientes() }} preguntas para repasar hoy.
         } @else {
@@ -44,70 +81,82 @@
         {{ sesiones.hechasHoy() === 0 ? 'Empezar sesión' : 'Otra sesión' }}
       </a>
     } @else {
-      <p class="mt-3 font-semibold text-correcto">¡Hecho por hoy! Vuelve mañana.</p>
-    }
-  </section>
-
-  <!-- Tres datos rápidos: racha, preguntas vistas y dominadas -->
-  <section class="mt-3 grid grid-cols-3 gap-3" aria-label="Resumen">
-    <div class="tarjeta text-center">
-      <p class="text-2xl font-bold">{{ sesiones.racha() }}</p>
-      <p class="mt-0.5 text-xs text-texto-2">{{ sesiones.racha() === 1 ? 'día' : 'días' }} de racha</p>
-    </div>
-    <div class="tarjeta text-center">
-      <p class="text-2xl font-bold">{{ vistas() }}</p>
-      <p class="mt-0.5 text-xs text-texto-2">de {{ total() }} vistas</p>
-    </div>
-    <div class="tarjeta text-center">
-      <p class="text-2xl font-bold">{{ dominadas() }}</p>
-      <p class="mt-0.5 text-xs text-texto-2">dominadas</p>
-    </div>
-  </section>
-
-  <!-- Simulacro: de momento sin enlace, hasta que exista la pantalla -->
-  <section class="tarjeta mt-3 flex items-center justify-between gap-3">
-    <div>
-      <h2 class="text-lg font-semibold">Simulacro de examen</h2>
-      <p class="mt-0.5 text-sm text-texto-2">100 preguntas · 120 minutos</p>
-    </div>
-    <span class="etiqueta">Próximamente</span>
-  </section>
-
-  <!-- Los 3 temas con peor acierto; barra roja (<50 %), azul (<75 %) o verde -->
-  <section class="tarjeta mt-3">
-    <div class="flex items-center justify-between">
-      <h2 class="text-lg font-semibold">Temas más flojos</h2>
-      <a routerLink="/temas" class="enlace text-sm">Ver todos</a>
-    </div>
-    @if (flojos().length) {
-      <ul class="mt-2 space-y-3">
-        @for (t of flojos(); track t.tema) {
-          <li>
-            <div class="flex items-baseline justify-between gap-3 text-sm">
-              <span>{{ t.tema }}</span>
-              <span class="shrink-0 font-semibold">{{ t.porcentaje }} %</span>
-            </div>
-            <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-separador">
-              <div
-                class="h-full rounded-full"
-                [class.bg-error]="t.nivel === 'bajo'"
-                [class.bg-acento]="t.nivel === 'medio'"
-                [class.bg-correcto]="t.nivel === 'alto'"
-                [style.width.%]="t.porcentaje"
-              ></div>
-            </div>
-          </li>
-        }
-      </ul>
-    } @else {
-      <p class="mt-1 text-sm text-texto-2">
-        Cuando respondas preguntas verás aquí los temas que más te cuestan.
+      <p class="mt-3 flex items-center gap-2 text-sm font-medium text-correcto">
+        <svg viewBox="0 0 24 24" class="size-4 fill-none stroke-current" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m5 12 5 5 9-10" />
+        </svg>
+        Hecho por hoy. Vuelve mañana.
       </p>
     }
   </section>
 
+  <!-- Tres datos rápidos (etiqueta arriba, valor abajo): racha, vistas y dominadas -->
+  <section class="mt-3 grid grid-cols-3 gap-3" aria-label="Resumen">
+    <div class="dato">
+      <p class="dato-etiqueta">Racha</p>
+      <p class="dato-valor">
+        {{ sesiones.racha() }}<span class="ml-1 text-sm font-normal text-texto-2">{{ sesiones.racha() === 1 ? 'día' : 'días' }}</span>
+      </p>
+    </div>
+    <div class="dato">
+      <p class="dato-etiqueta">Vistas</p>
+      <p class="dato-valor">
+        {{ vistas() }}<span class="text-sm font-normal text-texto-2">/{{ total() }}</span>
+      </p>
+    </div>
+    <div class="dato">
+      <p class="dato-etiqueta">Dominadas</p>
+      <p class="dato-valor">{{ dominadas() }}</p>
+    </div>
+  </section>
+
+  <!-- Simulacro: toda la tarjeta es un enlace; el texto cambia si hay uno a medias o ya se hizo alguno -->
+  <a routerLink="/simulacro" class="tarjeta mt-3 flex items-center justify-between gap-3 transition-colors active:bg-fondo">
+    <span>
+      <span class="block text-[15px] font-semibold tracking-tight">Simulacro de examen</span>
+      <span class="mt-0.5 block text-sm text-texto-2">{{ textoSimulacro() }}</span>
+    </span>
+    <svg viewBox="0 0 24 24" class="chevron" aria-hidden="true">
+      <path d="m9 6 6 6-6 6" />
+    </svg>
+  </a>
+
+  <!-- Los 3 temas con peor acierto; barra roja (<50 %), azul (<75 %) o verde -->
+  <div class="titulo-seccion -my-1 flex items-center justify-between">
+    <h2>Temas más flojos</h2>
+    <a routerLink="/temas" class="enlace text-sm">Ver todos</a>
+  </div>
+  @if (flojos().length) {
+    <ul class="grupo">
+      @for (t of flojos(); track t.tema) {
+        <li>
+          <!-- Cada tema abre directamente su práctica (/repaso?tema=…) -->
+          <a routerLink="/repaso" [queryParams]="{ tema: t.tema }" class="block px-4 py-3 transition-colors active:bg-fondo">
+            <span class="flex items-baseline justify-between gap-3 text-sm">
+              <span class="truncate">{{ t.tema }}</span>
+              <span class="shrink-0 font-mono text-xs text-texto-2">{{ t.porcentaje }}%</span>
+            </span>
+            <span class="mt-2 block h-1 overflow-hidden rounded-full bg-separador">
+              <span
+                class="block h-full rounded-full"
+                [class.bg-error]="t.nivel === 'bajo'"
+                [class.bg-acento]="t.nivel === 'medio'"
+                [class.bg-correcto]="t.nivel === 'alto'"
+                [style.width.%]="t.porcentaje"
+              ></span>
+            </span>
+          </a>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="tarjeta text-sm text-texto-2">
+      Cuando respondas preguntas verás aquí los temas que más te cuestan.
+    </p>
+  }
+
   <!-- Avisos obligatorios: privacidad y que no es una app oficial -->
-  <footer class="mt-6 pb-4 text-center text-xs leading-relaxed text-texto-2">
+  <footer class="mt-8 border-t border-separador pt-4 text-center text-xs leading-relaxed text-texto-2">
     Tu progreso se guarda solo en este dispositivo.<br />
     Proyecto de estudio sin relación con la DGT ni con ninguna administración.
   </footer>

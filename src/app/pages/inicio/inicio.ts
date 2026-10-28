@@ -2,9 +2,12 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { RouterLink } from '@angular/router';
 import { BancoPreguntas } from '../../shared/services/banco-preguntas';
 import { ProgresoStore } from '../../shared/services/progreso-store';
+import { Instalacion } from '../../shared/services/instalacion';
 import { SesionEnCurso } from '../../shared/services/sesion-en-curso';
+import { Simulacros } from '../../shared/services/simulacros';
+import { formatearNota } from '../../shared/utils/simulacro';
 import { MAX_SESIONES_DIA, SesionesDiarias } from '../../shared/services/sesiones-diarias';
-import { aciertoPorTema } from '../../shared/utils/estadisticas';
+import { aciertoPorTema, nivelAcierto } from '../../shared/utils/estadisticas';
 
 /**
  * Formateador de la fecha de la cabecera, en español: "martes, 28 de octubre".
@@ -44,6 +47,10 @@ export class Inicio {
   protected readonly sesiones = inject(SesionesDiarias);
   /** Sesión de repaso a medias, si la hay (para mostrar "Continuar sesión"). */
   private readonly enCurso = inject(SesionEnCurso);
+  /** Simulacros: el que haya a medias y el historial de resultados. */
+  private readonly simulacros = inject(Simulacros);
+  /** Aviso "Instala la app" para iPhone (público para la plantilla). */
+  protected readonly instalacion = inject(Instalacion);
 
   // ---------------------------------------------------------------------------
   // Datos fijos para la plantilla
@@ -79,6 +86,21 @@ export class Inicio {
     return g ? { pregunta: Math.min(g.indice + 1, g.sesion.length), total: g.sesion.length } : null;
   });
 
+  /**
+   * Texto de la tarjeta del simulacro, según el caso:
+   * - hay uno a medias → avisar (el tiempo sigue corriendo);
+   * - se ha hecho alguno → el último resultado ("Último: 62,5 puntos · Apto");
+   * - nunca → las reglas básicas.
+   */
+  protected readonly textoSimulacro = computed(() => {
+    if (this.simulacros.enCurso()) return 'Tienes uno a medias: el tiempo sigue corriendo.';
+    const ultimo = this.simulacros.historial().at(-1);
+    if (ultimo) {
+      return `Último: ${formatearNota(ultimo.nota)} puntos · ${ultimo.aprobado ? 'Apto' : 'No apto'}`;
+    }
+    return '100 preguntas · 2 horas · los fallos restan 0,5';
+  });
+
   /** Preguntas que hay en el banco (202 ahora mismo). */
   protected readonly total = computed(() => this.banco.preguntas().length);
 
@@ -97,14 +119,13 @@ export class Inicio {
   });
 
   /**
-   * Los 3 temas con peor porcentaje de acierto, con un `nivel` para el color de la barra:
-   * - `bajo` (menos del 50 %) → rojo
-   * - `medio` (50–74 %) → azul
-   * - `alto` (75 % o más) → verde
+   * Los 3 temas con peor porcentaje de acierto, con un `nivel` para el color de la
+   * barra (rojo por debajo del 50 %, azul hasta el 75 %, verde por encima; los
+   * umbrales están en `nivelAcierto`, compartidos con la pantalla Temas).
    */
   protected readonly flojos = computed(() =>
     aciertoPorTema(this.banco.preguntas(), this.progreso.progreso())
       .slice(0, 3)
-      .map((t) => ({ ...t, nivel: t.porcentaje < 50 ? 'bajo' : t.porcentaje < 75 ? 'medio' : 'alto' })),
+      .map((t) => ({ ...t, nivel: nivelAcierto(t.porcentaje) })),
   );
 }

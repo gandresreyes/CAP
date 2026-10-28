@@ -2,46 +2,122 @@ import { Pregunta } from '../models/pregunta';
 import { Progreso } from '../models/progreso';
 import { inicioDelDia } from './leitner';
 
-/** Resultado de un tema: cuántas veces se han respondido sus preguntas y qué % se acertó. */
-export interface AciertoTema {
-  tema: string;
-  respondidas: number; // aciertos + fallos (una pregunta respondida 3 veces cuenta 3)
-  porcentaje: number; // 0 a 100, redondeado
-}
+/** Cómo de bien va un tema, para elegir el color: rojo, azul o verde. */
+export type NivelAcierto = 'bajo' | 'medio' | 'alto';
 
 /**
- * Calcula el porcentaje de acierto de cada tema y los ordena de peor a mejor.
+ * Traduce un porcentaje de acierto a un nivel:
+ * - `bajo`: menos del 50 % (aún se falla más de lo que se acierta) → rojo
+ * - `medio`: del 50 al 74 % → azul
+ * - `alto`: 75 % o más → verde
  *
- * Solo aparecen los temas en los que se ha respondido alguna pregunta: un tema
- * sin respuestas no es "flojo", simplemente no se ha practicado.
- *
- * Se usa en Inicio ("Temas más flojos") y servirá para Progreso y Temas.
+ * Está aquí para que Inicio y Temas usen exactamente los mismos umbrales.
  */
-export function aciertoPorTema(banco: readonly Pregunta[], prog: Progreso): AciertoTema[] {
-  // 1. Sumar los aciertos y fallos de todas las preguntas de cada tema.
-  //    Se recorre el banco (no el progreso) para saber el tema de cada pregunta
-  //    e ignorar progreso de preguntas que ya no existan en el banco.
-  const temas = new Map<string, { aciertos: number; fallos: number }>();
-  for (const p of banco) {
-    const e = prog[p.id];
-    if (!e) continue; // nunca respondida: no suma nada
+export function nivelAcierto(porcentaje: number): NivelAcierto {
+  return porcentaje < 50 ? 'bajo' : porcentaje < 75 ? 'medio' : 'alto';
+}
 
-    const t = temas.get(p.tema) ?? { aciertos: 0, fallos: 0 };
-    t.aciertos += e.aciertos;
-    t.fallos += e.fallos;
+/** Resumen de un tema: cuántas preguntas tiene, cuántas se han visto y qué % se acierta. */
+export interface ResumenTema {
+  tema: string;
+  /** Preguntas del tema en el banco. */
+  preguntas: number;
+  /** Preguntas del tema respondidas al menos una vez. */
+  vistas: number;
+  /** Total de respuestas del tema (aciertos + fallos; una pregunta respondida 3 veces cuenta 3). */
+  respondidas: number;
+  /** % de acierto (0–100, redondeado), o `null` si aún no se ha respondido nada del tema. */
+  porcentaje: number | null;
+}
+
+/** Un `ResumenTema` que ya tiene porcentaje (se ha respondido algo). */
+export type ResumenConAcierto = ResumenTema & { porcentaje: number };
+
+/**
+ * Calcula el resumen de cada tema que tenga preguntas en el banco.
+ *
+ * No se guarda en ningún sitio: se calcula al momento a partir del progreso
+ * (aciertos y fallos de cada pregunta), así que siempre está al día.
+ *
+ * Los temas salen en el orden en que aparecen en el banco; para mostrarlos en el
+ * orden del temario, cruzarlos con `MODULOS`.
+ */
+export function resumenPorTema(banco: readonly Pregunta[], prog: Progreso): ResumenTema[] {
+  // 1. Acumular por tema: cuántas preguntas hay, cuántas se vieron y sus aciertos/fallos.
+  const temas = new Map<string, { preguntas: number; vistas: number; aciertos: number; fallos: number }>();
+  for (const p of banco) {
+    const t = temas.get(p.tema) ?? { preguntas: 0, vistas: 0, aciertos: 0, fallos: 0 };
+    t.preguntas++;
+    const e = prog[p.id];
+    if (e) {
+      // Respondida alguna vez: cuenta como vista y suma su historial.
+      t.vistas++;
+      t.aciertos += e.aciertos;
+      t.fallos += e.fallos;
+    }
     temas.set(p.tema, t);
   }
 
-  // 2. Convertir cada tema en un `AciertoTema` con su porcentaje
-  //    y ordenar de menor a mayor porcentaje (el peor primero).
-  return [...temas]
-    .map(([tema, { aciertos, fallos }]) => ({
+  // 2. Convertir los totales en el resumen final con su porcentaje.
+  return [...temas].map(([tema, t]) => {
+    const respondidas = t.aciertos + t.fallos;
+    return {
       tema,
-      respondidas: aciertos + fallos,
-      porcentaje: Math.round((aciertos / (aciertos + fallos)) * 100),
-    }))
-    .filter((t) => t.respondidas > 0) // evita dividir entre 0
-    .sort((a, b) => a.porcentaje - b.porcentaje);
+      preguntas: t.preguntas,
+      vistas: t.vistas,
+      respondidas,
+      // Sin respuestas no hay porcentaje (dividir entre 0); `null` = "sin datos".
+      porcentaje: respondidas ? Math.round((t.aciertos / respondidas) * 100) : null,
+    };
+  });
+}
+
+/**
+ * Los temas con alguna respuesta, ordenados de peor a mejor acierto.
+ *
+ * Un tema sin respuestas no aparece: no es "flojo", simplemente no se ha practicado.
+ * Se usa en Inicio ("Temas más flojos").
+ */
+export function aciertoPorTema(banco: readonly Pregunta[], prog: Progreso): ResumenConAcierto[] {
+  return (
+    resumenPorTema(banco, prog)
+      // El filtro con `t is …` le dice a TypeScript que, tras filtrar, `porcentaje` ya no es null.
+      .filter((t): t is ResumenConAcierto => t.porcentaje !== null)
+      .sort((a, b) => a.porcentaje - b.porcentaje)
+  );
+}
+
+/**
+ * Cuántas preguntas del banco hay sin ver y en cada caja Leitner.
+ *
+ * Devuelve 6 números: `[sinVer, caja1, caja2, caja3, caja4, caja5]`. Así el índice
+ * coincide con el número de caja y el 0 queda para las que nunca se han respondido.
+ *
+ * @example distribucionCajas(banco, prog) // → [150, 20, 15, 10, 5, 2]
+ */
+export function distribucionCajas(banco: readonly Pregunta[], prog: Progreso): number[] {
+  const cuenta = [0, 0, 0, 0, 0, 0];
+  // Sin progreso → posición 0 ("sin ver"); con progreso → la de su caja (1–5).
+  for (const p of banco) cuenta[prog[p.id]?.caja ?? 0]++;
+  return cuenta;
+}
+
+/**
+ * Porcentaje de acierto de todas las respuestas dadas (de todas las preguntas del
+ * banco), o `null` si aún no se ha respondido nada.
+ */
+export function aciertoGlobal(banco: readonly Pregunta[], prog: Progreso): number | null {
+  let aciertos = 0;
+  let fallos = 0;
+  for (const p of banco) {
+    const e = prog[p.id];
+    if (e) {
+      aciertos += e.aciertos;
+      fallos += e.fallos;
+    }
+  }
+  const total = aciertos + fallos;
+  return total ? Math.round((aciertos / total) * 100) : null;
 }
 
 /**

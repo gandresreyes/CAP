@@ -1,12 +1,12 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, isDevMode, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideServiceWorker } from '@angular/service-worker';
 import { routes } from './app.routes';
 
 /**
  * Configuración global de la app. `main.ts` la pasa al arrancar.
  *
- * Los "providers" activan funcionalidades de Angular para toda la app. Aquí se
- * añadirán más cuando hagan falta (p. ej. el service worker de la PWA).
+ * Los "providers" activan funcionalidades de Angular para toda la app.
  */
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,8 +16,21 @@ export const appConfig: ApplicationConfig = {
 
     // Activa el router con las rutas de `app.routes.ts`.
     // `withComponentInputBinding` hace que los parámetros de la URL lleguen a la
-    // pantalla como `input()`: p. ej. en `/temas/:tema`, el componente podrá
-    // declarar `tema = input<string>()` y recibirlo sin más código.
+    // pantalla como `input()`: p. ej. en `/repaso?tema=…`, el componente declara
+    // `tema = input<string>()` y lo recibe sin más código.
     provideRouter(routes, withComponentInputBinding()),
+
+    // Service worker de la PWA (`ngsw-worker.js`, lo genera `ng build`): guarda una
+    // copia de la app y de las preguntas en el móvil para que funcione sin conexión,
+    // y descarga las versiones nuevas en segundo plano. Qué se guarda y cómo está en
+    // `ngsw-config.json`.
+    // - `enabled: !isDevMode()`: solo en la build de producción; con `ng serve` está
+    //   desactivado (si no, se quedaría con versiones viejas mientras programas).
+    // - `registerWhenStable:30000`: se instala cuando la app termina de arrancar (o a
+    //   los 30 s como mucho), para no competir con la carga inicial.
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
 };

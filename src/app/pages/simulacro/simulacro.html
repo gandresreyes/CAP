@@ -1,0 +1,290 @@
+@if (banco.cargando()) {
+  <p class="pantalla-centrada text-texto-2">Cargando preguntas…</p>
+} @else {
+  @switch (fase()) {
+    <!-- =====================================================================
+         1. INTRO: reglas del examen y botón para empezar (o continuar)
+         ===================================================================== -->
+    @case ('intro') {
+      <div class="pagina pb-8">
+        <a routerLink="/" class="enlace -ml-1 px-1">Inicio</a>
+        <h1 class="titulo-grande mt-1">Simulacro</h1>
+        <p class="mt-1 text-texto-2">Como el examen oficial del CAP de Mercancías.</p>
+
+        <!-- Reglas -->
+        <ul class="grupo mt-5">
+          <li class="fila">
+            <span class="flex-1">Preguntas</span>
+            <span class="font-semibold">{{ reglas.preguntas }}</span>
+          </li>
+          <li class="fila">
+            <span class="flex-1">Tiempo</span>
+            <span class="font-semibold">{{ reglas.horas }} horas</span>
+          </li>
+          <li class="fila">
+            <span class="flex-1">Respuesta correcta</span>
+            <span class="font-semibold text-correcto">+1</span>
+          </li>
+          <li class="fila">
+            <span class="flex-1">Respuesta incorrecta</span>
+            <span class="font-semibold text-error">−{{ reglas.penalizacion }}</span>
+          </li>
+          <li class="fila">
+            <span class="flex-1">En blanco</span>
+            <span class="font-semibold">0</span>
+          </li>
+          <li class="fila">
+            <span class="flex-1">Para aprobar</span>
+            <span class="font-semibold">{{ reglas.aprobado }} puntos</span>
+          </li>
+        </ul>
+        <p class="mt-3 px-1 text-sm leading-relaxed text-texto-2">
+          Puedes dejar preguntas en blanco y cambiar tus respuestas hasta entregar. Si no estás
+          seguro, a veces es mejor no contestar: un fallo resta.
+        </p>
+
+        <!-- Si hay uno a medias: continuar o abandonar. Si no: empezar. -->
+        @if (preguntas() && guardado(); as s) {
+          <section class="tarjeta mt-6">
+            <p class="font-semibold">Tienes un simulacro a medias</p>
+            <p class="mt-1 text-sm text-texto-2">
+              Llevas {{ respondidas() }} de {{ total() }} respondidas · quedan
+              {{ formatearTiempo(restante()) }}. El tiempo sigue corriendo.
+            </p>
+            <button type="button" class="boton mt-4" (click)="continuar()">Continuar</button>
+            <button type="button" class="enlace mt-2 w-full justify-center text-error" (click)="abandonar()">
+              Abandonar
+            </button>
+          </section>
+        } @else {
+          <button type="button" class="boton mt-6" (click)="empezar()">Empezar simulacro</button>
+        }
+      </div>
+    }
+
+    <!-- =====================================================================
+         2. EXAMEN: una pregunta por pantalla, reloj y navegación
+         ===================================================================== -->
+    @case ('examen') {
+      @if (actual(); as p) {
+        <section class="flex min-h-dvh flex-col">
+          <!-- Cabecera: salir (el reloj sigue), cuenta atrás y número de pregunta -->
+          <header class="cabecera-fija">
+            <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-sm text-texto-2">
+              <a routerLink="/" class="enlace -ml-1 px-1">Salir</a>
+              <span
+                class="text-center font-mono text-base font-medium tabular-nums"
+                [class.text-texto]="!pocoTiempo()"
+                [class.text-error]="pocoTiempo()"
+                aria-label="Tiempo restante"
+              >
+                {{ formatearTiempo(restante()) }}
+              </span>
+              <span class="text-right">{{ indice() + 1 }} / {{ total() }}</span>
+            </div>
+            <!-- Barra: proporción de preguntas respondidas -->
+            <div class="mt-2 h-1 overflow-hidden rounded-full bg-separador">
+              <div
+                class="h-full rounded-full bg-acento transition-[width]"
+                [style.width.%]="(respondidas() / total()) * 100"
+              ></div>
+            </div>
+          </header>
+
+          <div class="flex-1 px-4 pt-2 pb-6">
+            <p class="font-mono text-xs tracking-wide text-texto-2 uppercase">{{ p.tema }}</p>
+            <h1 class="mt-1 text-lg leading-snug font-semibold tracking-tight">{{ p.enunciado }}</h1>
+
+            <!-- Opciones en el orden original. La marcada se resalta en azul; sin corrección. -->
+            <ul class="mt-5 space-y-3">
+              @for (o of p.opciones; track $index) {
+                <li>
+                  <button
+                    type="button"
+                    class="opcion"
+                    [class.opcion-marcada]="marcada() === $index"
+                    [attr.aria-pressed]="marcada() === $index"
+                    (click)="marcar($index)"
+                  >
+                    <span class="opcion-letra" aria-hidden="true">{{ letras[$index] }}</span>
+                    <span>{{ o }}</span>
+                  </button>
+                </li>
+              }
+            </ul>
+            <p class="mt-3 text-center text-xs text-texto-2">
+              Toca otra vez tu respuesta para dejarla en blanco.
+            </p>
+          </div>
+
+          <!-- Pie: anterior · índice · siguiente (o entregar en la última) -->
+          <footer class="pie-fijo">
+            <div class="flex gap-2">
+              <button
+                type="button"
+                class="boton-secundario flex-1"
+                [disabled]="indice() === 0"
+                (click)="irA(indice() - 1)"
+              >
+                Anterior
+              </button>
+              <button
+                type="button"
+                class="boton-secundario w-14 shrink-0"
+                aria-label="Índice de preguntas"
+                (click)="verIndice.set(true)"
+              >
+                <svg viewBox="0 0 24 24" class="size-5 fill-current" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                  <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                  <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                  <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                </svg>
+              </button>
+              @if (esUltima()) {
+                <button type="button" class="boton flex-1" (click)="pedirEntrega()">Entregar</button>
+              } @else {
+                <button type="button" class="boton flex-1" (click)="irA(indice() + 1)">Siguiente</button>
+              }
+            </div>
+          </footer>
+        </section>
+
+        <!-- Índice: panel a pantalla completa con las 100 preguntas para saltar a cualquiera -->
+        @if (verIndice()) {
+          <div class="panel" role="dialog" aria-modal="true" aria-label="Índice de preguntas">
+            <div class="cabecera-fija flex items-center justify-between">
+              <span class="text-lg font-semibold tracking-tight">Índice</span>
+              <button type="button" class="enlace" (click)="verIndice.set(false)">Cerrar</button>
+            </div>
+            <div class="px-4 pb-8">
+              <p class="text-sm text-texto-2">
+                {{ respondidas() }} respondidas · {{ total() - respondidas() }} en blanco ·
+                quedan {{ formatearTiempo(restante()) }}
+              </p>
+              <!-- Casillas: azul = respondida; borde = la que se está viendo -->
+              <div class="mt-4 grid grid-cols-6 gap-2">
+                @for (r of guardado()?.respuestas; track $index) {
+                  <button
+                    type="button"
+                    class="casilla"
+                    [class.casilla-respondida]="r !== null"
+                    [class.casilla-actual]="$index === indice()"
+                    (click)="irA($index)"
+                  >
+                    {{ $index + 1 }}
+                  </button>
+                }
+              </div>
+              <button type="button" class="boton mt-6" (click)="pedirEntrega()">Entregar examen</button>
+            </div>
+          </div>
+        }
+      }
+    }
+
+    <!-- =====================================================================
+         3. RESULTADO: nota, desglose por tema y revisión de falladas
+         ===================================================================== -->
+    @case ('resultado') {
+      @if (resultado(); as r) {
+        <div class="pagina pb-8">
+          <!-- Nota y APTO / NO APTO -->
+          <section class="pt-6 text-center">
+            @if (r.porTiempo) {
+              <p class="mb-3 text-sm text-texto-2">Se acabó el tiempo. Se ha entregado lo que respondiste.</p>
+            }
+            <!-- Insignia de estado: fondo suave y texto del color -->
+            <span class="insignia" [class.insignia-exito]="r.aprobado" [class.insignia-error]="!r.aprobado">
+              {{ r.aprobado ? 'APTO' : 'NO APTO' }}
+            </span>
+            <p class="mt-4 text-7xl font-semibold tracking-tighter tabular-nums">{{ formatearNota(r.nota) }}</p>
+            <p class="mt-2 text-sm text-texto-2">
+              puntos de {{ r.preguntas.length }} · se aprueba con {{ reglas.aprobado }}
+            </p>
+          </section>
+
+          <!-- Desglose (etiqueta arriba, valor abajo): aciertos, fallos y en blanco -->
+          <section class="mt-8 grid grid-cols-3 gap-3">
+            <div class="dato">
+              <p class="dato-etiqueta">Aciertos</p>
+              <p class="dato-valor text-correcto">{{ r.aciertos }}</p>
+            </div>
+            <div class="dato">
+              <p class="dato-etiqueta">Fallos</p>
+              <p class="dato-valor text-error">
+                {{ r.fallos }}<span class="ml-1 font-mono text-xs font-normal text-texto-2">−{{ formatearNota(r.fallos * penalizacion) }}</span>
+              </p>
+            </div>
+            <div class="dato">
+              <p class="dato-etiqueta">En blanco</p>
+              <p class="dato-valor">{{ r.blancos }}</p>
+            </div>
+          </section>
+          <p class="mt-3 text-center font-mono text-xs text-texto-2">tiempo {{ formatearTiempo(r.duracion) }}</p>
+
+          <!-- Acierto por tema, del peor al mejor -->
+          <h2 class="titulo-seccion">Por temas</h2>
+          <ul class="grupo">
+            @for (t of r.porTema; track t.tema) {
+              <li class="px-4 py-3">
+                <span class="flex items-baseline justify-between gap-3 text-sm">
+                  <span>{{ t.tema }}</span>
+                  <span class="shrink-0 font-mono text-xs text-texto-2">{{ t.aciertos }}/{{ t.preguntas }}</span>
+                </span>
+                <span class="mt-2 block h-1 overflow-hidden rounded-full bg-separador">
+                  <span
+                    class="block h-full rounded-full"
+                    [class.bg-error]="t.nivel === 'bajo'"
+                    [class.bg-acento]="t.nivel === 'medio'"
+                    [class.bg-correcto]="t.nivel === 'alto'"
+                    [style.width.%]="t.porcentaje"
+                  ></span>
+                </span>
+              </li>
+            }
+          </ul>
+
+          <!-- Acciones: practicar el tema más flojo y revisar las falladas -->
+          <div class="mt-6 space-y-3">
+            @if (r.porTema[0]; as peor) {
+              @if (peor.porcentaje < 100) {
+                <a routerLink="/repaso" [queryParams]="{ tema: peor.tema }" class="boton">
+                  Practicar {{ peor.tema }}
+                </a>
+              }
+            }
+            @if (falladas().length) {
+              <button type="button" class="boton-secundario w-full" (click)="verFalladas.update((v) => !v)">
+                {{ verFalladas() ? 'Ocultar' : 'Ver' }} falladas y en blanco ({{ falladas().length }})
+              </button>
+            }
+          </div>
+
+          <!-- Revisión: cada pregunta fallada o en blanco con tu respuesta y la correcta -->
+          @if (verFalladas()) {
+            <ul class="mt-4 space-y-3">
+              @for (f of falladas(); track f.pregunta.id) {
+                <li class="tarjeta">
+                  <p class="font-mono text-xs tracking-wide text-texto-2 uppercase">{{ f.pregunta.tema }}</p>
+                  <p class="mt-1 leading-snug font-semibold">{{ f.pregunta.enunciado }}</p>
+                  @if (f.tuya !== null) {
+                    <p class="mt-3 text-sm"><span class="font-semibold text-error">Tu respuesta:</span> {{ f.tuya }}</p>
+                  } @else {
+                    <p class="mt-3 text-sm text-texto-2">La dejaste en blanco.</p>
+                  }
+                  <p class="mt-1 text-sm"><span class="font-semibold text-correcto">Correcta:</span> {{ f.correcta }}</p>
+                  @if (f.pregunta.explicacion) {
+                    <p class="mt-2 text-sm leading-relaxed text-texto-2">{{ f.pregunta.explicacion }}</p>
+                  }
+                </li>
+              }
+            </ul>
+          }
+
+          <a routerLink="/" class="enlace mt-6 w-full justify-center">Volver al inicio</a>
+        </div>
+      }
+    }
+  }
+}

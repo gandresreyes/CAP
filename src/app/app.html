@@ -2,3 +2,14 @@
 <main class="mx-auto min-h-dvh max-w-md">
   <router-outlet />
 </main>
+
+<!-- Aviso de versión nueva (PWA): flota arriba, encima de cualquier pantalla.
+     `role="status"` hace que el lector de pantalla lo anuncie al aparecer. -->
+@if (actualizaciones.hayNueva()) {
+  <div class="aviso-superior" role="status">
+    <div class="tarjeta flex items-center gap-3 shadow-lg">
+      <p class="flex-1 text-sm font-medium">Hay una versión nueva de la app.</p>
+      <button type="button" class="enlace text-sm" (click)="actualizaciones.actualizar()">Actualizar</button>
+    </div>
+  </div>
+}

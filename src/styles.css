@@ -1,29 +1,68 @@
-/* Estilos globales de toda la app (los componentes no tienen CSS propio). */
+/*
+ * Estilos globales de toda la app (los componentes no tienen CSS propio).
+ *
+ * Línea de diseño: estilo Vercel / GitHub (sistema "Geist").
+ * - Casi monocromo: fondo gris muy claro, tarjetas blancas con borde fino de 1 px,
+ *   sin sombras marcadas. En oscuro, negro puro y bordes grises.
+ * - El botón principal es del color del texto (negro en claro, blanco en oscuro).
+ * - El azul se reserva para enlaces, selección y progreso; verde y rojo, solo
+ *   para acierto/fallo y apto/no apto.
+ * - Tipografía Geist; Geist Mono para números, contadores y códigos.
+ */
 @import 'tailwindcss';
 
-/* Tokens de color: se usan como bg-fondo, text-acento, border-correcto… */
+/* Fuentes Geist (variables: un solo archivo con todos los grosores). Vienen de
+   node_modules y se incluyen en la build, así que funcionan sin conexión. */
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+
+/* Tokens de tema: colores (bg-fondo, text-acento, border-separador…) y fuentes
+   (font-sans, font-mono). Tailwind genera las clases a partir de aquí. */
 @theme {
-  --color-fondo: #f2f2f7; /* gris claro de fondo, como iOS */
-  --color-superficie: #ffffff; /* tarjetas y botones de opción */
-  --color-texto: #1c1c1e;
-  --color-texto-2: #6c6c70; /* texto secundario */
-  --color-separador: #d1d1d6; /* líneas y barras vacías */
-  --color-acento: #0057c2; /* azul de botones y enlaces */
-  --color-correcto: #1b7a33;
-  --color-error: #b8261b;
+  --font-sans: 'Geist Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-fondo: #fafafa; /* fondo de la página */
+  --color-superficie: #ffffff; /* tarjetas, listas, opciones */
+  --color-texto: #171717; /* texto principal (y fondo del botón principal) */
+  --color-texto-2: #666666; /* texto secundario */
+  --color-separador: #eaeaea; /* bordes de 1 px, divisores y fondo de barras vacías */
+  --color-acento: #0070f3; /* azul: enlaces, selección, progreso */
+  --color-correcto: #1a7f37; /* verde GitHub */
+  --color-error: #cf222e; /* rojo GitHub */
 }
 
 /* Modo oscuro: solo se redefinen los tokens; las clases no cambian */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-fondo: #000000;
-    --color-superficie: #1c1c1e;
-    --color-texto: #f2f2f7;
-    --color-texto-2: #98989f;
-    --color-separador: #38383a;
-    --color-acento: #0a84ff;
-    --color-correcto: #30d158;
-    --color-error: #ff453a;
+    --color-superficie: #0a0a0a;
+    --color-texto: #ededed;
+    --color-texto-2: #a1a1a1;
+    --color-separador: #2e2e2e;
+    --color-acento: #3291ff;
+    --color-correcto: #3fb950;
+    --color-error: #f85149;
+  }
+}
+
+/*
+ * Animación del lema de Inicio: la copia con degradado de cada palabra aparece,
+ * se mantiene un momento y desaparece; el resto del ciclo (lo que dura el turno
+ * de las otras dos palabras) se queda invisible.
+ *   0 %      invisible
+ *   6–27 %   visible (≈ 1,3 s de los 6 s)
+ *   33 %     invisible otra vez (justo cuando empieza la siguiente palabra)
+ */
+@keyframes brillo-palabra {
+  0%,
+  33%,
+  100% {
+    opacity: 0;
+  }
+  6%,
+  27% {
+    opacity: 1;
   }
 }
 
@@ -35,19 +74,26 @@
   }
 
   body {
+    /* La fuente sale de --font-sans (Tailwind la aplica a todo el documento) */
     @apply bg-fondo text-texto antialiased;
-    /* Fuente del sistema: San Francisco en iPhone/Mac, Roboto en Android */
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-feature-settings: 'ss01'; /* variante de Geist con formas más limpias */
   }
 
   /* Contorno visible al navegar con teclado (no al tocar) */
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-acento;
+    @apply rounded-md outline-2 outline-offset-2 outline-acento;
+  }
+
+  /* Texto seleccionado en el azul de la app */
+  ::selection {
+    @apply bg-acento/20;
   }
 }
 
 /* --- Componentes: piezas que se repiten en varias pantallas --- */
 @layer components {
+  /* ===== Estructura de pantalla ===== */
+
   /* Pantalla con el contenido centrado (cargando, error, fin de sesión…) */
   .pantalla-centrada {
     @apply flex min-h-dvh flex-col items-center justify-center px-6 text-center;
@@ -56,104 +102,266 @@
   /* Pantallas con barra inferior: margen lateral y hueco para el notch */
   .pagina {
     @apply px-4;
-    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-top: max(1.25rem, env(safe-area-inset-top));
   }
 
-  /* Título grande estilo iOS ("Hoy", "Temas"…) */
+  /* Título de pantalla ("Hoy", "Temas"…): compacto y con letras juntas, como Vercel */
   .titulo-grande {
-    @apply text-[34px] leading-tight font-bold tracking-tight;
+    @apply text-[28px] leading-tight font-semibold tracking-[-0.04em];
+  }
+
+  /* Título de cada bloque dentro de una pantalla ("Simulacros", "Por temas") */
+  .titulo-seccion {
+    @apply mt-8 mb-3 text-[15px] font-semibold tracking-tight;
   }
 
   /* Hueco al final del contenido para que no lo tape la barra inferior */
   .con-barra {
-    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
   }
 
-  /* Barra inferior fija, translúcida, por encima de la barra de inicio del iPhone */
+  /* Cabecera que se queda arriba al hacer scroll (repaso, simulacro): translúcida y con borde abajo */
+  .cabecera-fija {
+    @apply sticky top-0 z-10 border-b border-separador bg-fondo/80 px-4 pb-3 backdrop-blur-md;
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+
+  /* Pie que se queda abajo al hacer scroll (botón "Siguiente"): con borde arriba */
+  .pie-fijo {
+    @apply sticky bottom-0 z-10 border-t border-separador bg-fondo/80 px-4 pt-3 backdrop-blur-md;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  /* Panel a pantalla completa por encima de todo (índice del simulacro) */
+  .panel {
+    @apply fixed inset-0 z-30 mx-auto max-w-md overflow-y-auto bg-fondo;
+  }
+
+  /* Aviso flotante arriba, por encima de todo (p. ej. "Hay una versión nueva") */
+  .aviso-superior {
+    @apply fixed inset-x-0 top-0 z-40 mx-auto max-w-md px-4;
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+  }
+
+  /* ===== Barra inferior de pestañas ===== */
+
+  /* Barra fija abajo, translúcida, con borde fino arriba y hueco para la barra de inicio del iPhone */
   .barra-inferior {
-    @apply fixed inset-x-0 bottom-0 z-20 border-t border-separador bg-superficie/90 backdrop-blur;
+    @apply fixed inset-x-0 bottom-0 z-20 border-t border-separador bg-superficie/80 backdrop-blur-md;
     padding-bottom: env(safe-area-inset-bottom);
   }
 
-  /* Cada pestaña: icono + texto, zona táctil grande */
+  /* Cada pestaña: icono + texto, en gris; zona táctil grande */
   .pestana {
-    @apply flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 text-[11px] font-medium text-texto-2 active:opacity-60;
+    @apply flex min-h-14 flex-1 flex-col items-center justify-center gap-1 text-[11px] font-medium text-texto-2 transition-colors active:opacity-60;
 
-    /* Iconos de línea que toman el color del texto */
+    /* Iconos de línea fina que toman el color del texto */
     svg {
       @apply fill-none stroke-current;
-      stroke-width: 1.8;
+      stroke-width: 1.6;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
   }
 
+  /* Pestaña actual: en el color del texto principal (no en azul), como Vercel */
   .pestana-activa {
-    @apply text-acento;
+    @apply text-texto;
+  }
+
+  /* ===== Contenedores ===== */
+
+  /* Caja blanca con borde fino y esquinas suaves */
+  .tarjeta {
+    @apply rounded-xl border border-separador bg-superficie p-4;
+  }
+
+  /* Lista agrupada: una caja con borde y una línea fina entre filas */
+  .grupo {
+    @apply divide-y divide-separador overflow-hidden rounded-xl border border-separador bg-superficie;
+  }
+
+  /* Fila tocable de una lista: alto mínimo para el dedo y fondo gris mientras se pulsa */
+  .fila {
+    @apply flex min-h-14 items-center gap-3 px-4 py-3 transition-colors active:bg-fondo;
+  }
+
+  /* Cifra destacada (panel de datos): etiqueta pequeña arriba y valor grande debajo */
+  .dato {
+    @apply rounded-xl border border-separador bg-superficie px-4 py-3;
+  }
+
+  .dato-etiqueta {
+    @apply text-[13px] text-texto-2;
+  }
+
+  .dato-valor {
+    @apply mt-1 text-2xl font-semibold tracking-tight tabular-nums;
+  }
+
+  /* ===== Botones y enlaces ===== */
+
+  /* Botón principal: relleno del color del texto (negro en claro, blanco en oscuro); sirve también para <a> */
+  .boton {
+    @apply flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-texto px-4 text-[15px] font-medium text-superficie transition-opacity active:opacity-80 disabled:opacity-40;
+  }
+
+  /* Botón secundario: fondo blanco con borde ("Anterior", "Exportar") */
+  .boton-secundario {
+    @apply flex min-h-11 items-center justify-center gap-2 rounded-lg border border-separador bg-superficie px-4 text-[15px] font-medium text-texto transition-colors active:bg-fondo disabled:opacity-40;
   }
 
   /* Enlace de texto azul ("Cerrar", "Ver todos"); mínimo 44 px de alto para el dedo */
   .enlace {
-    @apply inline-flex min-h-11 items-center font-semibold text-acento active:opacity-60;
+    @apply inline-flex min-h-11 items-center font-medium text-acento active:opacity-60;
   }
 
-  /* Píldora pequeña ("Próximamente") */
+  /* Flecha ">" al final de las filas que abren otra pantalla */
+  .chevron {
+    @apply size-4 shrink-0 fill-none stroke-current text-texto-2;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ===== Etiquetas ===== */
+
+  /* Píldora neutra pequeña ("Próximamente") */
   .etiqueta {
-    @apply shrink-0 rounded-full bg-fondo px-2.5 py-1 text-xs font-semibold text-texto-2;
+    @apply inline-flex h-6 shrink-0 items-center rounded-full border border-separador bg-fondo px-2.5 text-xs font-medium text-texto-2;
   }
 
-  /* Cabecera que se queda arriba al hacer scroll (repaso) */
-  .cabecera-fija {
-    @apply sticky top-0 z-10 bg-fondo/90 px-4 pb-3 backdrop-blur;
-    padding-top: max(0.75rem, env(safe-area-inset-top));
+  /* Insignia de estado (APTO / NO APTO): fondo suave del color y texto del mismo color */
+  .insignia {
+    @apply inline-flex h-6 shrink-0 items-center justify-center rounded-full px-2.5 text-xs font-semibold tracking-wide;
   }
 
-  /* Pie que se queda abajo al hacer scroll (botón "Siguiente") */
-  .pie-fijo {
-    @apply sticky bottom-0 z-10 bg-fondo/90 px-4 pt-3 backdrop-blur;
-    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  .insignia-exito {
+    @apply bg-correcto/10 text-correcto;
   }
 
-  /* Caja blanca redondeada */
-  .tarjeta {
-    @apply rounded-2xl bg-superficie p-4;
+  .insignia-error {
+    @apply bg-error/10 text-error;
   }
 
-  /* Botón principal azul a todo el ancho; sirve también para <a> */
-  .boton {
-    @apply flex min-h-12 w-full items-center justify-center rounded-xl bg-acento px-4 text-[17px] font-semibold text-white transition-opacity active:opacity-80;
+  /* Número del tema ("1.3 bis") en monoespaciada, en una cajita de ancho fijo para alinear los títulos */
+  .codigo-tema {
+    @apply w-14 shrink-0 rounded-md border border-separador bg-fondo py-0.5 text-center font-mono text-xs text-texto-2;
   }
 
-  /* Opción de respuesta: botón grande a todo el ancho que se encoge un poco al tocarlo */
+  /* ===== Preguntas ===== */
+
+  /* Opción de respuesta: fila con borde a todo el ancho que se hunde un poco al tocarla */
   .opcion {
-    @apply flex min-h-14 w-full items-center gap-3 rounded-xl border-2 border-transparent bg-superficie px-4 py-3 text-left leading-snug transition active:scale-[0.98] disabled:active:scale-100;
+    @apply flex min-h-14 w-full items-center gap-3 rounded-xl border border-separador bg-superficie px-4 py-3 text-left text-[15px] leading-snug transition active:scale-[0.99] active:bg-fondo disabled:active:scale-100 disabled:active:bg-superficie;
   }
 
-  /* Círculo con la letra (A, B, C, D) */
+  /* Letra de la opción (A, B, C, D) en una cajita monoespaciada */
   .opcion-letra {
-    @apply grid size-7 shrink-0 place-items-center rounded-full bg-fondo text-sm font-semibold text-texto-2;
+    @apply grid size-7 shrink-0 place-items-center rounded-md border border-separador bg-fondo font-mono text-xs font-medium text-texto-2;
   }
 
-  /* Tras responder: la correcta en verde */
+  /* Tras responder: la correcta en verde (borde, fondo suave y letra rellena) */
   .opcion-correcta {
-    @apply border-correcto bg-correcto/10;
+    @apply border-correcto bg-correcto/8;
 
     .opcion-letra {
-      @apply bg-correcto text-white;
+      @apply border-transparent bg-correcto text-superficie;
     }
   }
 
   /* Tras responder: la elegida, si es incorrecta, en rojo */
   .opcion-error {
-    @apply border-error bg-error/10;
+    @apply border-error bg-error/8;
 
     .opcion-letra {
-      @apply bg-error text-white;
+      @apply border-transparent bg-error text-superficie;
+    }
+  }
+
+  /* Simulacro: opción marcada (sin decir si es correcta), en azul */
+  .opcion-marcada {
+    @apply border-acento bg-acento/8;
+
+    .opcion-letra {
+      @apply border-transparent bg-acento text-superficie;
     }
   }
 
   /* Tras responder: las demás, atenuadas */
   .opcion-apagada {
-    @apply opacity-50;
+    @apply opacity-40;
+  }
+
+  /* ===== Lema animado de Inicio ("Estudia. Repasa. Aprueba.") ===== */
+
+  /*
+   * Efecto como el "Develop. Preview. Ship." de la portada de Vercel: cada palabra
+   * se ilumina por turnos con su propio degradado y vuelve al color del texto.
+   *
+   * Cómo: cada `.palabra` tiene dentro una copia de sí misma (`.palabra-brillo`)
+   * colocada exactamente encima. La copia lleva el degradado recortado a la forma
+   * de las letras (`background-clip: text` + texto transparente) y su opacidad
+   * sube y baja con la animación `brillo-palabra`. Las tres palabras usan la misma
+   * animación de 6 s desfasada 2 s, así se van turnando sin JavaScript.
+   */
+  .lema {
+    @apply text-[34px] leading-[1.05] font-extrabold tracking-[-0.05em];
+  }
+
+  /* Palabra: en línea pero sin partirse, y de referencia para colocar su copia encima */
+  .palabra {
+    @apply relative inline-block;
+  }
+
+  /* Copia con degradado, encima de la palabra e invisible al principio */
+  .palabra-brillo {
+    @apply pointer-events-none absolute inset-0 opacity-0 select-none;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: brillo-palabra 6s ease-in-out infinite;
+  }
+
+  /* Degradado y turno de cada palabra (los colores de la portada de Vercel) */
+  .palabra-1 .palabra-brillo {
+    background-image: linear-gradient(90deg, #007cf0, #00dfd8);
+    animation-delay: 0s;
+  }
+
+  .palabra-2 .palabra-brillo {
+    background-image: linear-gradient(90deg, #7928ca, #ff0080);
+    animation-delay: 2s;
+  }
+
+  .palabra-3 .palabra-brillo {
+    background-image: linear-gradient(90deg, #ff4d4d, #f9cb28);
+    animation-delay: 4s;
+  }
+
+  /* Accesibilidad: con "Reducir movimiento" activado en el móvil, sin animación
+     y con los tres degradados a la vez, quietos. */
+  @media (prefers-reduced-motion: reduce) {
+    .palabra-brillo {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
+  /* ===== Índice del simulacro ===== */
+
+  /* Casilla con el número de pregunta */
+  .casilla {
+    @apply grid aspect-square place-items-center rounded-md border border-separador bg-superficie font-mono text-xs text-texto-2 active:opacity-60;
+  }
+
+  /* Casilla de una pregunta ya respondida: rellena del color del texto */
+  .casilla-respondida {
+    @apply border-transparent bg-texto text-superficie;
+  }
+
+  /* Casilla de la pregunta que se está viendo: anillo azul alrededor */
+  .casilla-actual {
+    @apply ring-2 ring-acento ring-offset-2 ring-offset-fondo;
   }
 }

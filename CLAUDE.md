@@ -13,7 +13,7 @@ Nombre provisional de la app: por decidir (candidatos: Tira Millas, Dale Gas, Ro
 ## Principios
  
 - Mínimo y práctico. Nada de sobreingeniería.
-- Diseño limpio, estilo iOS/Apple.
+- Diseño profesional estilo Vercel / GitHub (sistema Geist), no estilo iOS: casi monocromo, bordes finos de 1 px en vez de sombras, tipografía Geist (y Geist Mono para números, contadores y códigos), títulos compactos con poco espacio entre letras y cifras con la etiqueta arriba y el valor debajo. Detalle en "Estilos".
 - Es una app web, pero su uso principal es en el móvil (instalada como PWA). Se diseña primero para el móvil y el escritorio es secundario.
 - Primero un MVP con un examen (~100 preguntas) probado por 3–4 compañeros durante una semana.
 ## Diseño para móvil
@@ -106,6 +106,14 @@ Comentarios
  
 Estilos
 - Todos los estilos en `src/styles.css` (global). Nada de CSS por componente.
+- Línea visual (Vercel / GitHub):
+  - Fuentes Geist y Geist Mono desde `@fontsource-variable/*` (van en la build, funcionan sin conexión). Se usan con `font-sans` y `font-mono`.
+  - Fondo `#FAFAFA` y tarjetas blancas con `border border-separador` (`#EAEAEA`); en oscuro, `#000` / `#0A0A0A` con bordes `#2E2E2E`. Sin sombras, salvo avisos flotantes.
+  - Botón principal (`.boton`) relleno del color del texto: negro en claro, blanco en oscuro. Secundario (`.boton-secundario`) blanco con borde.
+  - Azul (`acento` #0070F3 / #3291FF) solo para enlaces, selección y progreso. Verde y rojo de GitHub (`correcto` #1A7F37, `error` #CF222E) solo para acierto/fallo y apto/no apto.
+  - Estados con insignias suaves (`.insignia-exito` / `.insignia-error`: fondo al 10 % y texto del color), no con píldoras de color sólido.
+  - Cifras con `.dato` / `.dato-etiqueta` / `.dato-valor`. Metadatos (fechas, contadores, %, códigos de tema, reloj) en `font-mono` pequeño y gris.
+  - Iconos en SVG de línea fina, nunca emojis.
 - En las plantillas, utilidades de Tailwind para la maquetación (espaciado, flex, tamaños de texto).
 - Piezas que se repiten (`.boton`, `.tarjeta`, `.opcion`, `.cabecera-fija`, `.pie-fijo`…) como clases en `@layer components` de `styles.css`, con `@apply`.
 - Colores de la app como tokens de tema de Tailwind (`@theme` en `styles.css`: `bg-fondo`, `text-acento`, `text-correcto`…), no valores sueltos repetidos.
@@ -155,14 +163,14 @@ Los del temario de Mercancías (RD 284/2021), con el número del índice del lib
  
 ## Repaso espaciado (Leitner)
  
-- 5 cajas, intervalos: caja 1 = 1 día, 2 = 3, 3 = 7, 4 = 14, 5 = 30.
+- 5 cajas, intervalos: caja 1 = 1 día, 2 = 3, 3 = 6, 4 = 10, 5 = 15. Máximo 15 días (antes 30) a petición del usuario, para que nada pase más de dos semanas sin repasarse; la escala se repartió para que la caja 5 no quede casi igual que la 4.
 - Acierto: sube una caja (máx. 5). Fallo: vuelve a la caja 1 (sale mañana).
 - `proximo` cuenta por días naturales: es la medianoche local del día que toca, no "ahora + 24 h" (si no, lo fallado a las 20:00 no saldría al estudiar a las 9:00 del día siguiente).
 - Dentro de una sesión, solo la primera respuesta a cada pregunta cambia su caja; las repeticiones de falladas son práctica.
 ```ts
 const KEY = 'cap-progreso';
 const DIA = 86_400_000;
-const INTERVALOS = [0, 1, 3, 7, 14, 30];
+const INTERVALOS = [0, 1, 3, 6, 10, 15];
  
 const cargar = (): Progreso => JSON.parse(localStorage.getItem(KEY) ?? '{}');
 const guardar = (p: Progreso) => localStorage.setItem(KEY, JSON.stringify(p));
@@ -235,33 +243,30 @@ export function crearSesion(banco: Pregunta[], total = 25, maxNuevas = 8) {
 }
 ```
  
-## Simulacro (100 preguntas)
+## Simulacro (100 preguntas, 2 horas)
  
-- Cuotas por tema según su peso medio en los exámenes oficiales (p. ej. 15 % → 0,15).
-- Más peso a las preguntas de Castilla y León (`origen`), que es donde se examinan.
-- Sin feedback hasta el final, con temporizador.
-- Si el redondeo da 99 o 101, ajustar con el tema de más peso.
-```ts
-function porCuotas(banco: Pregunta[], pesos: Record<string, number>, total = 100) {
-  const grupos = porTema(banco);
-  return barajar(
-    Object.entries(pesos).flatMap(([tema, peso]) =>
-      (grupos.get(tema) ?? []).slice(0, Math.round(total * peso))
-    )
-  );
-}
-```
+Lógica en `shared/utils/simulacro.ts`, estado en `shared/services/simulacros.ts`, pantalla en `pages/simulacro/`.
+ 
+- Reglas del examen oficial: acierto +1, fallo −0,5, en blanco 0; apto con 50 puntos o más. Constantes `PREGUNTAS_SIMULACRO`, `DURACION_SIMULACRO`, `PENALIZACION`, `NOTA_APROBADO`.
+- Reparto por temas proporcional a su peso en el banco: como el banco sale entero de exámenes oficiales, refleja el peso real. Redondeo por el método del resto mayor: cada tema recibe la parte entera de su cuota y las que faltan van a los de mayor parte decimal; suma exactamente 100. Si en el futuro hay preguntas de otras comunidades, dar más peso a las de Castilla y León (`origen`).
+- Como en papel: sin corrección hasta entregar; se puede dejar en blanco (tocar otra vez la opción marcada), cambiar respuestas y saltar con el índice (cuadrícula de 100). Las opciones salen en el orden original, sin barajar.
+- Cuenta atrás de 2 horas; en rojo con menos de 5 minutos; al llegar a 0 se entrega solo.
+- Se guarda tras cada respuesta (`'cap-simulacro'`: ids, respuestas como índice de opción o `null`, inicio, fin). El tiempo se guarda como hora de fin, así que sigue corriendo con la app cerrada; si se vuelve con el tiempo agotado, se corrige con lo respondido.
+- Al entregar, las respondidas actualizan el progreso Leitner (las de en blanco no) y el resultado se guarda en el historial (`'cap-simulacros'`, últimos 50).
+- Resultado: nota, APTO/NO APTO, aciertos/fallos/en blanco, tiempo empleado, acierto por tema de peor a mejor, botón para practicar el tema más flojo y revisión de falladas y en blanco con la respuesta correcta.
  
 ## Pantallas
  
-1. Inicio: repasos pendientes de hoy, racha, acceso al simulacro, temas más flojos.
+1. Inicio: cabecera con la fecha y el lema animado "Estudia. Repasa. Aprueba." (efecto de la portada de Vercel: cada palabra se ilumina por turnos con su degradado; solo CSS, clases `.lema` / `.palabra-N` / `.palabra-brillo`, sin animación con "Reducir movimiento"); repasos pendientes de hoy, racha, acceso al simulacro, temas más flojos.
 2. Repaso: pregunta, 4 opciones; tras responder, correcta en verde, la elegida en rojo, explicación "Por qué" y "Volverá a salir mañana".
 3. Simulacro: 100 preguntas con temporizador.
 4. Resultado: nota, acierto por tema de peor a mejor, botón "Sesión de refuerzo" (falladas + temas flojos) y "Ver preguntas falladas".
-5. Temas: práctica libre por tema.
-6. Acerca de: avisos (ver abajo).
-7. `/admin` (sin enlace en el menú, solo para el autor): ver abajo.
-Barra inferior: Hoy · Temas · Progreso. Solo en esas tres pantallas: son rutas hijas del layout `Pestanas` en `app.routes.ts`. Repaso y simulacro van a pantalla completa, sin barra, con un "Cerrar" arriba a la izquierda. La racha cuenta los días con al menos una sesión terminada (`dias` en `'cap-sesiones'`). Colores de referencia: fondo #F2F2F7, acento #0057C2, correcto #1B7A33, error #B8261B.
+5. Temas: los 14 temas agrupados por módulo (`MODULOS` en `shared/models/temas.ts`; los nombres tienen que coincidir con `tema` del JSON), con vistas/total y % de acierto. Al tocar uno se abre la práctica: la misma pantalla de repaso en `/repaso?tema=…` (input `tema`), solo con ese tema, sin límite diario, sin guardar para retomar (no pisa la sesión diaria) y con el título "Práctica". Lo respondido sí actualiza el progreso. Los temas flojos de Inicio también abren su práctica.
+6. Progreso (pestaña): resumen (vistas, dominadas, racha, acierto global), simulacros (columnas con las últimas 10 notas, línea de apto en 50, media y lista de los últimos 5 con APTO/NO APTO escrito), acierto por tema de peor a mejor (sin datos al final; cada fila abre su práctica) y copia de seguridad. Sin bloque de cajas Leitner ni fechas en los simulacros: el usuario no los quiere.
+   - Copia de seguridad (`CopiaSeguridad`): "Exportar" descarga `cap-progreso-AAAA-MM-DD.json` con todas las claves `cap-*`; "Importar" valida que sea una copia de la app (`app: "cap-estudio"`), pide confirmación, sustituye los datos y recarga.
+7. Acerca de: avisos (ver abajo).
+8. `/admin` (sin enlace en el menú, solo para el autor): ver abajo.
+Barra inferior: Hoy · Temas · Progreso. Solo en esas tres pantallas: son rutas hijas del layout `Pestanas` en `app.routes.ts`. Repaso y simulacro van a pantalla completa, sin barra, con un "Cerrar" arriba a la izquierda. La racha cuenta los días con al menos una sesión terminada (`dias` en `'cap-sesiones'`). Colores: ver "Estilos" (tokens en `styles.css`). La pestaña activa va en el color del texto, no en azul.
  
 ## Administración de preguntas (`/admin`)
  
@@ -304,9 +309,14 @@ function fusionar(base: Pregunta[], nuevas: Pregunta[]) {
 - Peso: 1.000 preguntas ≈ 500 KB (~120 KB con gzip). No hace falta dividirlo.
 ## PWA
  
-- `ng add @angular/pwa`.
-- Manifest: `name` "CAP Estudio" (o el nombre final), `short_name` "CAP", `display` "standalone", `theme_color` #0057C2, `background_color` #F2F2F7.
-- En `ngsw-config.json`, añadir a `assetGroups`:
+Hecho: `@angular/service-worker` instalado y `provideServiceWorker` en `app.config.ts` (solo en producción).
+ 
+- Manifest (`public/manifest.webmanifest`): `name` "CAP Estudio" (o el nombre final), `short_name` "CAP", `display` "standalone", `theme_color` y `background_color` #FAFAFA (el fondo de la app).
+- Iconos propios en `public/icons/` (fondo negro y "CAP" en blanco, dentro de la zona segura de los iconos *maskable*), más `apple-touch-icon.png` (180 px, para iPhone) y `favicon-32x32.png`. Si cambia el nombre de la app, regenerarlos.
+- `index.html`: enlaces al manifest, al icono de iPhone y metas `apple-mobile-web-app-*` (sin barras de Safari al abrirla instalada).
+- Aviso de versión nueva: servicio `Actualizaciones` (`SwUpdate.versionUpdates` → `VERSION_READY`), que muestra arriba "Hay una versión nueva · Actualizar". No recarga sola.
+- Aviso de instalación en iPhone: servicio `Instalacion`, tarjeta en Inicio solo si es iOS, no está instalada y no se ha cerrado (`'cap-aviso-instalar-cerrado'`).
+- En `ngsw-config.json` está el grupo `preguntas` (prefetch), así que funciona sin conexión desde la primera visita:
 ```json
 {
   "name": "preguntas",
@@ -316,8 +326,6 @@ function fusionar(base: Pregunta[], nuevas: Pregunta[]) {
 }
 ```
  
-- Avisar de versiones nuevas con `SwUpdate` (`VERSION_READY` → recargar).
-- En iPhone no hay aviso automático de instalación: mostrar un mensaje si es iOS y no está en modo standalone (`matchMedia('(display-mode: standalone)')`).
 - El service worker solo funciona en build de producción: probar con `ng build` + `npx http-server dist/<app>/browser`.
 ## Avisos (pantalla "Acerca de" + una línea al pie del inicio)
  
@@ -338,7 +346,7 @@ function fusionar(base: Pregunta[], nuevas: Pregunta[]) {
 ## Riesgos y pendientes
  
 - Calidad de los datos: revisar respuestas y temas; botón "reportar error" en cada pregunta.
-- Exportar/importar el progreso (JSON), porque sin backend se pierde al borrar datos o cambiar de móvil.
+- Hecho: exportar/importar el progreso (JSON) en la pestaña Progreso, porque sin backend se pierde al borrar datos o cambiar de móvil.
 - Pendiente: procesar los otros exámenes oficiales + hojas de respuestas → `questions.json` (deduplicar, clasificar por tema).
 - Pendiente: escribir las explicaciones (`explicacion` está vacía en las 202 actuales).
 - Pendiente: elegir nombre definitivo y modalidad (Mercancías o Viajeros).

@@ -38,11 +38,16 @@ export const routes: Routes = [
     ],
   },
 
-  // Pantalla completa, sin barra: fuera del layout de pestañas.
+  // Pantallas completas, sin barra: fuera del layout de pestañas.
   {
     path: 'repaso',
     title: 'Repaso · CAP Estudio',
     loadComponent: () => import('./pages/repaso/repaso').then((m) => m.Repaso),
+  },
+  {
+    path: 'simulacro',
+    title: 'Simulacro · CAP Estudio',
+    loadComponent: () => import('./pages/simulacro/simulacro').then((m) => m.Simulacro),
   },
 
   // Cualquier otra URL (mal escrita o antigua) redirige al inicio en vez de

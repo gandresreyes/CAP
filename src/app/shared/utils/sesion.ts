@@ -117,7 +117,7 @@ export function crearSesion(
   // 4. Adelantadas: si aún faltan preguntas (ya se vieron todas y hay pocas
   //    pendientes), se cogen las vistas que no se han usado, primero las que
   //    antes iban a tocar (`proximo` más bajo). Así las falladas hoy, que tocan
-  //    mañana, salen antes que las que se acertaron y tocan dentro de un mes.
+  //    mañana, salen antes que las que se acertaron y tocan dentro de dos semanas.
   //    Se baraja antes de ordenar para que, a igual fecha, el orden sea aleatorio.
   const usadas = new Set([...repaso, ...nuevas].map((p) => p.id));
   const adelantadas = barajar(banco.filter((p) => prog[p.id] && !usadas.has(p.id)))

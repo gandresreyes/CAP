@@ -1,0 +1,57 @@
+<div class="pagina">
+  <!-- Cabecera: título y explicación corta -->
+  <header class="pb-2">
+    <h1 class="titulo-grande">Temas</h1>
+    <p class="mt-1 text-sm text-texto-2">Practica el tema que quieras, sin límite.</p>
+  </header>
+
+  <!-- Un bloque por módulo del temario, con sus temas en una lista agrupada -->
+  @for (m of modulos(); track m.nombre) {
+    <section>
+      <h2 class="titulo-seccion">{{ m.nombre }}</h2>
+      <ul class="grupo">
+        @for (t of m.temas; track t.tema) {
+          <li>
+            <!-- Cada fila abre la práctica de ese tema: /repaso?tema=<nombre del tema>.
+                 `queryParams` codifica el nombre en la URL (espacios, tildes…). -->
+            <a routerLink="/repaso" [queryParams]="{ tema: t.tema }" class="fila">
+              <span class="codigo-tema">{{ t.codigo }}</span>
+
+              <!-- Título y datos del tema. `min-w-0` deja que el texto se recorte en vez de desbordar. -->
+              <span class="min-w-0 flex-1">
+                <span class="block leading-snug font-medium">{{ t.titulo }}</span>
+                <span class="mt-0.5 block text-sm text-texto-2">
+                  {{ t.vistas }} de {{ t.preguntas }} vistas
+                </span>
+              </span>
+
+              <!-- % de acierto coloreado; guion si aún no hay respuestas -->
+              @if (t.porcentaje !== null) {
+                <span
+                  class="shrink-0 font-semibold"
+                  [class.text-error]="t.nivel === 'bajo'"
+                  [class.text-acento]="t.nivel === 'medio'"
+                  [class.text-correcto]="t.nivel === 'alto'"
+                >
+                  {{ t.porcentaje }} %
+                </span>
+              } @else {
+                <span class="shrink-0 text-texto-2">—</span>
+              }
+
+              <!-- Flecha ">" de "se puede abrir", como en iOS -->
+              <svg viewBox="0 0 24 24" class="chevron" aria-hidden="true">
+                <path d="m9 6 6 6-6 6" />
+              </svg>
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+
+  <!-- Nota al pie: qué significa el porcentaje -->
+  <p class="mt-4 pb-4 text-center text-xs leading-relaxed text-texto-2">
+    El porcentaje es tu acierto en todas las respuestas de ese tema.
+  </p>
+</div>

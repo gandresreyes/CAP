@@ -6,7 +6,10 @@ import { Estado } from '../models/progreso';
  * Cada pregunta está en una de 5 "cajas". Cuanto más alta la caja, mejor se sabe
  * y más días pasan hasta que vuelve a salir:
  *
- *   caja 1 → 1 día · caja 2 → 3 días · caja 3 → 7 · caja 4 → 14 · caja 5 → 30
+ *   caja 1 → 1 día · caja 2 → 3 días · caja 3 → 6 · caja 4 → 10 · caja 5 → 15
+ *
+ * El máximo es 15 días (no 30) porque el examen está cerca: así ninguna pregunta
+ * pasa más de dos semanas sin repasarse.
  *
  * - Acertar sube la pregunta una caja (como máximo hasta la 5).
  * - Fallar la devuelve a la caja 1, sea cual sea la caja en la que estaba.
@@ -22,7 +25,7 @@ export const CAJA_MAX = 5;
  * La posición 0 no se usa (no existe la caja 0); está para que el índice coincida
  * con el número de caja y no haya que restar 1.
  */
-export const INTERVALOS = [0, 1, 3, 7, 14, 30];
+export const INTERVALOS = [0, 1, 3, 6, 10, 15];
 
 /**
  * Devuelve la medianoche (00:00 hora local) del día de `ahora`, desplazada `dias` días.
