@@ -359,8 +359,12 @@ Regla completa: antes de procesar un PDF de examen, mirar su fecha, ciudad, moda
 | GVA 2026-05 | 30-05-2026 (sin hora) | Comunitat Valenciana (web de la GVA; el PDF no indica ciudad) | Mercancías, modelo A (cuestionario sin respuestas + plantilla de casillas aparte) | 90 nuevas (13 ya estaban; en la 80 la plantilla marca C y el banco, de CyL 2026-10 validada con A y B, D: se deja D) | `gva-2026-05-*` |
 | GVA 2026-09 | 26-09-2026 (sin hora) | Comunitat Valenciana (web de la GVA; el PDF no indica ciudad) | Mercancías, modelo A (cuestionario sin respuestas + plantilla de casillas aparte) | 97 nuevas (6 ya estaban; la 80 es `and-2026-01-088` con «6 %» en vez de «0,06») | `gva-2026-09-*` |
 | transportes.gob.es | banco versión 16-03-2026 | Ministerio de Transportes (banco oficial de preguntas del CAP, `public/data/nuevaspreguntas.json`, 4.993 preguntas) | Mercancías (común + específicas) | 238 elegidas para llegar a 1.000, repartidas por tema en la misma proporción que el banco | `mit-2026-03-NNNNN` (NNNNN = `cod` del banco del ministerio) |
+| CyL 2025-09 | 06-09-2025, 10:00 | Valladolid (IES Emilio Ferrari, C/ Sementera s/n) | Mercancías, modelos A y B (examen y plantilla en el mismo PDF) | 80 nuevas (23 ya estaban) | `cyl-2025-09-*` |
+| CyL 2025-10 | 25-10-2025, 10:00 | Valladolid (IES Núñez de Arce, Plaza del Poniente s/n) | Mercancías, modelos A y B (examen y plantilla en el mismo PDF) | 78 nuevas (22 ya estaban + 3 repetidas de CyL 2025-09) | `cyl-2025-10-*` |
+| CyL 2025-12 | 13-12-2025, 10:00 | Valladolid (IES Núñez de Arce, Plaza del Poniente s/n) | Mercancías, modelos A y B (examen y plantilla en el mismo PDF; el usuario tenía dos copias de cada modelo) | 73 nuevas (26 ya estaban + 4 repetidas de las anteriores de 2025) | `cyl-2025-12-*` |
+| CyL 2023-07 | 15-07-2023 | Valladolid (el PDF no indica el centro) | Mercancías, modelo B (sin el A: los ids usan la numeración del B; examen escaneado + plantilla) | 72 nuevas (31 ya estaban) | `cyl-2023-07-*` |
 
-Total en el banco: 1.000 preguntas. De los dos de CyL no se apuntaron la fecha exacta ni la ciudad al procesarlos: si el usuario vuelve a subir uno, reconocerlo por la convocatoria (año y mes) y por las preguntas repetidas, y completar aquí la fecha y la ciudad.
+Total en el banco: 1.303 preguntas. De los dos de CyL no se apuntaron la fecha exacta ni la ciudad al procesarlos: si el usuario vuelve a subir uno, reconocerlo por la convocatoria (año y mes) y por las preguntas repetidas, y completar aquí la fecha y la ciudad.
 
 ### Notas sobre las fuentes
 
@@ -370,6 +374,8 @@ Total en el banco: 1.000 preguntas. De los dos de CyL no se apuntaron la fecha e
   - Los PDF originales no van en `public/` (se publicarían con la app).
   - Algunos PDF traen "¿" donde iban puntos suspensivos ("el par motor¿") → sustituir por "…".
 - Generalitat Valenciana publica cuadernillos y plantillas oficiales (el cuestionario sin respuestas y la plantilla de casillas vienen en PDF separados; no dicen la comunidad en el propio PDF, así que un examen con ese formato puede ser de la GVA y no de CyL: preguntar) (Mercancías y Viajeros, 2017–2024): https://mediambient.gva.es/es/web/transportes/preguntas-examen
+- Los PDF de Valladolid (CyL) traen el examen y la plantilla en el mismo archivo: la plantilla es la primera página (o la última en los escaneados) y sus casillas son vectoriales, así que se leen sin OCR.
+- Los exámenes salen del banco oficial del ministerio con las opciones en el mismo orden, así que la plantilla se puede validar también contra su respuesta (en los de 2025 coincidieron todas). Si el examen está escaneado, el texto se saca con OCR (Vision de macOS) y se sustituye por el del banco del ministerio; solo las preguntas con otra redacción se copian de la imagen.
 - El temario es nacional (RD 284/2021), así que sirven exámenes de otras comunidades.
 - Usar solo exámenes oficiales (no bancos de academias). Descargar solo la modalidad que corresponda (Mercancías o Viajeros).
 ## Riesgos y pendientes

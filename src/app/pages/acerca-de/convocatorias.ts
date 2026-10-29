@@ -79,4 +79,32 @@ export const CONVOCATORIAS: readonly Convocatoria[] = [
     fecha: '16-03-2026',
     ids: 'mit-2026-03',
   },
+  {
+    origen: 'CyL 2025-09',
+    comunidad: 'Castilla y León',
+    lugar: 'Valladolid',
+    fecha: '06-09-2025',
+    ids: 'cyl-2025-09',
+  },
+  {
+    origen: 'CyL 2025-10',
+    comunidad: 'Castilla y León',
+    lugar: 'Valladolid',
+    fecha: '25-10-2025',
+    ids: 'cyl-2025-10',
+  },
+  {
+    origen: 'CyL 2025-12',
+    comunidad: 'Castilla y León',
+    lugar: 'Valladolid',
+    fecha: '13-12-2025',
+    ids: 'cyl-2025-12',
+  },
+  {
+    origen: 'CyL 2023-07',
+    comunidad: 'Castilla y León',
+    lugar: 'Valladolid',
+    fecha: '15-07-2023',
+    ids: 'cyl-2023-07',
+  },
 ];
