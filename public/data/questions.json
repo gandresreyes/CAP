@@ -14315,10 +14315,10 @@
       "el tipo de bomba de inyección: lineal o rotativa.",
       "el tipo de bujías que monte: frías o calientes.",
       "el tipo de ralentizador que monte el vehículo.",
-      "el número de revoluciones del motor."
+      "el perfil de la carretera, el tipo de conducción que realice el conductor y el número de revoluciones del motor."
     ],
     "correcta": 3,
-    "explicacion": "Las revoluciones del motor influyen directamente en el consumo; las bujías, la bomba o el ralentizador no.",
+    "explicacion": "El perfil de la carretera, la forma de conducir y las revoluciones del motor influyen en el consumo; las bujías, la bomba o el ralentizador no.",
     "origen": "CyL 2023-07"
   },
   {
@@ -14622,8 +14622,8 @@
     "opciones": [
       "La aerodinámica del vehículo.",
       "La longitud del cigüeñal.",
-      "La estructura del árbol de levas.",
-      "El ángulo del pistón."
+      "La longitud del árbol de levas.",
+      "La longitud del pistón."
     ],
     "correcta": 0,
     "explicacion": "La aerodinámica influye en el consumo: cuanto más resistencia al aire, más carburante gasta el motor.",
@@ -14786,7 +14786,7 @@
   {
     "id": "cyl-2023-07-093",
     "tema": "1.1 Cadena cinemática",
-    "enunciado": "Cuando el motor gira a bajas revoluciones, ¿cómo es la cantidad de combustible inyectada y cómo el par motor?",
+    "enunciado": "¿Cómo es la cantidad de combustible que se inyecta en el motor y el par motor cuando este gira a bajas revoluciones?",
     "opciones": [
       "Pequeña y, por tanto, también lo es el par motor.",
       "Pequeña, pero en cambio el par motor es grande.",
@@ -14804,7 +14804,7 @@
     "opciones": [
       "En torno a 80º.",
       "En torno a 60º.",
-      "En torno a 45º.",
+      "En torno a 2º.",
       "En torno a 20º."
     ],
     "correcta": 3,
